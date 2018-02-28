@@ -8,6 +8,7 @@ name = "pypi"
 [packages]
 
 django = "==2.0.2"
+channels = "==2.0.2"
 
 
 [dev-packages]
