@@ -1,1 +1,1 @@
-web: gunicorn Miwo.wsgi --log-file -
+web: daphne Miwo.asgi:application
