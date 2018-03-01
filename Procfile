@@ -1,1 +1,1 @@
-web: daphne Miwo.asgi:application
+web: daphne Miwo.asgi:application --port $PORT
