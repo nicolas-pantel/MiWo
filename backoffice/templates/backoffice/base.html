@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n static %}
 
 <!doctype html>
 <html lang="en">
@@ -10,14 +10,16 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
+
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-light">
     <!-- Brand image -->
     <a class="navbar-brand" href="#">
-      <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
-      miwo
+      <img src="{% static 'images/Miwo_Brand_h40px.png' %}" height="40" class="d-inline-block align-top" alt="">
     </a>
     <!-- Menus -->
     <div class="collapse navbar-collapse" id="navbarNav">
