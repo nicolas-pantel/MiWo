@@ -1,0 +1,53 @@
+{% extends "backoffice/base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-sm-6">
+            <div class="card">
+              <div class="card-header">
+                Client side
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Websocket</h5>
+                <button type="button" class="btn btn-success" id="btn-connect">Connect</button>
+                <button type="button" class="btn btn-danger" id="btn-disconnect">Disconnect</button>
+                <h5 class="card-title">Channels</h5>
+                <button type="button" class="btn btn-success" id="btn-message">Message</button>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card">
+              <div class="card-header">
+                Server side
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+$("#btn-connect").on("click", function(){
+    demoSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/demo/');
+});
+
+$("#btn-disconnect").on("click", function(){
+    demoSocket.close();
+});
+
+$("#btn-message").on("click", function(){
+    demoSocket.send(JSON.stringify({
+            'message': "THIS IS SENT MESSAGE"
+        }));
+})
+{% endblock %}
