@@ -46,6 +46,10 @@ $("#btn-connect").on("click", function(){
     demoSocket = new WebSocket(
         ws_prefix + window.location.host +
         '/ws/demo/');
+
+    demoSocket.onmessage = function(event){
+        console.log(event.data);
+    }
 });
 
 $("#btn-disconnect").on("click", function(){
@@ -57,4 +61,5 @@ $("#btn-message").on("click", function(){
             'message': "THIS IS SENT MESSAGE"
         }));
 })
+
 {% endblock %}

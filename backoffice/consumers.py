@@ -1,9 +1,7 @@
-import json
-
-from channels.generic.websocket import WebsocketConsumer
+from channels.generic.websocket import JsonWebsocketConsumer
 
 
-class DemoConsumer(WebsocketConsumer):
+class DemoConsumer(JsonWebsocketConsumer):
     counter = 0
 
     def connect(self):
@@ -14,11 +12,10 @@ class DemoConsumer(WebsocketConsumer):
         print("DISCONNECT")
         pass
 
-    def receive(self, text_data):
-        text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+    def receive_json(self, content):
+        message = content['message']
         self.counter += 1
         print(message, self.counter)
-        self.send(text_data=json.dumps({
-            'message': message
-        }))
+        self.send_json({
+            'message': message + " " + str(self.counter)
+        })

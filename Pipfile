@@ -11,6 +11,7 @@ django = "==2.0.2"
 channels = "==2.0.2"
 django-heroku = "*"
 gunicorn = "*"
+channels-redis = "*"
 
 
 [dev-packages]
