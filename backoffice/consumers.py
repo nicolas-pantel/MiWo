@@ -1,3 +1,5 @@
+from asgiref.sync import async_to_sync
+
 from channels.generic.websocket import JsonWebsocketConsumer
 
 
@@ -13,9 +15,31 @@ class DemoConsumer(JsonWebsocketConsumer):
         pass
 
     def receive_json(self, content):
-        message = content['message']
-        self.counter += 1
-        print(message, self.counter)
+        print("RECEIVE")
+        message = ""
+        # Subscribe / Unsubscribe to influencers groups
+        subscribe = content.get("subscribe")
+        unsubscribe = content.get("unsubscribe")
+
+        if subscribe:
+            async_to_sync(self.channel_layer.group_add)(
+                subscribe,
+                self.channel_name
+            )
+            message += "Subscribed to " + subscribe
+        if unsubscribe:
+            async_to_sync(self.channel_layer.group_discard)(
+                unsubscribe,
+                self.channel_name
+            )
+            message += "Unsubscribed to " + unsubscribe
+
         self.send_json({
-            'message': message + " " + str(self.counter)
+            'message': message
+        })
+
+    def influencer_broadcast(self, event):
+        print("INFLUENCER BROADCAST")
+        self.send_json({
+            'message': event.get('text', '')
         })

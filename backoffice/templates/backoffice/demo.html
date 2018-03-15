@@ -12,8 +12,15 @@
                 <h5 class="card-title">Websocket</h5>
                 <button type="button" class="btn btn-success" id="btn-connect">Connect</button>
                 <button type="button" class="btn btn-danger" id="btn-disconnect">Disconnect</button>
-                <h5 class="card-title">Channels</h5>
-                <button type="button" class="btn btn-success" id="btn-message">Message</button>
+                <h5 class="card-title mt-3">Channels</h5>
+                <p>
+                    <button type="button" class="btn btn-primary" id="btn-subscribe-1">Subscribe to influencer 1</button>
+                    <button type="button" class="btn btn-danger" id="btn-unsubscribe-1">Unsubscribe to influencer 1</button>
+                </p>
+                <p>
+                    <button type="button" class="btn btn-primary" id="btn-subscribe-2">Subscribe to influencer 2</button>
+                    <button type="button" class="btn btn-danger" id="btn-unsubscribe-2">Unsubscribe to influencer 2</button>
+                </p>
               </div>
             </div>
         </div>
@@ -24,9 +31,9 @@
                 Server side
               </div>
               <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">Broadcast</h5>
+                <p><button type="button" class="btn btn-primary" id="btn-server-send-1">Send message from influencer 1</button></p>
+                <p><button type="button" class="btn btn-primary" id="btn-server-send-2">Send message from influencer 2</button></p>
               </div>
             </div>
         </div>
@@ -42,24 +49,57 @@
     var ws_prefix = "wss://" // Heroku default to SSL
 {% endif %}
 
+//////////////////////////// Client side ////////////////////////////
+// Websocket connection
 $("#btn-connect").on("click", function(){
+    // Websocket connection
     demoSocket = new WebSocket(
         ws_prefix + window.location.host +
         '/ws/demo/');
 
+    // Callback to messages sent by server
     demoSocket.onmessage = function(event){
         console.log(event.data);
     }
 });
 
+// Websocket closing
 $("#btn-disconnect").on("click", function(){
     demoSocket.close();
 });
 
-$("#btn-message").on("click", function(){
+// Channels subscription
+$("#btn-subscribe-1").on("click", function(){
     demoSocket.send(JSON.stringify({
-            'message': "THIS IS SENT MESSAGE"
+            'subscribe': "channel-1"
         }));
-})
+});
 
+$("#btn-subscribe-2").on("click", function(){
+    demoSocket.send(JSON.stringify({
+            'subscribe': "channel-2"
+        }));
+});
+
+// Channels unsubscription
+$("#btn-unsubscribe-1").on("click", function(){
+    demoSocket.send(JSON.stringify({
+            'unsubscribe': "channel-1"
+        }));
+});
+
+$("#btn-unsubscribe-2").on("click", function(){
+    demoSocket.send(JSON.stringify({
+            'unsubscribe': "channel-2"
+        }));
+});
+
+//////////////////////////// Server side ////////////////////////////
+$("#btn-server-send-1").on("click", function(){
+    $.ajax({url: "demo/channel-1"});
+});
+
+$("#btn-server-send-2").on("click", function(){
+    $.ajax({url: "demo/channel-2"});
+});
 {% endblock %}
