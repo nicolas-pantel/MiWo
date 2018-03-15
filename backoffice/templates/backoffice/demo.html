@@ -35,9 +35,16 @@
 {% endblock %}
 
 {% block javascript %}
+// Django stuff, dev vs prod env
+{% if debug %}
+    var ws_prefix = "ws://" // No local SSL
+{% else %}
+    var ws_prefix = "wss://" // Heroku default to SSL
+{% endif %}
+
 $("#btn-connect").on("click", function(){
     demoSocket = new WebSocket(
-        'ws://' + window.location.host +
+        ws_prefix + window.location.host +
         '/ws/demo/');
 });
 
