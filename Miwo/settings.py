@@ -38,10 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'backoffice',
     'channels',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +154,7 @@ STATIC_URL = '/static/'
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
+
+
+# Rest auth registration
+SITE_ID = 1
