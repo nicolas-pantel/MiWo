@@ -156,5 +156,12 @@ STATIC_URL = '/static/'
 django_heroku.settings(locals())
 
 
-# Rest auth registration
+# DRF / Rest auth registration
 SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = "none"  # Disable email verification
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
