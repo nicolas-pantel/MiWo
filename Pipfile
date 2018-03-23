@@ -14,6 +14,7 @@ gunicorn = "*"
 channels-redis = "*"
 djangorestframework = "*"
 django-rest-auth = {extras = ["with-social"]}
+coreapi = "*"
 
 
 [dev-packages]
