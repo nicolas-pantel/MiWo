@@ -15,6 +15,7 @@ channels-redis = "*"
 djangorestframework = "*"
 django-rest-auth = {extras = ["with-social"]}
 coreapi = "*"
+django-allauth = "*"
 
 
 [dev-packages]

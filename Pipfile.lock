@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cae722e640381240c64673a72396be629e591d483eeb300702b9a853b79636a3"
+            "sha256": "6a3a7b88a38612617c7bfdbddcec91f974ea5c4d117cca929d8e3cba6e86ff48"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -127,6 +127,13 @@
             ],
             "version": "==2.1.0"
         },
+        "defusedxml": {
+            "hashes": [
+                "sha256:702a91ade2968a82beb0db1e0766a6a273f33d4616a6ce8cde475d8e09853b20",
+                "sha256:24d7f2f94f7f3cb6061acb215685e5125fbcdc40a857eff9de22518820b0a4f4"
+            ],
+            "version": "==0.5.0"
+        },
         "dj-database-url": {
             "hashes": [
                 "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9",
@@ -140,6 +147,12 @@
                 "sha256:dc3b61d054f1bced64628c62025d480f655303aea9f408e5996c339a543b45f0"
             ],
             "version": "==2.0.2"
+        },
+        "django-allauth": {
+            "hashes": [
+                "sha256:7b31526cccd1c46f9f09acf0703068e8a9669337d29eb065f7e8143c2d897339"
+            ],
+            "version": "==0.35.0"
         },
         "django-heroku": {
             "hashes": [
@@ -228,6 +241,13 @@
             ],
             "version": "==0.5.6"
         },
+        "oauthlib": {
+            "hashes": [
+                "sha256:09d438bcac8f004ae348e721e9d8a7792a9e23cd574634e973173344046287f5",
+                "sha256:909665297635fa11fe9914c146d875f2ed41c8c2d78e21a529dd71c0ba756508"
+            ],
+            "version": "==2.0.7"
+        },
         "psycopg2": {
             "hashes": [
                 "sha256:aeaba399254ca79c299d9fe6aa811d3c3eac61458dee10270de7f4e71c624998",
@@ -260,6 +280,13 @@
             ],
             "version": "==2.7.4"
         },
+        "python3-openid": {
+            "hashes": [
+                "sha256:0086da6b6ef3161cfe50fb1ee5cceaf2cda1700019fda03c2c5c440ca6abe4fa",
+                "sha256:628d365d687e12da12d02c6691170f4451db28d6d68d050007e4a40065868502"
+            ],
+            "version": "==3.1.0"
+        },
         "pytz": {
             "hashes": [
                 "sha256:ed6509d9af298b7995d69a440e2822288f2eca1681b8cce37673dbb10091e5fe",
@@ -280,6 +307,13 @@
                 "sha256:9c443e7324ba5b85070c4a818ade28bfabedf16ea10206da1132edaa6dda237e"
             ],
             "version": "==2.18.4"
+        },
+        "requests-oauthlib": {
+            "hashes": [
+                "sha256:50a8ae2ce8273e384895972b56193c7409601a66d4975774c60c2aed869639ca",
+                "sha256:883ac416757eada6d3d07054ec7092ac21c7f35cb1d2cf82faf205637081f468"
+            ],
+            "version": "==0.8.0"
         },
         "six": {
             "hashes": [
