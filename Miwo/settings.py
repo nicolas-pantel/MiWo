@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 INTERNAL_IPS = ('127.0.0.1',)
 
 SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", False)
+if SECURE_SSL_REDIRECT:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
