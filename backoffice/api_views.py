@@ -17,6 +17,20 @@ class InfluencersAPIView(APIView):
         return Response(data)
 
 
+class InfluencersFavoritesAPIView(APIView):
+    """Return user's favorite influencers"""
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        """Return user's favorite influencers"""
+        data = [
+            {"pk": 1, "username": "influencer 1", "image_url": "http://example.com/image1"},
+            {"pk": 2, "username": "influencer 2", "image_url": "http://example.com/image2"},
+            {"pk": 3, "username": "influencer 3", "image_url": "http://example.com/image3"},
+        ]
+        return Response(data)
+
+
 class InfluencersSearchAPIView(APIView):
     """Return list of influenceurs matching search_text"""
     permission_classes = (IsAuthenticated,)

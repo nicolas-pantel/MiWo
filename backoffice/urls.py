@@ -15,6 +15,7 @@ urlpatterns = [
     path('api/', include('rest_auth.urls')),
     path('api/registration/', include('rest_auth.registration.urls')),
     path('api/influencers/', api_views.InfluencersAPIView.as_view()),
+    path('api/influencers/favorites/', api_views.InfluencersFavoritesAPIView.as_view()),
     path('api/influencers/search/<search_text>/', api_views.InfluencersSearchAPIView.as_view()),
     path('api/influencers/<int:influencer_pk>/subscribe/', api_views.InfluencerSubscriptionAPIView.as_view()),
     path('api/influencers/<int:influencer_pk>/publications/', api_views.PublicationsAPIView.as_view()),
