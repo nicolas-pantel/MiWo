@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", False)
+
 # Application definition
 
 INSTALLED_APPS = [
