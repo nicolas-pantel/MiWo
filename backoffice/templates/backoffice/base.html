@@ -41,11 +41,17 @@
     <!-- Login -->
     <ul class="navbar-nav flex-row-reverse">
       <li class="nav-item">
-        <a class="nav-link mr-5" href="#">{% trans "SIGN UP" %}</a>
+        <a class="nav-link mr-5" href="{% url 'account_signup' %}">{% trans "SIGN UP" %}</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" href="#">{% trans "LOGIN" %}</a>
-      </li>
+      {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link mr-5" href="{% url 'account_logout' %}">{% trans "LOGOUT" %}</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link mr-5" href="{% url 'account_login' %}">{% trans "LOGIN" %}</a>
+        </li>
+      {% endif %}
     </ul>
   </nav>
   {% block content %}

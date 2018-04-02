@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6a3a7b88a38612617c7bfdbddcec91f974ea5c4d117cca929d8e3cba6e86ff48"
+            "sha256": "4e72fb75bb6e0c4bbaeb6038c21d79e5a34b8462e31a9440ff1d0ff4dd962807"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -153,6 +153,12 @@
                 "sha256:7b31526cccd1c46f9f09acf0703068e8a9669337d29eb065f7e8143c2d897339"
             ],
             "version": "==0.35.0"
+        },
+        "django-bootstrap4": {
+            "hashes": [
+                "sha256:6db4a27b33851833e68b96344f9df063150dcace8d4787ebfc21eceb55196945"
+            ],
+            "version": "==0.0.6"
         },
         "django-heroku": {
             "hashes": [
@@ -389,6 +395,13 @@
         }
     },
     "develop": {
+        "backcall": {
+            "hashes": [
+                "sha256:38ecd85be2c1e78f77fd91700c76e14667dc21e2713b63876c0eb901196e01e4",
+                "sha256:bbbf4b1e5cd2bdb08f915895b51081c041bac22394fdfcfdfbe9f14b77c08bf2"
+            ],
+            "version": "==0.1.0"
+        },
         "decorator": {
             "hashes": [
                 "sha256:94d1d8905f5010d74bbbd86c30471255661a14187c45f8d7f3e5aa8540fdb2e5",
@@ -404,10 +417,10 @@
         },
         "ipython": {
             "hashes": [
-                "sha256:fcc6d46f08c3c4de7b15ae1c426e15be1b7932bcda9d83ce1a4304e8c1129df3",
-                "sha256:51c158a6c8b899898d1c91c6b51a34110196815cc905f9be0fa5878e19355608"
+                "sha256:938da96f2f5f50d82add1947958b7432e9f330cef7703210bffd1a783d7720ab",
+                "sha256:c785ab502b1a63624baeb89fedb873a118d4da6c9a796ae06e4f4aaef74e9ea0"
             ],
-            "version": "==6.2.1"
+            "version": "==6.3.0"
         },
         "ipython-genutils": {
             "hashes": [

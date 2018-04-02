@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_auth.registration',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -177,3 +178,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
+ACCOUNT_LOGOUT_ON_GET = True
+LOGIN_REDIRECT_URL = "/"
