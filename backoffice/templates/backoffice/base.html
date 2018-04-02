@@ -40,16 +40,16 @@
     </div>
     <!-- Login -->
     <ul class="navbar-nav flex-row-reverse">
-      <li class="nav-item">
-        <a class="nav-link mr-5" href="{% url 'account_signup' %}">{% trans "SIGN UP" %}</a>
-      </li>
-      {% if user.is_authenticated %}
+      {% if not user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link mr-5" href="{% url 'account_logout' %}">{% trans "LOGOUT" %}</a>
+          <a class="nav-link mr-5" href="{% url 'account_signup' %}">{% trans "SIGN UP" %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-5" href="{% url 'account_login' %}">{% trans "LOGIN" %}</a>
         </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link mr-5" href="{% url 'account_login' %}">{% trans "LOGIN" %}</a>
+          <a class="nav-link mr-5" href="{% url 'account_logout' %}">{% trans "LOGOUT" %}</a>
         </li>
       {% endif %}
     </ul>
