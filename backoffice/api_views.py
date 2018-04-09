@@ -128,9 +128,11 @@ class TagAPIView(APIView):
             "nom_product": "Shoe", "product_price": 70,
             "desc_product": "White striped shoes. Sportswear.",
             "prix_produit": 120,
-            "pics_produit": 'https://loremflickr.com/320/240/shoe?lock=3',
-            "pics_produit2": 'https://loremflickr.com/320/240/shoes?lock=4',
-            "pics_produit3": 'https://loremflickr.com/320/240/shoes?lock=5',
+            "pics_produit": [
+                'https://loremflickr.com/320/240/shoe?lock=3',
+                'https://loremflickr.com/320/240/shoes?lock=4',
+                'https://loremflickr.com/320/240/shoes?lock=5',
+            ],
             "purchase_link": "http://vendor.com/products/shoe/",
         }
         return Response(data)
