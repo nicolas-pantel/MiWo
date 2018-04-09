@@ -61,7 +61,7 @@ class PublicationsAPIView(APIView):
 
     def get(self, request, influencer_pk, *args, **kwargs):
         """Return the list of an influencer's publications"""
-        data =[
+        data = [
             {
                 "pk": 10, "title": "First pub of influ {}".format(influencer_pk), "type": "video",
                 "image_url": "http://example.com/image10"
@@ -82,12 +82,18 @@ class TagsAPIView(APIView):
     """Return the list of tags linked to a publication"""
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request, influencer_pk, publication_pk, *args, **kwargs):
+    def get(self, request, publication_pk, *args, **kwargs):
         """Return the list of tags linked to a publication"""
-        data =[
-            {"pk": 20, "title": "First tag of publi {}".format(publication_pk), "image_url": "http://example.com/image20"},
-            {"pk": 21, "title": "Second tag of publi {}".format(publication_pk), "image_url": "http://example.com/image21"},
-            {"pk": 22, "title": "Third tag of publi {}".format(publication_pk), "image_url": "http://example.com/image22"},
+        data = [
+            {
+                "pk": 20, "title": "First tag of publi {}".format(publication_pk),
+                "image_url": "http://example.com/image20"},
+            {
+                "pk": 21, "title": "Second tag of publi {}".format(publication_pk),
+                "image_url": "http://example.com/image21"},
+            {
+                "pk": 22, "title": "Third tag of publi {}".format(publication_pk),
+                "image_url": "http://example.com/image22"},
         ]
         return Response(data)
 
@@ -96,7 +102,7 @@ class TagAPIView(APIView):
     """Return details of a tag linked to a publication"""
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request, influencer_pk, publication_pk, tag_pk, *args, **kwargs):
+    def get(self, request, publication_pk, tag_pk, *args, **kwargs):
         """Return details of a tag linked to a publication"""
         data = {
             "pk": 20, "title": "First tag of publi {}".format(publication_pk),
