@@ -10,9 +10,9 @@ class InfluencersAPIView(APIView):
     def get(self, request, *args, **kwargs):
         """Return the list of influencers"""
         data = [
-            {"pk": 1, "username": "influencer 1", "candidat_picture": "https://loremflickr.com/320/240/face?lock=1"},
-            {"pk": 2, "username": "influencer 2", "candidat_picture": "https://loremflickr.com/320/240/face?lock=2"},
-            {"pk": 3, "username": "influencer 3", "candidat_picture": "https://loremflickr.com/320/240/face?lock=3"},
+            {"pk": 1, "username": "influencer 1", "candidat_picture": "https://loremflickr.com/150/150/face?lock=1"},
+            {"pk": 2, "username": "influencer 2", "candidat_picture": "https://loremflickr.com/150/150/face?lock=2"},
+            {"pk": 3, "username": "influencer 3", "candidat_picture": "https://loremflickr.com/150/150/face?lock=3"},
         ]
         return Response(data)
 
@@ -24,9 +24,9 @@ class InfluencersFavoritesAPIView(APIView):
     def get(self, request, *args, **kwargs):
         """Return user's favorite influencers"""
         data = [
-            {"pk": 1, "username": "influencer 1", "candidat_picture": "https://loremflickr.com/320/240/face?lock=1"},
-            {"pk": 2, "username": "influencer 2", "candidat_picture": "https://loremflickr.com/320/240/face?lock=5"},
-            {"pk": 3, "username": "influencer 3", "candidat_picture": "https://loremflickr.com/320/240/face?lock=6"},
+            {"pk": 1, "username": "influencer 1", "candidat_picture": "https://loremflickr.com/150/150/face?lock=1"},
+            {"pk": 2, "username": "influencer 2", "candidat_picture": "https://loremflickr.com/150/150/face?lock=5"},
+            {"pk": 3, "username": "influencer 3", "candidat_picture": "https://loremflickr.com/150/150/face?lock=6"},
         ]
         return Response(data)
 
@@ -40,13 +40,13 @@ class InfluencersSearchAPIView(APIView):
         data = [
             {
                 "pk": 5, "username": "{} the influ".format(search_text),
-                "candidat_picture": "https://loremflickr.com/320/240/face?lock=1"},
+                "candidat_picture": "https://loremflickr.com/150/150/face?lock=1"},
             {
                 "pk": 8, "username": "super{}".format(search_text),
-                "candidat_picture": "https://loremflickr.com/320/240/face?lock=6"},
+                "candidat_picture": "https://loremflickr.com/150/150/face?lock=6"},
             {
                 "pk": 9, "username": "top_{}_x".format(search_text),
-                "candidat_picture": "https://loremflickr.com/320/240/face?lock=7"},
+                "candidat_picture": "https://loremflickr.com/150/150/face?lock=7"},
         ]
         return Response(data)
 
@@ -70,17 +70,17 @@ class PublicationsAPIView(APIView):
         data = [
             {
                 "id_news": 10, "title_news": "First pub of influ {}".format(influencer_pk), "type": "video",
-                "date_news": "April 21, 2018", "picture_news": "https://loremflickr.com/320/240/youtube?lock=1",
+                "date_news": "April 21, 2018", "picture_news": "https://loremflickr.com/150/150/youtube?lock=1",
                 "nb_products": "2 products", "timeline_value": 25, "social_network": "youtube",
             },
             {
                 "id_news": 11, "title_news": "Second pub of influ {}".format(influencer_pk), "type": "video",
-                "date_news": "April 23, 2018", "picture_news": "https://loremflickr.com/320/240/youtube?lock=2",
+                "date_news": "April 23, 2018", "picture_news": "https://loremflickr.com/150/150/youtube?lock=2",
                 "nb_products": "5 products", "timeline_value": 12, "social_network": "youtube",
             },
             {
                 "id_news": 13, "title_news": "Third pub of influ {}".format(influencer_pk), "type": "video",
-                "date_news": "April 24, 2018", "picture_news": "https://loremflickr.com/320/240/youtube?lock=3",
+                "date_news": "April 24, 2018", "picture_news": "https://loremflickr.com/150/150/youtube?lock=3",
                 "nb_products": "1 products", "timeline_value": 2, "social_network": "youtube",
             },
         ]
@@ -99,19 +99,19 @@ class TagsAPIView(APIView):
                 "id_product": 20, "nom_product": "Shoe",
                 "desc_product": "White striped shoes. Sportswear.",
                 "prix_produit": 120,
-                "pics_produit": "https://loremflickr.com/320/240/shoe?lock=3"},
+                "pics_produit": "https://loremflickr.com/150/150/shoe?lock=3"},
             {
                 # "pk": 21, "title": "Second tag of publi {}".format(publication_pk),
                 "id_product": 205, "nom_product": "Hat",
                 "desc_product": "Red hat.",
                 "prix_produit": 35,
-                "pics_produit": "https://loremflickr.com/320/240/cat?lock=6"},
+                "pics_produit": "https://loremflickr.com/150/150/cat?lock=6"},
             {
                 # "pk": 22, "title": "Third tag of publi {}".format(publication_pk),
                 "id_product": 207, "nom_product": "Jacket",
                 "desc_product": "Blue jacket. Sportswear.",
                 "prix_produit": 120,
-                "pics_produit": "https://loremflickr.com/320/240/cat?lock=1"},
+                "pics_produit": "https://loremflickr.com/150/150/cat?lock=1"},
         ]
         return Response(data)
 
@@ -129,9 +129,9 @@ class TagAPIView(APIView):
             "desc_product": "White striped shoes. Sportswear.",
             "prix_produit": 120,
             "pics_produit": [
-                'https://loremflickr.com/320/240/shoe?lock=3',
-                'https://loremflickr.com/320/240/shoes?lock=4',
-                'https://loremflickr.com/320/240/shoes?lock=5',
+                'https://loremflickr.com/500/500/shoe?lock=3',
+                'https://loremflickr.com/500/500/shoes?lock=4',
+                'https://loremflickr.com/500/500/shoes?lock=5',
             ],
             "purchase_link": "http://vendor.com/products/shoe/",
         }
