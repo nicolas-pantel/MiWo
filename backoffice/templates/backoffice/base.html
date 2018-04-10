@@ -10,6 +10,9 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <!-- Font awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
 
@@ -40,14 +43,7 @@
     </div>
     <!-- Login -->
     <ul class="navbar-nav flex-row-reverse">
-      {% if not user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link mr-5" href="{% url 'account_signup' %}">{% trans "SIGN UP" %}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mr-5" href="{% url 'account_login' %}">{% trans "LOGIN" %}</a>
-        </li>
-      {% else %}
+      {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link mr-5" href="{% url 'account_logout' %}">{% trans "LOGOUT" %}</a>
         </li>

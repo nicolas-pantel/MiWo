@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'rest_auth.registration',
     'bootstrap4',
     'corsheaders',
@@ -182,6 +183,17 @@ REST_FRAMEWORK = {
 }
 ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_REDIRECT_URL = "/"
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
