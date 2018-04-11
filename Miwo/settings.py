@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'bootstrap4',
     'corsheaders',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -182,7 +183,6 @@ REST_FRAMEWORK = {
     ),
 }
 ACCOUNT_LOGOUT_ON_GET = True
-LOGIN_REDIRECT_URL = "/"
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [

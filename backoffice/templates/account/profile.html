@@ -1,0 +1,23 @@
+{% extends "backoffice/base.html" %}
+
+{% load i18n static bootstrap4 %}
+{% load cloudinary %}
+
+{% block content %}
+<div class="container">
+    <div class="col-6 pt-5">
+        <form class="form" method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if profile %}
+                {% cloudinary profile.picture width=150 height=150 crop="fill" %}
+            {% else %}
+                <img class="pb-5" src="{% static 'images/unknown-profile-picture.png' %}"/>
+            {% endif %}
+            {% bootstrap_form backend_form layout='horizontal' %}
+            {% buttons %}
+                <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
+            {% endbuttons %}
+        </form>
+    </div>
+</div>
+{% endblock %}
