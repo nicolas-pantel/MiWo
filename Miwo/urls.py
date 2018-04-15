@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('backoffice.urls')),
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', views.profile, name="profile"),
+    path('accounts/profile/<int:pk>/', views.ProfileUpdateView.as_view(), name="profile_update"),
 ]

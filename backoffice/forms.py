@@ -11,6 +11,7 @@ class ProfileForm(ModelForm):
         fields = ['picture', 'public_name']
 
     picture = CloudinaryFileField(
+        required=False,
         options={
             'tags': "profile_picture",
             'crop': 'limit', 'width': 1000, 'height': 1000,
