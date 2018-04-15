@@ -27,3 +27,9 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return reverse('profile_update', args=[str(self.id)])
+
+
+class Campaign(models.Model):
+    """Ads campaign"""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="campaigns")
+    name = models.CharField(_("Name"), max_length=150)
