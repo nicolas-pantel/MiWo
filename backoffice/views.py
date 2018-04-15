@@ -4,11 +4,11 @@ from channels.layers import get_channel_layer
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView
 
 from .forms import ProfileForm
-from .models import Profile
+from . import models
 
 
 class IndexView(TemplateView):
@@ -35,6 +35,11 @@ def profile(request):
 
 
 class ProfileUpdateView(UpdateView):
-    model = Profile
+    model = models.Profile
     form_class = ProfileForm
     template_name = "account/profile.html"
+
+
+class CampaignsView(ListView):
+    model = models.Campaign
+    paginate_by = 20

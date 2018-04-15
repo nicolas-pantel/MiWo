@@ -1,0 +1,27 @@
+{% extends "backoffice/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h1 class="pt-5">{% trans "Campaigns" %}</h1>
+    <div class="row pt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{% trans 'Name' %}</th>
+              <th>{% trans 'Action' %}</th>
+            </tr>
+          </thead>
+          <tbody>
+                {% for object in object_list %}
+                    <tr>
+                      <td>{{ object.name }}</td>
+                      <td></td>
+                    </tr>
+                {% endfor %}
+        </table>
+    </tbody>
+</div>
+
+{% endblock %}

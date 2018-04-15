@@ -5,21 +5,24 @@
 
 {% block content %}
 <div class="container">
-    <div class="col-6 pt-5">
-        <form class="form" method="POST" action="{% url 'profile_update' profile.pk %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="pb-5">
-                {% if profile.picture %}
-                    {% cloudinary profile.picture width=150 height=150 crop="fill" %}
-                {% else %}
-                    <img src="{% static 'images/unknown-profile-picture.png' %}"/>
-                {% endif %}
-            </div>
-            {% bootstrap_form form layout='horizontal' %}
-            {% buttons %}
-                <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
-            {% endbuttons %}
-        </form>
+    <h1 class="pt-5">{% trans "Profile" %}</h1>
+    <div class="row pt-5">
+        <div class="col-6">
+            <form class="form" method="POST" action="{% url 'profile_update' profile.pk %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="pb-5">
+                    {% if profile.picture %}
+                        {% cloudinary profile.picture width=150 height=150 crop="fill" %}
+                    {% else %}
+                        <img src="{% static 'images/unknown-profile-picture.png' %}"/>
+                    {% endif %}
+                </div>
+                {% bootstrap_form form layout='horizontal' %}
+                {% buttons %}
+                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
+                {% endbuttons %}
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
