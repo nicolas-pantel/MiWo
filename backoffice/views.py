@@ -43,3 +43,16 @@ class ProfileUpdateView(UpdateView):
 class CampaignsView(ListView):
     model = models.Campaign
     paginate_by = 20
+
+    def get_queryset(self):
+        """Only user's campaigns"""
+        return models.Campaign.objects.filter(user=self.request.user)
+
+
+class CampaignCreateView(CreateView):
+    model = models.Campaign
+    fields = ['name']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

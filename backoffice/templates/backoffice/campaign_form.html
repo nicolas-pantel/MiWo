@@ -1,0 +1,22 @@
+{% extends "backoffice/base.html" %}
+
+{% load i18n bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    <h1 class="pt-5">{% trans "New campaign" %}</h1>
+    <div class="row pt-5">
+        <div class="col-6">
+            <form class="form" method="POST" action="{% url 'campaign_create' %}">
+                {% csrf_token %}
+                {% bootstrap_form form layout='horizontal' %}
+                {% buttons %}
+                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
