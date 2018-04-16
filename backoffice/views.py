@@ -79,3 +79,16 @@ class ProductsView(ListView):
     def get_queryset(self):
         """Only user's products"""
         return models.Product.objects.filter(user=self.request.user)
+
+
+class ProductCreateView(CreateView):
+    model = models.Product
+    form_class = forms.ProductCreateForm
+
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super().get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict
+        initial = initial.copy()
+        initial['user'] = self.request.user.pk
+        return initial

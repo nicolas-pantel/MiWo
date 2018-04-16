@@ -26,3 +26,12 @@ class CampaignCreateForm(forms.ModelForm):
         widgets = {
             'user': forms.HiddenInput(),
         }
+
+
+class ProductCreateForm(forms.ModelForm):
+    class Meta:
+        model = models.Product
+        fields = '__all__'
+        widgets = {
+            'user': forms.HiddenInput(),
+        }
