@@ -25,6 +25,9 @@
                             <a href="{% url 'campaign_delete' object.pk %}" class="btn btn-danger ml-5">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
+                            <a href="{% url 'campaign_update' object.pk %}" class="btn btn-warning ml-5">
+                                <i class="fas fa-edit"></i>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}

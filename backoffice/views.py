@@ -65,3 +65,8 @@ class CampaignCreateView(CreateView):
 class CampaignDeleteView(DeleteView):
     model = models.Campaign
     success_url = reverse_lazy('campaigns')
+
+
+class CampaignUpdateView(UpdateView):
+    model = models.Campaign
+    fields = ['name']
