@@ -92,3 +92,8 @@ class ProductCreateView(CreateView):
         initial = initial.copy()
         initial['user'] = self.request.user.pk
         return initial
+
+
+class ProductDeleteView(DeleteView):
+    model = models.Product
+    success_url = reverse_lazy('products')
