@@ -97,3 +97,8 @@ class ProductCreateView(CreateView):
 class ProductDeleteView(DeleteView):
     model = models.Product
     success_url = reverse_lazy('products')
+
+
+class ProductUpdateView(UpdateView):
+    model = models.Product
+    fields = ['name', 'description', 'price']
