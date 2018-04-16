@@ -48,6 +48,12 @@ class Product(models.Model):
     description = models.TextField(_("Description"))
     price = models.DecimalField(max_digits=7, decimal_places=2)
 
+    class Meta:
+        unique_together = ("user", "name")
+
+    def get_absolute_url(self):
+        return reverse('products')
+
 
 class ProductImage(models.Model):
     """Image linked to a product"""
