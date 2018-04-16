@@ -70,3 +70,12 @@ class CampaignDeleteView(DeleteView):
 class CampaignUpdateView(UpdateView):
     model = models.Campaign
     fields = ['name']
+
+
+class ProductsView(ListView):
+    model = models.Product
+    paginate_by = 20
+
+    def get_queryset(self):
+        """Only user's products"""
+        return models.Product.objects.filter(user=self.request.user)
