@@ -1,13 +1,13 @@
 from cloudinary.forms import CloudinaryFileField
 
-from django.forms import ModelForm
+from django import forms
 
-from .models import Profile
+from . import models
 
 
-class ProfileForm(ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
-        model = Profile
+        model = models.Profile
         fields = ['picture', 'public_name']
 
     picture = CloudinaryFileField(
@@ -17,3 +17,12 @@ class ProfileForm(ModelForm):
             'crop': 'limit', 'width': 1000, 'height': 1000,
             'eager': [{'crop': 'fill', 'width': 150, 'height': 150}]
         })
+
+
+class CampaignCreateForm(forms.ModelForm):
+    class Meta:
+        model = models.Campaign
+        fields = ['user', 'name']
+        widgets = {
+            'user': forms.HiddenInput(),
+        }

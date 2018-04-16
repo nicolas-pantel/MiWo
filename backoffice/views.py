@@ -8,8 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 
-from .forms import ProfileForm
-from . import models
+from . import forms, models
 
 
 class IndexView(TemplateView):
@@ -37,7 +36,7 @@ def profile(request):
 
 class ProfileUpdateView(UpdateView):
     model = models.Profile
-    form_class = ProfileForm
+    form_class = forms.ProfileForm
     template_name = "account/profile.html"
 
 
@@ -52,11 +51,15 @@ class CampaignsView(ListView):
 
 class CampaignCreateView(CreateView):
     model = models.Campaign
-    fields = ['name']
+    form_class = forms.CampaignCreateForm
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super().get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict
+        initial = initial.copy()
+        initial['user'] = self.request.user.pk
+        return initial
 
 
 class CampaignDeleteView(DeleteView):
