@@ -4,8 +4,9 @@ from channels.layers import get_channel_layer
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View, ListView
-from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 
 from .forms import ProfileForm
 from . import models
@@ -56,3 +57,8 @@ class CampaignCreateView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class CampaignDeleteView(DeleteView):
+    model = models.Campaign
+    success_url = reverse_lazy('campaigns')
