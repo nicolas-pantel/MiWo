@@ -12,6 +12,7 @@
                 {% trans "Are you sure you want to delete product " %}{{ object.name }}?
                 {% buttons %}
                     <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
+                    <a href="{% url 'products' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
                 {% endbuttons %}
             </form>
         </div>
