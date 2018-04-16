@@ -1,9 +1,9 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
@@ -15,11 +15,11 @@ class IndexView(TemplateView):
     template_name = "backoffice/index.html"
 
 
-class DemoView(TemplateView):
+class DemoView(LoginRequiredMixin, TemplateView):
     template_name = "backoffice/demo.html"
 
 
-class DemoServerView(View):
+class DemoServerView(LoginRequiredMixin, View):
     """Send a simple message to channels groups"""
     def get(self, request, channel, *args, **kwargs):
         channel_layer = get_channel_layer()
@@ -34,7 +34,7 @@ def profile(request):
     return redirect("profile_update", pk=request.user.profile.pk)
 
 
-class ProfileUpdateView(UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Profile
     form_class = forms.ProfileForm
     template_name = "account/profile.html"
@@ -43,7 +43,7 @@ class ProfileUpdateView(UpdateView):
 
 # CAMPAIGNS ###
 
-class CampaignMixin(object):
+class CampaignMixin(LoginRequiredMixin, object):
     model = models.Campaign
     extra_context = {"navtop": "campaigns"}
 
@@ -78,7 +78,7 @@ class CampaignUpdateView(CampaignMixin, UpdateView):
 
 # PRODUCTS ###
 
-class ProductMixin(object):
+class ProductMixin(LoginRequiredMixin, object):
     model = models.Product
     extra_context = {"navtop": "products"}
 
