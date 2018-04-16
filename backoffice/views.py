@@ -38,10 +38,17 @@ class ProfileUpdateView(UpdateView):
     model = models.Profile
     form_class = forms.ProfileForm
     template_name = "account/profile.html"
+    extra_context = {"navtop": "profile"}
 
 
-class CampaignsView(ListView):
+# CAMPAIGNS ###
+
+class CampaignMixin(object):
     model = models.Campaign
+    extra_context = {"navtop": "campaigns"}
+
+
+class CampaignsView(CampaignMixin, ListView):
     paginate_by = 20
 
     def get_queryset(self):
@@ -49,8 +56,7 @@ class CampaignsView(ListView):
         return models.Campaign.objects.filter(user=self.request.user)
 
 
-class CampaignCreateView(CreateView):
-    model = models.Campaign
+class CampaignCreateView(CampaignMixin, CreateView):
     form_class = forms.CampaignCreateForm
 
     def get_initial(self):
@@ -62,18 +68,22 @@ class CampaignCreateView(CreateView):
         return initial
 
 
-class CampaignDeleteView(DeleteView):
-    model = models.Campaign
+class CampaignDeleteView(CampaignMixin, DeleteView):
     success_url = reverse_lazy('campaigns')
 
 
-class CampaignUpdateView(UpdateView):
-    model = models.Campaign
+class CampaignUpdateView(CampaignMixin, UpdateView):
     fields = ['name']
 
 
-class ProductsView(ListView):
+# PRODUCTS ###
+
+class ProductMixin(object):
     model = models.Product
+    extra_context = {"navtop": "products"}
+
+
+class ProductsView(ProductMixin, ListView):
     paginate_by = 20
 
     def get_queryset(self):
@@ -81,8 +91,7 @@ class ProductsView(ListView):
         return models.Product.objects.filter(user=self.request.user)
 
 
-class ProductCreateView(CreateView):
-    model = models.Product
+class ProductCreateView(ProductMixin, CreateView):
     form_class = forms.ProductCreateForm
 
     def get_initial(self):
@@ -94,11 +103,9 @@ class ProductCreateView(CreateView):
         return initial
 
 
-class ProductDeleteView(DeleteView):
-    model = models.Product
+class ProductDeleteView(ProductMixin, DeleteView):
     success_url = reverse_lazy('products')
 
 
-class ProductUpdateView(UpdateView):
-    model = models.Product
+class ProductUpdateView(ProductMixin, UpdateView):
     fields = ['name', 'description', 'price']
