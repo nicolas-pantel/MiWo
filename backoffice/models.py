@@ -39,3 +39,16 @@ class Campaign(models.Model):
 
     def get_absolute_url(self):
         return reverse('campaigns')
+
+
+class Product(models.Model):
+    """Advertised products"""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="products")
+    name = models.CharField(_("Name"), max_length=150)
+    description = models.TextField(_("Description"))
+    price = models.DecimalField(max_digits=7, decimal_places=2)
+
+
+class ProductImage(models.Model):
+    """Image linked to a product"""
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
