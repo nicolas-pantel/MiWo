@@ -7,6 +7,7 @@
 <h1 class="text-center pt-5">{% trans "Welcome to Miwo!" %}</h1>
 <h2 class="text-center pt-5">{% trans "Miwo is the smartest way to connect your clients to their influencer's audience" %}</h2>
 
+{% comment Google authentification %}
 {% if not user.is_authenticated %}
 <div class="text-center pt-5">
     <a href="{% provider_login_url 'google' process='login' action='reauthenticate' %}" class="btn btn-outline-danger">
@@ -15,5 +16,6 @@
     </a>
 </div>
 {% endif %}
+{% endcomment %}
 
 {% endblock %}
