@@ -52,7 +52,7 @@ class Product(models.Model):
         unique_together = ("user", "name")
 
     def get_absolute_url(self):
-        return reverse('products')
+        return reverse('product_update', kwargs={"pk": self.pk})
 
 
 class ProductImage(models.Model):

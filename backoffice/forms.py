@@ -35,3 +35,20 @@ class ProductCreateForm(forms.ModelForm):
         widgets = {
             'user': forms.HiddenInput(),
         }
+
+
+class ProductImageForm(forms.ModelForm):
+    class Meta:
+        model = models.ProductImage
+        fields = '__all__'
+        widgets = {
+            'product': forms.HiddenInput(),
+        }
+
+    image = CloudinaryFileField(
+        required=False,
+        options={
+            'tags': "product_image",
+            'crop': 'limit', 'width': 500, 'height': 500,
+            'eager': [{'crop': 'fill', 'width': 150, 'height': 150}]
+        })

@@ -109,3 +109,26 @@ class ProductDeleteView(ProductMixin, DeleteView):
 
 class ProductUpdateView(ProductMixin, UpdateView):
     fields = ['name', 'description', 'price']
+
+    def get_context_data(self, **kwargs):
+        """Add empty product image form"""
+        context = super().get_context_data(**kwargs)
+        context["image_form"] = forms.ProductImageForm({"product": self.object})
+        context["posted"] = context["image_form"].instance
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+
+class ProductImageCreateView(ProductMixin, CreateView):
+    form_class = forms.ProductImageForm
+
+    def post(self, request, *args, **kwargs):
+        form = forms.ProductImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect("product_update", pk=request.POST["product"])
