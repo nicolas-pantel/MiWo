@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'backoffice',
-    'channels',
+    # 'channels',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
