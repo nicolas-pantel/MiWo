@@ -17,7 +17,10 @@ urlpatterns = [
     path('products/create/', views.ProductCreateView.as_view(), name="product_create"),
     path('products/delete/<int:pk>/', views.ProductDeleteView.as_view(), name="product_delete"),
     path('products/<int:pk>/', views.ProductUpdateView.as_view(), name="product_update"),
-    path('products/<int:pk>/image/', views.ProductImageCreateView.as_view(), name="product_image_create"),
+    path('products/<int:pk>/image/create/', views.ProductImageCreateView.as_view(), name="product_image_create"),
+    path(
+        'products/<int:product_pk>/image/<int:product_image_pk>/delete/',
+        views.product_image_delete_view, name="product_image_delete"),
 
     ### API ###
     path('api/docs/', include_docs_urls(title='Miwo API')),

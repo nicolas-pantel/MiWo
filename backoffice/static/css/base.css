@@ -1,0 +1,12 @@
+.img-btn {
+  position: relative;
+}
+
+.img-btn .btn {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transform: translate(112px, -65px);
+    color: red;
+    border-color: red;
+}

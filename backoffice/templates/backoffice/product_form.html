@@ -24,7 +24,12 @@
         {% if object %}
         <div class="col-6">
             {% for product_image in object.images.all %}
-                {% cloudinary product_image.image width=150 height=150 crop="fill" %}
+                <span class="img-btn">
+                    {% cloudinary product_image.image width=150 height=150 crop="fill" %}
+                    <a class="btn btn-outline-secondary" href="{% url 'product_image_delete' object.pk product_image.pk %}">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </span>
             {% endfor %}
             <form class="form pt-3" method="POST" action="{% url 'product_image_create' object.pk %}" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -32,7 +37,7 @@
                     {% bootstrap_form image_form layout='horizontal' %}
                     <span class="float-right ml-5">
                         <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-plus"></i>
+                            {% trans "Upload" %}
                         </button>
                     </span>
                 </span>

@@ -124,11 +124,18 @@ class ProductUpdateView(ProductMixin, UpdateView):
         return super().post(request, *args, **kwargs)
 
 
-class ProductImageCreateView(ProductMixin, CreateView):
+class ProductImageCreateView(CreateView):
+    model = models.ProductImage
     form_class = forms.ProductImageForm
 
     def post(self, request, *args, **kwargs):
         form = forms.ProductImageForm(request.POST, request.FILES)
-        if form.is_valid():
+        if form.is_valid() and request.FILES:
             form.save()
         return redirect("product_update", pk=request.POST["product"])
+
+
+def product_image_delete_view(request, product_pk, product_image_pk):
+    product_image = models.ProductImage.objects.get(pk=product_image_pk)
+    product_image.delete()
+    return redirect("product_update", pk=product_pk)
