@@ -12,6 +12,7 @@
 
         {% get_providers as socialaccount_providers %}
 
+        {% comment %}
         {% if socialaccount_providers %}
         <p class="pt-5">{% blocktrans with site.name as site_name %}Please sign in with one
         of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
@@ -33,6 +34,10 @@
         <p class="pt-5">{% blocktrans %}If you have not created an account yet, then please
         <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
         {% endif %}
+        {% endcomment %}
+
+        <p class="pt-5">{% blocktrans %}If you have not created an account yet, then please
+        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 
         <form class="form" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
