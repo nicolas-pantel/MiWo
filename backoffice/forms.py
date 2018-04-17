@@ -18,6 +18,9 @@ class ProfileForm(forms.ModelForm):
             'eager': [{'crop': 'fill', 'width': 150, 'height': 150}]
         })
 
+    def clean_picture(self):
+        return self.cleaned_data['picture'] or None
+
 
 class CampaignCreateForm(forms.ModelForm):
     class Meta:
