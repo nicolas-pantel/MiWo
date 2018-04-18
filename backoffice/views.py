@@ -188,3 +188,13 @@ class PublicationDeleteView(PublicationMixin, DeleteView):
 
     def get_success_url(self):
         return reverse("publications", kwargs={"campaign_pk": self.kwargs["campaign_pk"]})
+
+
+class PublicationUpdateView(PublicationMixin, UpdateView):
+    fields = ['name', 'url']
+
+    def get_context_data(self, **kwargs):
+        """Add campaign id"""
+        context = super().get_context_data(**kwargs)
+        context["campaign_pk"] = self.kwargs["campaign_pk"]
+        return context

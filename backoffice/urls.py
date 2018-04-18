@@ -28,6 +28,9 @@ urlpatterns = [
     path(
         'campaigns/<int:campaign_pk>/publication/<int:pk>/delete',
         views.PublicationDeleteView.as_view(), name="publication_delete"),
+    path(
+        'campaigns/<int:campaign_pk>/publication/<int:pk>/',
+        views.PublicationUpdateView.as_view(), name="publication_update"),
 
     ### API ###
     path('api/docs/', include_docs_urls(title='Miwo API')),
