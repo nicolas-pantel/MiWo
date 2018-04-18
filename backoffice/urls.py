@@ -32,6 +32,10 @@ urlpatterns = [
         'campaigns/<int:campaign_pk>/publication/<int:pk>/',
         views.PublicationUpdateView.as_view(), name="publication_update"),
     path('publications/<int:publication_pk>/tagsvideo/', views.TagVideoListView.as_view(), name="tagsvideo"),
+    path(
+        'publications/<int:publication_pk>/tagsvideo/create/',
+        views.TagVideoCreateView.as_view(), name="tagvideo_create"),
+    path('publications/tagsvideo/<int:pk>/delete/', views.TagVideoDeleteView.as_view(), name="tagvideo_delete"),
 
     ### API ###
     path('api/docs/', include_docs_urls(title='Miwo API')),

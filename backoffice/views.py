@@ -216,4 +216,40 @@ class TagVideoListView(TagVideoMixin, ListView):
         """Add publication id"""
         context = super().get_context_data(**kwargs)
         context["publication_pk"] = self.kwargs["publication_pk"]
+        context["form"] = forms.TagVideoCreateForm()
         return context
+
+    def post(self, request, *args, **kwargs):
+        """Process tag form"""
+        self.object_list = self.get_queryset()
+        form = forms.TagVideoCreateForm(request.POST, initial={"publication": self.kwargs["publication_pk"]})
+        if form.is_valid():
+            form.save()
+        return self.render_to_response(self.get_context_data())
+
+
+class TagVideoCreateView(TagVideoMixin, CreateView):
+    paginate_by = 20
+    form_class = forms.TagVideoCreateForm
+
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super().get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict
+        initial = initial.copy()
+        initial['publication'] = self.kwargs["publication_pk"]
+        return initial
+
+    def get_context_data(self, **kwargs):
+        """Add tags list and publication id"""
+        context = super().get_context_data(**kwargs)
+        publication = models.Publication.objects.get(pk=self.kwargs["publication_pk"])
+        context["publication_pk"] = publication.pk
+        context["tags_list"] = publication.tags_video.all()
+        return context
+
+
+class TagVideoDeleteView(TagVideoMixin, DeleteView):
+
+    def get_success_url(self):
+        return reverse('tagvideo_create', kwargs={"publication_pk": self.object.publication.pk})

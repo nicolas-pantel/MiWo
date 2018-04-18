@@ -24,7 +24,7 @@
                         <td class="col-5">{{ object.name }}</td>
                         <td class="col-4">{{ object.url }}</td>
                         <td class="col-3">
-                            <a href="{% url 'tagsvideo' object.pk %}" class="btn btn-primary">
+                            <a href="{% url 'tagvideo_create' object.pk %}" class="btn btn-primary">
                                 <i class="fas fa-align-justify"></i>
                             </a>
                             <a href="{% url 'publication_update' object.campaign.pk object.pk %}" class="btn btn-warning">

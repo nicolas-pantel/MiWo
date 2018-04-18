@@ -25,6 +25,9 @@ class Profile(models.Model):
     picture = CloudinaryField('image', blank=True, null=True)
     public_name = models.CharField(_("Public name"), max_length=150)
 
+    def __str__(self):
+        return "{}".format(self.public_name)
+
     def get_absolute_url(self):
         return reverse('profile_update', args=[str(self.id)])
 
@@ -36,6 +39,9 @@ class Campaign(models.Model):
 
     class Meta:
         unique_together = ("user", "name")
+
+    def __str__(self):
+        return "{}".format(self.name)
 
     def get_absolute_url(self):
         return reverse('campaigns')
@@ -50,6 +56,9 @@ class Product(models.Model):
 
     class Meta:
         unique_together = ("user", "name")
+
+    def __str__(self):
+        return "{}".format(self.name)
 
     def get_absolute_url(self):
         return reverse('product_update', kwargs={"pk": self.pk})
@@ -67,6 +76,9 @@ class Publication(models.Model):
     name = models.CharField(_("Name"), max_length=150)
     url = models.URLField("Url")
 
+    def __str__(self):
+        return "{}".format(self.name)
+
     def get_absolute_url(self):
         return reverse('publications', kwargs={"campaign_pk": self.campaign.pk})
 
@@ -76,3 +88,9 @@ class TagVideo(models.Model):
     publication = models.ForeignKey(Publication, on_delete=models.CASCADE, related_name="tags_video")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="tags")
     timestamp = models.TimeField('Timestamp')
+
+    def __str__(self):
+        return "{} {}".format(self.publication.name, self.timestamp)
+
+    def get_absolute_url(self):
+        return reverse('tagvideo_create', kwargs={"publication_pk": self.publication.pk})

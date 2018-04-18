@@ -64,3 +64,13 @@ class PublicationCreateForm(forms.ModelForm):
         widgets = {
             'campaign': forms.HiddenInput(),
         }
+
+
+class TagVideoCreateForm(forms.ModelForm):
+    class Meta:
+        model = models.TagVideo
+        fields = ['publication', 'timestamp', 'product']
+        widgets = {
+            'publication': forms.HiddenInput(),
+        }
+    timestamp = forms.TimeField(initial="00:00:00", widget=forms.TimeInput(attrs={'type': 'time', 'step': 1}))
