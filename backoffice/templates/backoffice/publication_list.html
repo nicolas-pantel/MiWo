@@ -24,6 +24,9 @@
                         <td class="col-5">{{ object.name }}</td>
                         <td class="col-4">{{ object.url }}</td>
                         <td class="col-3">
+                            <a href="{% url 'tagsvideo' object.pk %}" class="btn btn-primary">
+                                <i class="fas fa-align-justify"></i>
+                            </a>
                             <a href="{% url 'publication_update' object.campaign.pk object.pk %}" class="btn btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -33,6 +36,7 @@
                         </td>
                     </tr>
                 {% endfor %}
+            </tbody>
         </table>
     </tbody>
 </div>

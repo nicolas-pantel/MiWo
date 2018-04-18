@@ -1,0 +1,56 @@
+{% extends "backoffice/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h1 class="pt-5">{% trans "Tags" %}
+        {% comment %}
+        <a href="{% url 'tagvideo_create' %}" class="btn btn-primary ml-5">
+            <i class="fas fa-plus"></i>
+        </a>
+        {% endcomment %}
+    </h1>
+    <div class="row pt-5">
+        <!-- Video -->
+        <div class="col-4">
+            <iframe id="ytplayer" type="text/html" width="350" height="250" src="http://www.youtube.com/embed/S1DxqBlNE7E" frameborder="0"></iframe>
+        </div>
+        <!-- Tag -->
+        <div class="col-4">
+        </div>
+        <!-- Tags list -->
+        <div class="col-4">
+            <table class="table">
+              <thead>
+                <tr class="row">
+                  <th class="col-9">{% trans 'Timestamp' %}</th>
+                  <th class="col-3"></th>
+                </tr>
+              </thead>
+              <tbody>
+                    {% for object in object_list %}
+                        <tr class="row">
+                            <td class="col-9">{{ object.timestamp }}</td>
+                            <td class="col-3">
+                                {% comment %}
+                                <a href="{% url 'publications' object.pk %}" class="btn btn-primary">
+                                    <i class="fas fa-align-justify"></i>
+                                </a>
+                                <a href="{% url 'campaign_update' object.pk %}" class="btn btn-warning">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'campaign_delete' object.pk %}" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                                {% endcomment %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </tbody>
+</div>
+
+{% endblock %}

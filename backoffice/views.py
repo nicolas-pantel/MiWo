@@ -198,3 +198,22 @@ class PublicationUpdateView(PublicationMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context["campaign_pk"] = self.kwargs["campaign_pk"]
         return context
+
+
+class TagVideoMixin(LoginRequiredMixin):
+    model = models.TagVideo
+    extra_context = {"navtop": "campaigns"}
+
+
+class TagVideoListView(TagVideoMixin, ListView):
+    paginate_by = 20
+
+    def get_queryset(self):
+        """Only publication's tags"""
+        return models.TagVideo.objects.filter(publication=self.kwargs["publication_pk"])
+
+    def get_context_data(self, **kwargs):
+        """Add publication id"""
+        context = super().get_context_data(**kwargs)
+        context["publication_pk"] = self.kwargs["publication_pk"]
+        return context
