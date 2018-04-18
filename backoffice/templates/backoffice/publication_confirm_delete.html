@@ -1,0 +1,23 @@
+{% extends "backoffice/base.html" %}
+
+{% load i18n bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    <h1 class="pt-5">{% trans "Delete publication" %}</h1>
+    <div class="row pt-5">
+        <div class="col-6">
+            <form class="form" method="POST" action="{% url 'publication_delete' object.campaign.pk object.pk %}">
+                {% csrf_token %}
+                {% trans "Are you sure you want to delete publication " %}{{ object.url }}?
+                {% buttons %}
+                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
+                    <a href="{% url 'publications' object.campaign.pk %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -4,7 +4,7 @@ from channels.layers import get_channel_layer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
@@ -45,7 +45,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
 # CAMPAIGNS ###
 
-class CampaignMixin(LoginRequiredMixin, object):
+class CampaignMixin(LoginRequiredMixin):
     model = models.Campaign
     extra_context = {"navtop": "campaigns"}
 
@@ -80,7 +80,7 @@ class CampaignUpdateView(CampaignMixin, UpdateView):
 
 # PRODUCTS ###
 
-class ProductMixin(LoginRequiredMixin, object):
+class ProductMixin(LoginRequiredMixin):
     model = models.Product
     extra_context = {"navtop": "products"}
 
@@ -146,11 +146,45 @@ def product_image_delete_view(request, product_pk, product_image_pk):
 
 # PUBLICATIONS ###
 
-class PublicationView(LoginRequiredMixin, ListView):
-    """Influencer publications list"""
+class PublicationMixin(LoginRequiredMixin):
     model = models.Publication
+    extra_context = {"navtop": "campaigns"}
+
+
+class PublicationListView(PublicationMixin, ListView):
+    """Influencer publications list"""
     paginate_by = 20
 
     def get_queryset(self):
         """Only campaign's publications"""
         return models.Publication.objects.filter(campaign=self.kwargs["campaign_pk"])
+
+    def get_context_data(self, **kwargs):
+        """Add campaign id"""
+        context = super().get_context_data(**kwargs)
+        context["campaign_pk"] = self.kwargs["campaign_pk"]
+        return context
+
+
+class PublicationCreateView(PublicationMixin, CreateView):
+    form_class = forms.PublicationCreateForm
+
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super().get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict
+        initial = initial.copy()
+        initial['campaign'] = self.kwargs["campaign_pk"]
+        return initial
+
+    def get_context_data(self, **kwargs):
+        """Add campaign id"""
+        context = super().get_context_data(**kwargs)
+        context["campaign_pk"] = self.kwargs["campaign_pk"]
+        return context
+
+
+class PublicationDeleteView(PublicationMixin, DeleteView):
+
+    def get_success_url(self):
+        return reverse("publications", kwargs={"campaign_pk": self.kwargs["campaign_pk"]})

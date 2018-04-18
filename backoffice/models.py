@@ -65,3 +65,6 @@ class Publication(models.Model):
     """Influencer publication"""
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="publications")
     url = models.URLField("Url")
+
+    def get_absolute_url(self):
+        return reverse('publications', kwargs={"campaign_pk": self.campaign.pk})

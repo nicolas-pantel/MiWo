@@ -55,3 +55,12 @@ class ProductImageForm(forms.ModelForm):
             'crop': 'limit', 'width': 500, 'height': 500,
             'eager': [{'crop': 'fill', 'width': 150, 'height': 150}]
         })
+
+
+class PublicationCreateForm(forms.ModelForm):
+    class Meta:
+        model = models.Publication
+        fields = ['campaign', 'url']
+        widgets = {
+            'campaign': forms.HiddenInput(),
+        }

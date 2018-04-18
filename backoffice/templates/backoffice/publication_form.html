@@ -1,0 +1,27 @@
+{% extends "backoffice/base.html" %}
+
+{% load i18n bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    {% if object %}
+        <h1 class="pt-5">{% trans "Edit publication" %} {{ object.name }}</h1>
+    {% else %}
+        <h1 class="pt-5">{% trans "Create publication" %}</h1>
+    {% endif %}
+    <div class="row pt-5">
+        <div class="col-6">
+            <form class="form" method="POST" action="">
+                {% csrf_token %}
+                {% bootstrap_form form layout='horizontal' %}
+                {% buttons %}
+                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
+                    <a href="{% url 'publications' campaign_pk %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
