@@ -82,6 +82,9 @@ class Publication(models.Model):
     def get_absolute_url(self):
         return reverse('publications', kwargs={"campaign_pk": self.campaign.pk})
 
+    def get_youtube_embed_url(self):
+        return "https://www.youtube.com/embed/{}".format(self.url.split("v=")[-1])
+
 
 class TagVideo(models.Model):
     """Tag for video publication"""

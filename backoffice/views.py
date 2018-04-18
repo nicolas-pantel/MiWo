@@ -244,7 +244,7 @@ class TagVideoCreateView(TagVideoMixin, CreateView):
         """Add tags list and publication id"""
         context = super().get_context_data(**kwargs)
         publication = models.Publication.objects.get(pk=self.kwargs["publication_pk"])
-        context["publication_pk"] = publication.pk
+        context["publication"] = publication
         context["tags_list"] = publication.tags_video.all()
         return context
 
