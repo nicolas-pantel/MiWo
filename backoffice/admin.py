@@ -26,3 +26,13 @@ admin.site.register(models.Product, ProductAdmin)
 class ProductImageAdmin(admin.ModelAdmin):
     pass
 admin.site.register(models.ProductImage, ProductImageAdmin)
+
+
+class PublicationAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(models.Publication, PublicationAdmin)
+
+
+class TagVideoAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(models.TagVideo, TagVideoAdmin)

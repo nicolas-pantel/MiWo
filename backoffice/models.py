@@ -69,3 +69,10 @@ class Publication(models.Model):
 
     def get_absolute_url(self):
         return reverse('publications', kwargs={"campaign_pk": self.campaign.pk})
+
+
+class TagVideo(models.Model):
+    """Tag for video publication"""
+    publication = models.ForeignKey(Publication, on_delete=models.CASCADE, related_name="tags_video")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="tags")
+    timestamp = models.TimeField('Timestamp')
