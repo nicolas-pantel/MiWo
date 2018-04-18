@@ -59,3 +59,9 @@ class ProductImage(models.Model):
     """Image linked to a product"""
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
     image = CloudinaryField('image', blank=True, null=True)
+
+
+class Publication(models.Model):
+    """Influencer publication"""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete="models.CASCADE", related_name="publications")
+    url = models.URLField("Url")
