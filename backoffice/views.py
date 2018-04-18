@@ -1,6 +1,7 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import redirect
@@ -30,6 +31,7 @@ class DemoServerView(LoginRequiredMixin, View):
         return JsonResponse({'response': 'ok'})
 
 
+@login_required
 def profile(request):
     return redirect("profile_update", pk=request.user.profile.pk)
 
@@ -124,7 +126,7 @@ class ProductUpdateView(ProductMixin, UpdateView):
         return super().post(request, *args, **kwargs)
 
 
-class ProductImageCreateView(CreateView):
+class ProductImageCreateView(LoginRequiredMixin, CreateView):
     model = models.ProductImage
     form_class = forms.ProductImageForm
 
@@ -135,7 +137,20 @@ class ProductImageCreateView(CreateView):
         return redirect("product_update", pk=request.POST["product"])
 
 
+@login_required
 def product_image_delete_view(request, product_pk, product_image_pk):
     product_image = models.ProductImage.objects.get(pk=product_image_pk)
     product_image.delete()
     return redirect("product_update", pk=product_pk)
+
+
+# PUBLICATIONS ###
+
+class PublicationView(LoginRequiredMixin, ListView):
+    """Influencer publications list"""
+    model = models.Publication
+    paginate_by = 20
+
+    def get_queryset(self):
+        """Only campaign's publications"""
+        return models.Publication.objects.filter(campaign=self.kwargs["campaign_pk"])
