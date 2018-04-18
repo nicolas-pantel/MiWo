@@ -63,5 +63,5 @@ class ProductImage(models.Model):
 
 class Publication(models.Model):
     """Influencer publication"""
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete="models.CASCADE", related_name="publications")
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="publications")
     url = models.URLField("Url")
