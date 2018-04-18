@@ -60,7 +60,7 @@ class ProductImageForm(forms.ModelForm):
 class PublicationCreateForm(forms.ModelForm):
     class Meta:
         model = models.Publication
-        fields = ['campaign', 'url']
+        fields = ['campaign', 'name', 'url']
         widgets = {
             'campaign': forms.HiddenInput(),
         }

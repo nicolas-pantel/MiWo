@@ -64,6 +64,7 @@ class ProductImage(models.Model):
 class Publication(models.Model):
     """Influencer publication"""
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="publications")
+    name = models.CharField(_("Name"), max_length=150)
     url = models.URLField("Url")
 
     def get_absolute_url(self):
