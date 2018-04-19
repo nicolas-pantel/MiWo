@@ -1,12 +1,21 @@
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from . import models
+from . import serializers
 
-class InfluencersAPIView(APIView):
+
+class InfluencersAPIView(generics.ListAPIView):
     """Return the list of influencers"""
     permission_classes = (IsAuthenticated,)
+    serializer_class = serializers.InfluencersSerializer
 
+    def get_queryset(self):
+        """Filter influencers only"""
+        return models.MiwoUser.objects.filter(campaigns__isnull=False).distinct()
+'''
     def get(self, request, *args, **kwargs):
         """Return the list of influencers"""
         data = [
@@ -15,7 +24,7 @@ class InfluencersAPIView(APIView):
             {"pk": 3, "username": "influencer 3", "candidat_picture": "https://loremflickr.com/150/150/face?lock=3"},
         ]
         return Response(data)
-
+'''
 
 class InfluencersFavoritesAPIView(APIView):
     """Return user's favorite influencers"""
