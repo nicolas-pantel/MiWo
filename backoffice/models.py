@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class MiwoUser(AbstractUser):
+    favorite_influencers = models.ManyToManyField("self", symmetrical=False)
 
     def save(self, *args, **kwargs):
         """On user creation, add a profile."""

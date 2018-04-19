@@ -66,6 +66,8 @@ class InfluencerSubscriptionAPIView(APIView):
 
     def post(self, request, influencer_pk, *args, **kwargs):
         """Add influencer to user subscriptions"""
+        influencer = models.MiwoUser.objects.get(pk=influencer_pk)
+        request.user.favorite_influencers.add(influencer)
         data = "User {} successfully subsribed to influencer {}".format(self.request.user.username, influencer_pk)
         return Response(data)
 
