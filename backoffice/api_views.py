@@ -26,10 +26,28 @@ class InfluencersAPIView(generics.ListAPIView):
         return Response(data)
 '''
 
-class InfluencersFavoritesAPIView(APIView):
-    """Return user's favorite influencers"""
+
+class InfluencerSubscriptionAPIView(APIView):
+    """Subscribe user to influencer publications"""
     permission_classes = (IsAuthenticated,)
 
+    def post(self, request, influencer_pk, *args, **kwargs):
+        """Add influencer to user subscriptions"""
+        influencer = models.MiwoUser.objects.get(pk=influencer_pk)
+        request.user.favorite_influencers.add(influencer)
+        data = "User {} successfully subsribed to influencer {}".format(self.request.user.username, influencer_pk)
+        return Response(data)
+
+
+class InfluencersFavoritesAPIView(generics.ListAPIView):
+    """Return user's favorite influencers"""
+    permission_classes = (IsAuthenticated,)
+    serializer_class = serializers.InfluencersSerializer
+
+    def get_queryset(self):
+        """Filter favorite influencers only"""
+        return self.request.user.favorite_influencers.all()
+'''
     def get(self, request, *args, **kwargs):
         """Return user's favorite influencers"""
         data = [
@@ -38,6 +56,7 @@ class InfluencersFavoritesAPIView(APIView):
             {"pk": 3, "username": "influencer 3", "candidat_picture": "https://loremflickr.com/150/150/face?lock=6"},
         ]
         return Response(data)
+'''
 
 
 class InfluencersSearchAPIView(APIView):
@@ -57,18 +76,6 @@ class InfluencersSearchAPIView(APIView):
                 "pk": 9, "username": "top_{}_x".format(search_text),
                 "candidat_picture": "https://loremflickr.com/150/150/face?lock=7"},
         ]
-        return Response(data)
-
-
-class InfluencerSubscriptionAPIView(APIView):
-    """Subscribe user to influencer publications"""
-    permission_classes = (IsAuthenticated,)
-
-    def post(self, request, influencer_pk, *args, **kwargs):
-        """Add influencer to user subscriptions"""
-        influencer = models.MiwoUser.objects.get(pk=influencer_pk)
-        request.user.favorite_influencers.add(influencer)
-        data = "User {} successfully subsribed to influencer {}".format(self.request.user.username, influencer_pk)
         return Response(data)
 
 
