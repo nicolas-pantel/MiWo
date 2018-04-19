@@ -59,10 +59,15 @@ class InfluencersFavoritesAPIView(generics.ListAPIView):
 '''
 
 
-class InfluencersSearchAPIView(APIView):
+class InfluencersSearchAPIView(generics.ListAPIView):
     """Return list of influenceurs matching search_text"""
     permission_classes = (IsAuthenticated,)
+    serializer_class = serializers.InfluencersSerializer
 
+    def get_queryset(self):
+        """Filter favorite influencers only"""
+        return self.request.user.favorite_influencers.filter(username__icontains=self.kwargs["search_text"])
+'''
     def get(self, request, search_text, *args, **kwargs):
         """Return list of influenceurs matching search_text"""
         data = [
@@ -77,6 +82,7 @@ class InfluencersSearchAPIView(APIView):
                 "candidat_picture": "https://loremflickr.com/150/150/face?lock=7"},
         ]
         return Response(data)
+'''
 
 
 class PublicationsAPIView(APIView):
