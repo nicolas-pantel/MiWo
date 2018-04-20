@@ -14,8 +14,7 @@ class ProfileForm(forms.ModelForm):
         required=False,
         options={
             'tags': "profile_picture",
-            'crop': 'limit', 'width': 1000, 'height': 1000,
-            'eager': [{'crop': 'fill', 'width': 150, 'height': 150}]
+            'crop': 'limit', 'width': 150, 'height': 150,
         })
 
     def clean_picture(self):

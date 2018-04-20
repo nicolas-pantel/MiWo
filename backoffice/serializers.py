@@ -5,6 +5,11 @@ from django.utils import timezone
 from . import models
 
 
+def image_url_resize(url, width, heigh):
+    file = url.split("/")[-1]
+    return url.split(file)[0] + "c_fill,h_{},w_{}/".format(width, heigh) + file
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     picture = serializers.ImageField()
 
@@ -94,7 +99,11 @@ class TagsSerializer(serializers.ModelSerializer):
         ret['nom_product'] = product['name']
         ret['desc_product'] = product['description']
         ret['prix_produit'] = product['price']
-        ret['pics_produit'] = product['images'][0]
+        image_url = product['images'][0]
+        if image_url:
+            ret['pics_produit'] = image_url_resize(image_url, 150, 150)
+        else:
+            ret['pics_produit'] = image_url
         return ret
 
 
@@ -116,5 +125,5 @@ class TagSerializer(serializers.ModelSerializer):
         ret['nom_product'] = product['name']
         ret['desc_product'] = product['description']
         ret['prix_produit'] = product['price']
-        ret['pics_produit'] = product['images']
+        ret['pics_produit'] = product["images"]
         return ret
