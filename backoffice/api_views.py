@@ -182,3 +182,15 @@ class TagVideoFavoritesListView(TagsAPIView):
     """Return the list of favorited tags"""
     def get_queryset(self):
         return self.request.user.favorite_tags_video.all()
+
+
+class TagVideoFavoriteAddView(APIView):
+    """Add a favorite tag to a MiwoUser"""
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, pk, *args, **kwargs):
+        """Add tag to user's favorites"""
+        tag = models.TagVideo.objects.get(pk=pk)
+        request.user.favorite_tags_video.add(tag)
+        data = "Tag {} successfully favorited by user {}".format(tag, self.request.user.username)
+        return Response(data)
