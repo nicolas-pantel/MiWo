@@ -153,9 +153,11 @@ class TagsAPIView(generics.ListAPIView):
 '''
 
 
-class TagAPIView(APIView):
+class TagAPIView(generics.RetrieveAPIView):
     """Return details of a tag linked to a publication"""
     permission_classes = (IsAuthenticated,)
+    serializer_class = serializers.TagSerializer
+    queryset = models.TagVideo.objects.all()
 '''
     def get(self, request, publication_pk, tag_pk, *args, **kwargs):
         """Return details of a tag linked to a publication"""

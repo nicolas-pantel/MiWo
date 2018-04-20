@@ -60,7 +60,12 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.ProductImage
-        fields = '__all__'
+        fields = ('image',)
+
+    def to_representation(self, instance):
+        """Return only image"""
+        ret = super().to_representation(instance)
+        return ret["image"]
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -90,4 +95,26 @@ class TagsSerializer(serializers.ModelSerializer):
         ret['desc_product'] = product['description']
         ret['prix_produit'] = product['price']
         ret['pics_produit'] = product['images'][0]
+        return ret
+
+
+class TagSerializer(serializers.ModelSerializer):
+    product = ProductSerializer(read_only=True)
+
+    class Meta:
+        model = models.TagVideo
+        fields = ('pk', 'product')
+
+    def to_representation(self, instance):
+        """Return product's stuff"""
+        ret = super().to_representation(instance)
+        # For now client doesn't consider tags. Mimic product only infos.
+        ret['id_product'] = ret['pk']
+        del ret['pk']
+        product = ret['product']
+        del ret['product']
+        ret['nom_product'] = product['name']
+        ret['desc_product'] = product['description']
+        ret['prix_produit'] = product['price']
+        ret['pics_produit'] = product['images']
         return ret
