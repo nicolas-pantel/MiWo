@@ -118,10 +118,15 @@ class PublicationsAPIView(generics.ListAPIView):
 '''
 
 
-class TagsAPIView(APIView):
+class TagsAPIView(generics.ListAPIView):
     """Return the list of tags linked to a publication"""
     permission_classes = (IsAuthenticated,)
+    serializer_class = serializers.TagsSerializer
 
+    def get_queryset(self):
+        """List of tags for a publication"""
+        return models.TagVideo.objects.filter(publication__pk=self.kwargs["publication_pk"])
+'''
     def get(self, request, publication_pk, *args, **kwargs):
         """Return the list of tags linked to a publication"""
         data = [
@@ -145,12 +150,13 @@ class TagsAPIView(APIView):
                 "pics_produit": "https://loremflickr.com/150/150/cat?lock=1"},
         ]
         return Response(data)
+'''
 
 
 class TagAPIView(APIView):
     """Return details of a tag linked to a publication"""
     permission_classes = (IsAuthenticated,)
-
+'''
     def get(self, request, publication_pk, tag_pk, *args, **kwargs):
         """Return details of a tag linked to a publication"""
         data = {
@@ -167,3 +173,4 @@ class TagAPIView(APIView):
             "purchase_link": "http://vendor.com/products/shoe/",
         }
         return Response(data)
+'''
