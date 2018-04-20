@@ -33,11 +33,10 @@ class PublicationsSerializer(serializers.ModelSerializer):
     id_news = serializers.IntegerField(source="pk")
     title_news = serializers.CharField(source="name")
     type = serializers.CharField(source="pub_type")
-    picture_news = serializers.ImageField(source="image")
 
     class Meta:
         model = models.Publication
-        fields = ('id_news', 'title_news', 'type', 'date', 'picture_news', 'social_network')
+        fields = ('id_news', 'title_news', 'type', 'date', 'social_network')
 
     def to_representation(self, instance):
         """Convert some fields to client format."""
@@ -52,4 +51,5 @@ class PublicationsSerializer(serializers.ModelSerializer):
         ret['timeline_value'] = (
             int((instance.expiration_date - timezone.now()) / (instance.expiration_date - instance.date) * 100)
         )
+        ret['picture_news'] = instance.get_youtube_thumbnail()
         return ret

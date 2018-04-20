@@ -1,3 +1,5 @@
+from urllib.parse import urlparse, parse_qs
+
 from cloudinary.models import CloudinaryField
 
 from django.conf import settings
@@ -98,8 +100,20 @@ class Publication(models.Model):
     def get_absolute_url(self):
         return reverse('publications', kwargs={"campaign_pk": self.campaign.pk})
 
+    def get_youtube_video_id(self, url):
+        # Case http(s)://www.youtube.com/watch?v=videoID&feature=youtu.be
+        parsed_url = urlparse(url)
+        parameters = parse_qs(parsed_url.query)
+        if parameters.get('v'):
+            return parameters.get('v')[0]
+        # Case http(s)://www.youtu.be/videoID
+        return url.split('/')[-1]
+
     def get_youtube_embed_url(self):
-        return "https://www.youtube.com/embed/{}".format(self.url.split("v=")[-1])
+        return "https://www.youtube.com/embed/{}".format(self.get_youtube_video_id(self.url))
+
+    def get_youtube_thumbnail(self):
+        return "https://img.youtube.com/vi/{}/0.jpg".format(self.get_youtube_video_id(self.url))
 
 
 class TagVideo(models.Model):
