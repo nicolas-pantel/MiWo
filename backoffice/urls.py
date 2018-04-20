@@ -47,7 +47,8 @@ urlpatterns = [
     path('api/influencers/<int:influencer_pk>/subscribe/', api_views.InfluencerSubscriptionAPIView.as_view()),
     path('api/influencers/<int:influencer_pk>/publications/', api_views.PublicationsAPIView.as_view()),
     path('api/publications/<int:publication_pk>/tags/', api_views.TagsAPIView.as_view()),
-    path('api/publications/<int:publication_pk>/tags/<int:pk>', api_views.TagAPIView.as_view()),
-    path('api/tags/favorites', api_views.TagVideoFavoritesListView.as_view()),
-    path('api/tags/<int:pk>/favorites/add', api_views.TagVideoFavoriteAddView.as_view()),
+    path('api/publications/<int:publication_pk>/tags/<int:pk>/', api_views.TagAPIView.as_view()),
+    path('api/tags/favorites/', api_views.TagVideoFavoritesListView.as_view()),
+    path('api/tags/<int:pk>/favorites/add/', api_views.TagVideoFavoriteAddView.as_view()),
+    path('api/tags/<int:pk>/favorites/remove/', api_views.TagVideoFavoriteRemoveView.as_view()),
 ]

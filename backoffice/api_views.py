@@ -194,3 +194,15 @@ class TagVideoFavoriteAddView(APIView):
         request.user.favorite_tags_video.add(tag)
         data = "Tag {} successfully favorited by user {}".format(tag, self.request.user.username)
         return Response(data)
+
+
+class TagVideoFavoriteRemoveView(APIView):
+    """Remove a favorite tag from a MiwoUser"""
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, pk, *args, **kwargs):
+        """Remove tag from user's favorites"""
+        tag = models.TagVideo.objects.get(pk=pk)
+        request.user.favorite_tags_video.remove(tag)
+        data = "Tag {} successfully removed by user {}".format(tag, self.request.user.username)
+        return Response(data)
