@@ -65,7 +65,7 @@ class InfluencersSearchAPIView(generics.ListAPIView):
     serializer_class = serializers.InfluencersSerializer
 
     def get_queryset(self):
-        """Filter favorite influencers only"""
+        """Search for favorite influencers containing search text"""
         return self.request.user.favorite_influencers.filter(username__icontains=self.kwargs["search_text"])
 '''
     def get(self, request, search_text, *args, **kwargs):
@@ -85,10 +85,16 @@ class InfluencersSearchAPIView(generics.ListAPIView):
 '''
 
 
-class PublicationsAPIView(APIView):
+class PublicationsAPIView(generics.ListAPIView):
     """Return the list of an influencer's publications"""
     permission_classes = (IsAuthenticated,)
+    serializer_class = serializers.PublicationsSerializer
 
+    def get_queryset(self):
+        """List of influencer's publications"""
+        return models.Publication.objects.filter(campaign__user__pk=self.kwargs["influencer_pk"])
+
+'''
     def get(self, request, influencer_pk, *args, **kwargs):
         """Return the list of an influencer's publications"""
         data = [
@@ -109,6 +115,7 @@ class PublicationsAPIView(APIView):
             },
         ]
         return Response(data)
+'''
 
 
 class TagsAPIView(APIView):

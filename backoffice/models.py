@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
@@ -73,9 +74,23 @@ class ProductImage(models.Model):
 
 class Publication(models.Model):
     """Influencer publication"""
+    VIDEO = 'video'
+    TYPES = (
+        (VIDEO, _("Video")),
+    )
+
+    YOUTUBE = 'youtube'
+    SOCIAL_NETWORKS = (
+        (YOUTUBE, _("Youtube")),
+    )
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="publications")
     name = models.CharField(_("Title"), max_length=150)
     url = models.URLField("Url")
+    pub_type = models.CharField(_("Type"), max_length=50, choices=TYPES, default=VIDEO)
+    social_network = models.CharField(_("Social network"), max_length=150, choices=SOCIAL_NETWORKS, default=YOUTUBE)
+    date = models.DateTimeField(_("Date"), default=timezone.now)
+    expiration_date = models.DateTimeField(_("Expiration date"), default=timezone.now() + timezone.timedelta(days=7))
+    image = CloudinaryField('image', blank=True, null=True)
 
     def __str__(self):
         return "{}".format(self.name)
