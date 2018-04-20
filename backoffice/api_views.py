@@ -176,3 +176,9 @@ class TagAPIView(generics.RetrieveAPIView):
         }
         return Response(data)
 '''
+
+
+class TagVideoFavoritesListView(TagsAPIView):
+    """Return the list of favorited tags"""
+    def get_queryset(self):
+        return self.request.user.favorite_tags_video.all()

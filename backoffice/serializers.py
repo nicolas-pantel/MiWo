@@ -99,11 +99,14 @@ class TagsSerializer(serializers.ModelSerializer):
         ret['nom_product'] = product['name']
         ret['desc_product'] = product['description']
         ret['prix_produit'] = product['price']
-        image_url = product['images'][0]
-        if image_url:
-            ret['pics_produit'] = image_url_resize(image_url, 150, 150)
+        if product['images']:
+            image_url = product['images'][0]
+            if image_url:
+                ret['pics_produit'] = image_url_resize(image_url, 150, 150)
+            else:
+                ret['pics_produit'] = image_url
         else:
-            ret['pics_produit'] = image_url
+            ret['pics_produit'] = ""
         return ret
 
 
