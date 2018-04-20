@@ -10,19 +10,6 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
-class MiwoUser(AbstractUser):
-    favorite_influencers = models.ManyToManyField("self", symmetrical=False)
-
-    def save(self, *args, **kwargs):
-        """On user creation, add a profile."""
-        if not self.pk:
-            super().save(*args, **kwargs)
-            profile = Profile.objects.create(user=self, public_name=self.username)
-            profile.save()
-        else:
-            super().save(*args, **kwargs)
-
-
 class Profile(models.Model):
     """User attached profile"""
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
@@ -127,3 +114,17 @@ class TagVideo(models.Model):
 
     def get_absolute_url(self):
         return reverse('tagvideo_create', kwargs={"publication_pk": self.publication.pk})
+
+
+class MiwoUser(AbstractUser):
+    favorite_influencers = models.ManyToManyField("self", symmetrical=False)
+    favorite_tags_video = models.ManyToManyField(TagVideo, symmetrical=False)
+
+    def save(self, *args, **kwargs):
+        """On user creation, add a profile."""
+        if not self.pk:
+            super().save(*args, **kwargs)
+            profile = Profile.objects.create(user=self, public_name=self.username)
+            profile.save()
+        else:
+            super().save(*args, **kwargs)
