@@ -37,12 +37,11 @@ class InfluencersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.MiwoUser
-        fields = ('pk', 'profile')
+        fields = ('pk', 'username', 'profile')
 
     def to_representation(self, instance):
         """Flatten profile."""
         ret = super().to_representation(instance)
-        ret['username'] = ret['profile']['public_name']
         ret['candidat_picture'] = ret['profile']['picture']
         del ret['profile']
         return ret

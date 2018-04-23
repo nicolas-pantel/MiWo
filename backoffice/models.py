@@ -1,6 +1,7 @@
 from urllib.parse import urlparse, parse_qs
 
 from cloudinary.models import CloudinaryField
+from django_countries.fields import CountryField
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -12,12 +13,24 @@ from django.utils.translation import gettext_lazy as _
 
 class Profile(models.Model):
     """User attached profile"""
+    FOLLOWER = "F"
+    INFLUENCER = "I"
+    AGENCY = "A"
+    PLATFORM = "P"
+    KIND = (
+        (FOLLOWER, _("Follower")),
+        (INFLUENCER, _("Influencer")),
+        (AGENCY, _("Agency")),
+        (PLATFORM, _("Platform")),
+    )
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
     picture = CloudinaryField('image', blank=True, null=True)
-    public_name = models.CharField(_("Public name"), max_length=150)
+    kind = models.CharField(_("Kind"), max_length=1, choices=KIND, default=FOLLOWER)
+    company_name = models.CharField(_("Company name"), max_length=150, blank=True, null=True)
+    country = CountryField(blank=True, null=True)
 
     def __str__(self):
-        return "{}".format(self.public_name)
+        return "{}".format(self.user.username)
 
     def get_absolute_url(self):
         return reverse('profile_update', args=[str(self.id)])
@@ -131,7 +144,7 @@ class MiwoUser(AbstractUser):
         """On user creation, add a profile."""
         if not self.pk:
             super().save(*args, **kwargs)
-            profile = Profile.objects.create(user=self, public_name=self.username)
+            profile = Profile.objects.create(user=self)
             profile.save()
         else:
             super().save(*args, **kwargs)

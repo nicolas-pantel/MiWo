@@ -8,7 +8,7 @@ from . import models
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = models.Profile
-        fields = ['picture', 'public_name']
+        fields = ['picture']
 
     picture = CloudinaryFileField(
         required=False,

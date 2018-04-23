@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'corsheaders',
     'cloudinary',
+    'django_countries',
 ]
 
 MIDDLEWARE = [

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9b16255ca8029e96a510ae2132d327028e817bce38c9c13cf2229f71bbd3e374"
+            "sha256": "946729ff78079557c40b8283aa6002cac7a467f23c935292e5c762bf18d8c2e9"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -172,6 +172,13 @@
                 "sha256:c7ec4816ec49416517b84f317499d1519db62125471922ab78d670474ed9b987"
             ],
             "version": "==2.2.0"
+        },
+        "django-countries": {
+            "hashes": [
+                "sha256:4d22fca8536e7c6c1f134fbaf861a953a94fde0572486bdc199b9f1844acdb49",
+                "sha256:4b296e18010e2d97d69f98247511ab5490e8a5c4823da29f06a09de0011dbd17"
+            ],
+            "version": "==5.3"
         },
         "django-heroku": {
             "hashes": [

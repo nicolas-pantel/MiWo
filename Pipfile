@@ -20,6 +20,7 @@ django-allauth = "*"
 django-cors-headers = "*"
 cloudinary = "*"
 urbanairship = "*"
+django-countries = "*"
 
 
 [dev-packages]
