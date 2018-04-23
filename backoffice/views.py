@@ -1,11 +1,13 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+import urbanairship as ua
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 
@@ -198,6 +200,26 @@ class PublicationUpdateView(PublicationMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context["campaign_pk"] = self.kwargs["campaign_pk"]
         return context
+
+
+@login_required
+def publish_publication(request, pk):
+    """Send notifaction to followers"""
+    airship = ua.Airship('application_key', 'master_secret')
+    push = airship.create_push()
+    followers = request.user.followers.all()
+    for follower in followers:
+        devices = follower.profile.devices.all()
+        for device in devices:
+            push.audience = ua.ios_channel(device.chanid)
+            push.notification = ua.notification(alert=_("New publication from {}".format(request.user.username)))
+            push.device_types = ua.device_types('ios')
+            push.send()
+    # Record as published and redirect to publications list
+    publication = models.Publication.objects.get(pk=pk)
+    publication.published = True
+    publication.save()
+    return redirect("publications", campaign_pk=publication.campaign.pk)
 
 
 class TagVideoMixin(LoginRequiredMixin):

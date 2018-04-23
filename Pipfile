@@ -19,6 +19,7 @@ django-allauth = "*"
 "django-bootstrap4" = "*"
 django-cors-headers = "*"
 cloudinary = "*"
+urbanairship = "*"
 
 
 [dev-packages]

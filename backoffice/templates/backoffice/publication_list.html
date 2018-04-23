@@ -33,6 +33,11 @@
                             <a href="{% url 'publication_delete' object.campaign.pk object.pk %}" class="btn btn-danger" title="{% trans 'Delete publication' %}">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
+                            {% if not object.published %}
+                                <a href="{% url 'publication_publish' object.pk %}" class="btn btn-primary float-right" title="{% trans 'Publish' %}">{% trans 'Publish' %}</a>
+                            {% else %}
+                                <span class="float-right">{% trans 'Published' %}</span>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

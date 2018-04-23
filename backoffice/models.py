@@ -124,7 +124,7 @@ class TagVideo(models.Model):
 
 
 class MiwoUser(AbstractUser):
-    favorite_influencers = models.ManyToManyField("self", symmetrical=False)
+    favorite_influencers = models.ManyToManyField("self", symmetrical=False, related_name="followers")
     favorite_tags_video = models.ManyToManyField(TagVideo, symmetrical=False)
 
     def save(self, *args, **kwargs):
