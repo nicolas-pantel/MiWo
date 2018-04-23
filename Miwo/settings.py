@@ -180,7 +180,8 @@ django_heroku.settings(locals())
 LOGIN_URL = reverse_lazy("index")
 LOGIN_REDIRECT_URL = reverse_lazy("campaigns")
 SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = "none"  # Disable email verification
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
