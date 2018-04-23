@@ -200,6 +200,9 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'backoffice.serializers.LoginSerializer',
+}
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True

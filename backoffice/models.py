@@ -23,6 +23,12 @@ class Profile(models.Model):
         return reverse('profile_update', args=[str(self.id)])
 
 
+class Device(models.Model):
+    """A user device"""
+    profile = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name="devices")
+    chanid = models.CharField(_("Chan id"), max_length=100)
+
+
 class Campaign(models.Model):
     """Ads campaign"""
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="campaigns")
@@ -80,6 +86,7 @@ class Publication(models.Model):
     date = models.DateTimeField(_("Date"), default=timezone.now)
     expiration_date = models.DateTimeField(_("Expiration date"), default=timezone.now() + timezone.timedelta(days=7))
     image = CloudinaryField('image', blank=True, null=True)
+    published = models.BooleanField(_("Published"), default=False)
 
     def __str__(self):
         return "{}".format(self.name)

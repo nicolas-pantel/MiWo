@@ -1,3 +1,4 @@
+from rest_auth import serializers as rest_auth_serializers
 from rest_framework import serializers
 
 from django.utils import timezone
@@ -16,6 +17,19 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Profile
         fields = '__all__'
+
+
+class LoginSerializer(rest_auth_serializers.LoginSerializer):
+    chanid = serializers.CharField()
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        # If the user is logged in, register its device
+        user = attrs["user"]
+        chanid = attrs.get("chanid")
+        if user and chanid:
+            device, create = models.Device.objects.get_or_create(chanid=chanid, profile=user.profile)
+        return attrs
 
 
 class InfluencersSerializer(serializers.ModelSerializer):

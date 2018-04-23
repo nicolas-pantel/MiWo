@@ -1,4 +1,7 @@
+from rest_framework.test import APITestCase
+
 from django.contrib.auth import get_user_model
+from django.shortcuts import reverse
 from django.test import TestCase
 
 from . import models
@@ -40,3 +43,16 @@ class PublicationModelTestCase(TestCase):
         url = "https://www.youtu.be/videoID"
         id = models.Publication().get_youtube_video_id(url)
         self.assertEqual(id, 'videoID')
+
+
+class APITestCase(APITestCase):
+    def test_create_user(self):
+        """Must create a MiwoUser with email, password and a device"""
+        # Test user
+        user = models.MiwoUser.objects.create(email="test@test.com")
+        user.set_password("test")
+        user.save()
+        # Login
+        self.client.post(
+            reverse("rest_login"), {"email": "test@test.com", "password": "test", "chanid": "aaabbb"})
+        self.assertEqual(user.profile.devices.all()[0].chanid, "aaabbb")
