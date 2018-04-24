@@ -180,7 +180,7 @@ django_heroku.settings(locals())
 
 # DRF / Rest auth registration
 LOGIN_URL = reverse_lazy("index")
-LOGIN_REDIRECT_URL = reverse_lazy("campaigns")
+LOGIN_REDIRECT_URL = reverse_lazy("index")
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
