@@ -1,0 +1,28 @@
+{% extends "backoffice/base.html" %}
+
+{% load i18n bootstrap4 %}
+{% load socialaccount %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center pt-5">{% trans "Let's start!" %}</h1>
+    <h2 class="text-center pt-5">{% trans "Type in a name for your client's campaign" %}</h2>
+
+    <div class="row justify-content-center pt-5 mt-5">
+        <div class="col-6">
+            <form class="form" method="POST" action="">
+                {% csrf_token %}
+                <div class="row">
+                    {% bootstrap_field form.user %}
+                    {% bootstrap_form_errors form %}
+                    {% bootstrap_field form.name show_label=False form_group_class="col-11" placeholder="Campaign name" %}
+                <div class="col-1">
+                    <button class="btn btn-primary" type="submit">{% trans "Next" %}</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

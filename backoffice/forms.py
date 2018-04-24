@@ -66,6 +66,17 @@ class ProductCreateForm(forms.ModelForm):
         }
 
 
+class ProductUpdateForm(forms.ModelForm):
+    class Meta:
+        model = models.Product
+        fields = '__all__'
+        widgets = {
+            'user': forms.HiddenInput(),
+            'date_from': forms.DateInput(),
+            'date_to': forms.DateInput(),
+        }
+
+
 class ProductImageForm(forms.ModelForm):
     class Meta:
         model = models.ProductImage

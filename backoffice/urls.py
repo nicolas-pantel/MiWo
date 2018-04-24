@@ -6,8 +6,9 @@ from . import views, api_views
 
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('demo', views.DemoView.as_view(), name='demo'),
+    path('', views.index, name='index'),
+    path('index/', views.IndexView.as_view(), name='index_signup'),
+    path('demo/', views.DemoView.as_view(), name='demo'),
     path('demo/<channel>', views.DemoServerView.as_view(), name="demo_server"),
     path('campaigns/', views.CampaignsView.as_view(), name="campaigns"),
     path('campaigns/create/', views.CampaignCreateView.as_view(), name="campaign_create"),
@@ -37,6 +38,17 @@ urlpatterns = [
         'publications/<int:publication_pk>/tagsvideo/create/',
         views.TagVideoCreateView.as_view(), name="tagvideo_create"),
     path('publications/tagsvideo/<int:pk>/delete/', views.TagVideoDeleteView.as_view(), name="tagvideo_delete"),
+    # Publication funnel
+    path(
+        'publications/step1/',
+        views.CampaignCreateView.as_view(
+            template_name="backoffice/publication_step1.html", publication_funnel=True),
+        name="publication_step1"),
+    path(
+        'publication/step2/<int:campaign_pk>/',
+        views.PublicationCreateView.as_view(
+            template_name="backoffice/publication_step2.html", publication_funnel=True),
+        name="publication_step2"),
 
     ### API ###
     path('api/docs/', include_docs_urls(title='Miwo API')),

@@ -57,10 +57,29 @@ class Campaign(models.Model):
 
 class Product(models.Model):
     """Advertised products"""
+    ENTERTAINMENT = "entertainment"
+    SPORT = "sport"
+    CULTURE = "culture"
+    CATEGORIES = (
+        (ENTERTAINMENT, _("Entertainment")),
+        (SPORT, _("Sport")),
+        (CULTURE, _("Culture")),
+    )
+    FASHION = "fashion"
+    MAKEUP = "makeup"
+    SUB_CATEGORIES = (
+        (FASHION, _("Fashion")),
+        (MAKEUP, _("Makeup")),
+    )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="products")
     name = models.CharField(_("Name"), max_length=150)
+    legend = models.CharField(_("Legend"), max_length=100, null=True, blank=True)
     description = models.TextField(_("Description"))
     price = models.DecimalField(max_digits=7, decimal_places=2)
+    category = models.CharField(_("Category"), max_length=100, choices=CATEGORIES, default=ENTERTAINMENT)
+    sub_category = models.CharField(_("Subcategory"), max_length=100, choices=SUB_CATEGORIES, default=FASHION)
+    date_from = models.DateTimeField(_("From"), default=timezone.now)
+    date_to = models.DateTimeField(_("To"), default=timezone.now() + timezone.timedelta(days=7))
 
     class Meta:
         unique_together = ("user", "name")
@@ -90,7 +109,7 @@ class Publication(models.Model):
         (YOUTUBE, _("Youtube")),
     )
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="publications")
-    name = models.CharField(_("Title"), max_length=150)
+    name = models.CharField(_("Title"), max_length=150, null=True, blank=True)
     url = models.URLField("Url")
     pub_type = models.CharField(_("Type"), max_length=50, choices=TYPES, default=VIDEO)
     social_network = models.CharField(_("Social network"), max_length=150, choices=SOCIAL_NETWORKS, default=YOUTUBE)
@@ -100,7 +119,7 @@ class Publication(models.Model):
     published = models.BooleanField(_("Published"), default=False)
 
     def __str__(self):
-        return "{}".format(self.name)
+        return "{}".format(self.url)
 
     def get_absolute_url(self):
         return reverse('publications', kwargs={"campaign_pk": self.campaign.pk})

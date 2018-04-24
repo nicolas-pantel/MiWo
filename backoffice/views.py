@@ -9,11 +9,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView, FormView
 
 from . import forms, models
+
+
+def index(request):
+    if not request.user.is_authenticated:
+        return redirect("index_signup")
+    else:
+        return redirect("publication_step1")
 
 
 class IndexView(FormView):
@@ -110,6 +118,7 @@ class CampaignsView(CampaignMixin, ListView):
 
 class CampaignCreateView(CampaignMixin, CreateView):
     form_class = forms.CampaignCreateForm
+    publication_funnel = False
 
     def get_initial(self):
         # Get the initial dictionary from the superclass method
@@ -118,6 +127,12 @@ class CampaignCreateView(CampaignMixin, CreateView):
         initial = initial.copy()
         initial['user'] = self.request.user.pk
         return initial
+
+    def get_success_url(self):
+        if self.publication_funnel:
+            return reverse("publication_step2", kwargs={'campaign_pk': self.object.pk})
+        else:
+            return super().get_success_url()
 
 
 class CampaignDeleteView(CampaignMixin, DeleteView):
@@ -144,23 +159,17 @@ class ProductsView(ProductMixin, ListView):
 
 
 class ProductCreateView(ProductMixin, CreateView):
-    form_class = forms.ProductCreateForm
+    form_class = forms.ProductUpdateForm
 
     def get_initial(self):
         # Get the initial dictionary from the superclass method
         initial = super().get_initial()
         # Copy the dictionary so we don't accidentally change a mutable dict
         initial = initial.copy()
+        initial['date_from'] = timezone.now().date()
+        initial['date_to'] = (timezone.now() + timezone.timedelta(days=7)).date()
         initial['user'] = self.request.user.pk
         return initial
-
-
-class ProductDeleteView(ProductMixin, DeleteView):
-    success_url = reverse_lazy('products')
-
-
-class ProductUpdateView(ProductMixin, UpdateView):
-    fields = ['name', 'description', 'price']
 
     def get_context_data(self, **kwargs):
         """Add empty product image form"""
@@ -169,11 +178,30 @@ class ProductUpdateView(ProductMixin, UpdateView):
         context["posted"] = context["image_form"].instance
         return context
 
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
+class ProductDeleteView(ProductMixin, DeleteView):
+    success_url = reverse_lazy('products')
+
+
+class ProductUpdateView(ProductMixin, UpdateView):
+    form_class = forms.ProductUpdateForm
+
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super().get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict
+        initial = initial.copy()
+        initial['date_from'] = timezone.now().date()
+        initial['date_to'] = (timezone.now() + timezone.timedelta(days=7)).date()
+        initial['user'] = self.request.user.pk
+        return initial
+
+    def get_context_data(self, **kwargs):
+        """Add empty product image form"""
+        context = super().get_context_data(**kwargs)
+        context["image_form"] = forms.ProductImageForm({"product": self.object})
+        context["posted"] = context["image_form"].instance
+        return context
 
 
 class ProductImageCreateView(LoginRequiredMixin, CreateView):
@@ -218,6 +246,7 @@ class PublicationListView(PublicationMixin, ListView):
 
 class PublicationCreateView(PublicationMixin, CreateView):
     form_class = forms.PublicationCreateForm
+    publication_funnel = False
 
     def get_initial(self):
         # Get the initial dictionary from the superclass method
@@ -232,6 +261,12 @@ class PublicationCreateView(PublicationMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["campaign_pk"] = self.kwargs["campaign_pk"]
         return context
+
+    def get_success_url(self):
+        if self.publication_funnel:
+            return reverse("tagvideo_create", kwargs={'publication_pk': self.object.pk})
+        else:
+            return super().get_success_url()
 
 
 class PublicationDeleteView(PublicationMixin, DeleteView):
