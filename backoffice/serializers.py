@@ -128,7 +128,7 @@ class TagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.TagVideo
-        fields = ('pk', 'product')
+        fields = ('pk', 'product', 'timestamp')
 
     def to_representation(self, instance):
         """Return product's stuff"""
