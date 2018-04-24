@@ -121,6 +121,7 @@ class TagsSerializer(serializers.ModelSerializer):
                 ret['pics_produit'] = image_url
         else:
             ret['pics_produit'] = ""
+        ret['youtube_video_id'] = instance.publication.get_youtube_video_id()
         return ret
 
 
