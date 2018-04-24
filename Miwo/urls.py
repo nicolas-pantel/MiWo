@@ -22,7 +22,10 @@ from backoffice import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('backoffice.urls')),
+    path('accounts/signup/', views.SignUpStep3View.as_view(), name="account_signup"),
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', views.profile, name="profile"),
     path('accounts/profile/<int:pk>/', views.ProfileUpdateView.as_view(), name="profile_update"),
+    # Custom signup
+    path('accounts/signup/step2', views.SignUpStep2View.as_view(), name="signup_step2"),
 ]

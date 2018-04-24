@@ -1,21 +1,41 @@
 {% extends "backoffice/base.html" %}
 
-{% load i18n %}
+{% load i18n bootstrap4 %}
 {% load socialaccount %}
 
 {% block content %}
-<h1 class="text-center pt-5">{% trans "Welcome to Miwo!" %}</h1>
-<h2 class="text-center pt-5">{% trans "Miwo is the smartest way to connect your clients to their influencer's audience" %}</h2>
+<div class="container">
+    {% comment Google authentification %}
+    {% if not user.is_authenticated %}
+    <div class="text-center pt-5">
+        <a href="{% provider_login_url 'google' process='login' action='reauthenticate' %}" class="btn btn-outline-danger">
+            <i class="fab fa-google mr-3"></i>
+            {% trans "Sign in with Google" %}
+        </a>
+    </div>
+    {% endif %}
+    {% endcomment %}
 
-{% comment Google authentification %}
-{% if not user.is_authenticated %}
-<div class="text-center pt-5">
-    <a href="{% provider_login_url 'google' process='login' action='reauthenticate' %}" class="btn btn-outline-danger">
-        <i class="fab fa-google mr-3"></i>
-        {% trans "Sign in with Google" %}
-    </a>
+    {% if not user.is_authenticated %}
+    <h1 class="text-center pt-5">{% trans "Welcome to Miwo!" %}</h1>
+    <h2 class="text-center pt-5">{% trans "Miwo is the smartest way to connect your clients to their influencer's audience" %}</h2>
+    <div class="row justify-content-center pt-5 mt-5">
+        <div class="col-6">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="row">
+                    {% bootstrap_field form.email show_label=False form_group_class="col-9" placeholder="Enter your professionnal email address" %}
+                    <div class="col-3">
+                        <button class="btn btn-primary" type="submit">{% trans "Go" %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <h1 class="text-center pt-5">{% trans "Let's start!" %}</h1>
+    <h2 class="text-center pt-5">{% trans "Type in a name for your client's campaign" %}</h2>
+    {% endif %}
 </div>
-{% endif %}
-{% endcomment %}
 
 {% endblock %}

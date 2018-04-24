@@ -15,6 +15,7 @@ import os
 import django_heroku
 
 from django.urls import reverse_lazy
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -183,6 +184,7 @@ LOGIN_REDIRECT_URL = reverse_lazy("campaigns")
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_VERIFICATION = "none"  # Disable email verification
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -207,3 +209,8 @@ REST_AUTH_SERIALIZERS = {
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Countries
+COUNTRIES_OVERRIDE = {
+    None: _(' Select a country'),
+}

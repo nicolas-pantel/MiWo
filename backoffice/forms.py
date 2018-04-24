@@ -1,14 +1,41 @@
 from cloudinary.forms import CloudinaryFileField
 
+from allauth.account import forms as allauth_forms
+
 from django import forms
 
 from . import models
 
 
+class EmailForm(forms.ModelForm):
+    class Meta:
+        model = models.MiwoUser
+        fields = ['email']
+
+
+class UserKindForm(forms.ModelForm):
+    class Meta:
+        model = models.Profile
+        fields = ['kind']
+
+
+class UserNamesForm(forms.ModelForm):
+    class Meta:
+        model = models.MiwoUser
+        fields = ['first_name', 'last_name']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'autofocus': True})
+        }
+
+
+class SignupForm(allauth_forms.SignupForm):
+    email = forms.EmailField(widget=forms.HiddenInput())
+
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = models.Profile
-        fields = ['picture']
+        fields = ['picture', 'company_name', 'country']
 
     picture = CloudinaryFileField(
         required=False,

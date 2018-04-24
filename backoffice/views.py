@@ -2,6 +2,8 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 import urbanairship as ua
 
+from allauth.account import views as allauth_views
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
@@ -9,13 +11,38 @@ from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView, View, ListView
-from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView, FormView
 
 from . import forms, models
 
 
-class IndexView(TemplateView):
+class IndexView(FormView):
     template_name = "backoffice/index.html"
+    form_class = forms.EmailForm
+    success_url = reverse_lazy("signup_step2")
+
+    def post(self, request, *args, **kwargs):
+        request.session['email'] = request.POST.get('email')
+        request.session['sub_funnel'] = True
+        return super().post(request, *args, **kwargs)
+
+
+class SignUpStep2View(TemplateView):
+    template_name = "backoffice/step2.html"
+
+
+class SignUpStep3View(allauth_views.SignupView):
+    template_name = "account/signup.html"
+    form_class = forms.SignupForm
+    success_url = reverse_lazy("profile")
+
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super().get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict
+        initial = initial.copy()
+        initial['email'] = self.request.session['email']
+        return initial
 
 
 class DemoView(LoginRequiredMixin, TemplateView):
@@ -43,6 +70,24 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     form_class = forms.ProfileForm
     template_name = "account/profile.html"
     extra_context = {"navtop": "profile"}
+    success_url = reverse_lazy("index")
+
+    def get_context_data(self, **kwargs):
+        """Add user names form"""
+        context = super().get_context_data(**kwargs)
+        context["user_names_form"] = forms.UserNamesForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        """Process user names form"""
+        resp = super().post(request, *args, **kwargs)
+        form = forms.UserNamesForm(request.POST)
+        if form.is_valid():
+            request.user.first_name = form.cleaned_data["first_name"]
+            request.user.last_name = form.cleaned_data["last_name"]
+            request.user .save()
+            request.session['sub_funnel'] = False
+        return resp
 
 
 # CAMPAIGNS ###

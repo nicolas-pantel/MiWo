@@ -5,11 +5,17 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="pt-5">{% trans "Profile" %}</h1>
-    <div class="row pt-5">
-        <div class="col-6">
-            <form class="form" method="POST" action="{% url 'profile_update' profile.pk %}" enctype="multipart/form-data">
-                {% csrf_token %}
+    {% if request.session.sub_funnel %}
+        <h1 class="text-center pt-5">{% trans "Ok, you're almost done …" %}</h1>
+        <h2 class="text-center pt-5">{% trans "The picture will be displayed to your followers" %}</h2>
+    {% else %}
+        <h1 class="pt-5">{% trans "Edit profile" %}</h1>
+    {% endif %}
+
+    <form class="form" method="POST" action="{% url 'profile_update' profile.pk %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row pt-5 mt-5">
+            <div class="col-6">
                 <div class="pb-5">
                     {% if profile.picture %}
                         {% cloudinary profile.picture width=150 height=150 crop="fill" %}
@@ -17,12 +23,18 @@
                         <img src="{% static 'images/unknown-profile-picture.png' %}"/>
                     {% endif %}
                 </div>
-                {% bootstrap_form form layout='horizontal' %}
+                {% bootstrap_field form.picture show_label=False %}
+            </div>
+            <div class="col-6">
+                {% bootstrap_field user_names_form.first_name show_label=False %}
+                {% bootstrap_field user_names_form.last_name show_label=False %}
+                {% bootstrap_field form.company_name show_label=False %}
+                {% bootstrap_field form.country show_label=False %}
                 {% buttons %}
-                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
+                    <button class="btn btn-primary" type="submit">{% trans "Continue" %}</button>
                 {% endbuttons %}
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 {% endblock %}

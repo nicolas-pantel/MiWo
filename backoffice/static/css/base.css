@@ -10,3 +10,8 @@
     color: red;
     border-color: red;
 }
+
+.btn-kind {
+    width: 100px;
+    height: 100px;
+}

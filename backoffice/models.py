@@ -13,19 +13,17 @@ from django.utils.translation import gettext_lazy as _
 
 class Profile(models.Model):
     """User attached profile"""
-    FOLLOWER = "F"
     INFLUENCER = "I"
     AGENCY = "A"
     PLATFORM = "P"
     KIND = (
-        (FOLLOWER, _("Follower")),
         (INFLUENCER, _("Influencer")),
         (AGENCY, _("Agency")),
         (PLATFORM, _("Platform")),
     )
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
     picture = CloudinaryField('image', blank=True, null=True)
-    kind = models.CharField(_("Kind"), max_length=1, choices=KIND, default=FOLLOWER)
+    kind = models.CharField(_("Kind"), max_length=1, choices=KIND, blank=True, null=True)
     company_name = models.CharField(_("Company name"), max_length=150, blank=True, null=True)
     country = CountryField(blank=True, null=True)
 
