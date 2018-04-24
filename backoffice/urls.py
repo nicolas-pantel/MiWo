@@ -16,6 +16,7 @@ urlpatterns = [
     path('campaigns/<int:pk>/', views.CampaignUpdateView.as_view(), name="campaign_update"),
     path('products/', views.ProductsView.as_view(), name="products"),
     path('products/create/', views.ProductCreateView.as_view(), name="product_create"),
+    path('products/create/ajax/', views.JSONProductCreateView.as_view(), name="product_create_ajax"),
     path('products/delete/<int:pk>/', views.ProductDeleteView.as_view(), name="product_delete"),
     path('products/<int:pk>/', views.ProductUpdateView.as_view(), name="product_update"),
     path('products/<int:pk>/image/create/', views.ProductImageCreateView.as_view(), name="product_image_create"),

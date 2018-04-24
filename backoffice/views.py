@@ -179,6 +179,33 @@ class ProductCreateView(ProductMixin, CreateView):
         return context
 
 
+class JSONProductCreateView(ProductMixin, CreateView):
+    form_class = forms.ProductCreateForm
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save()
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def render_to_response(self, context, **response_kwargs):
+        return self.render_to_json_response(context, **response_kwargs)
+
+    def render_to_json_response(self, context, **response_kwargs):
+        """
+        Returns a JSON response, transforming 'context' to make the payload.
+        """
+        return JsonResponse(self.get_data(context), **response_kwargs)
+
+    def get_data(self, context):
+        """
+        Returns an object that will be serialized as JSON by json.dumps().
+        """
+        if self.object:
+            return {'product_pk': self.object.pk, 'product_name': self.object.name}
+        else:
+            return {'product_pk': ''}
+
+
 class ProductDeleteView(ProductMixin, DeleteView):
     success_url = reverse_lazy('products')
 
@@ -354,6 +381,13 @@ class TagVideoCreateView(TagVideoMixin, CreateView):
         publication = models.Publication.objects.get(pk=self.kwargs["publication_pk"])
         context["publication"] = publication
         context["tags_list"] = publication.tags_video.all()
+
+        # Add product creation form
+        context["product_create_form"] = forms.ProductCreateForm(initial={
+            'user': self.request.user.pk,
+            'date_from': timezone.now().date(),
+            'date_to': (timezone.now() + timezone.timedelta(days=7)).date(),
+        })
         return context
 
 

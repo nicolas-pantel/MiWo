@@ -63,6 +63,8 @@ class ProductCreateForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'user': forms.HiddenInput(),
+            'date_from': forms.DateInput(),
+            'date_to': forms.DateInput(),
         }
 
 

@@ -15,9 +15,14 @@
             <form class="form" method="POST" action="">
                 {% csrf_token %}
                 {% bootstrap_form form show_label=False %}
-                {% buttons %}
-                    <button class="btn btn-primary" type="submit">{% trans "Add" %}</button>
-                {% endbuttons %}
+                <!-- Button trigger modal -->
+                {% trans 'Or' %}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productCreationModal">
+                  {% trans 'create one' %}
+                </button>
+                <div class="mt-5">
+                    <button class="btn btn-primary" type="submit">{% trans "Add smartlink" %} &raquo;</button>
+                </div>
             </form>
         </div>
         <!-- Tags list -->
@@ -51,19 +56,62 @@
     </tbody>
 </div>
 
+<!-- Product creation modal -->
+<div class="modal fade" id="productCreationModal" tabindex="-1" role="dialog" aria-labelledby="productCreationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{% trans 'Create smartlink' %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="product-create-form" class="form" method="POST" action="{% url 'product_create_ajax' %}">
+            {% csrf_token %}
+            {% bootstrap_form product_create_form show_label=False %}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Cancel' %}</button>
+        <button type="submit" class="btn btn-primary" id="btn-product-create" form="product-create-form">{% trans 'Next' %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 
 {% block javascript %}
-    function convert(seconds) {
-        seconds = Number(seconds);
-        var hours = Math.floor(seconds / 3600);
-        var minutes = Math.floor(seconds % 3600 / 60);
-        var seconds = Math.floor(seconds % 3600 % 60);
-        hours = (hours == 0 ? "00": (hours < 10 ? "0" : "") + hours)
-        minutes = (minutes == 0 ? "00": (minutes < 10 ? "0" : "") + minutes)
-        seconds = (seconds == 0 ? "00": (seconds < 10 ? "0" : "") + seconds)
-        return (hours + ":" + minutes + ":" + seconds); 
-    }
+// Product creation form
+$("#product-create-form").on("submit", function( event ) {
+    event.preventDefault();
+    $.post(
+        "{% url 'product_create_ajax' %}",
+        $( "#product-create-form" ).serialize()
+    ).done(function(data){
+        if (data.product_pk != "") {
+            // Add new product to products list
+            $('#id_product').append($('<option>', {
+                value: data.product_pk,
+                text: data.product_name
+            }));
+        }
+    });
+    $('#productCreationModal').modal('toggle');
+});
+
+// Link between Youtube video and Timestamp field
+function convert(seconds) {
+    seconds = Number(seconds);
+    var hours = Math.floor(seconds / 3600);
+    var minutes = Math.floor(seconds % 3600 / 60);
+    var seconds = Math.floor(seconds % 3600 % 60);
+    hours = (hours == 0 ? "00": (hours < 10 ? "0" : "") + hours)
+    minutes = (minutes == 0 ? "00": (minutes < 10 ? "0" : "") + minutes)
+    seconds = (seconds == 0 ? "00": (seconds < 10 ? "0" : "") + seconds)
+    return (hours + ":" + minutes + ":" + seconds);
+}
 
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
