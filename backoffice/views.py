@@ -75,7 +75,10 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         """Add user names form"""
         context = super().get_context_data(**kwargs)
-        context["user_names_form"] = forms.UserNamesForm()
+        context["user_names_form"] = forms.UserNamesForm(initial={
+            'first_name': self.request.user.first_name,
+            'last_name': self.request.user.last_name,
+        })
         return context
 
     def post(self, request, *args, **kwargs):

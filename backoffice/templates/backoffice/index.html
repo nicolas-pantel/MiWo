@@ -24,8 +24,8 @@
             <form method="post" action="">
                 {% csrf_token %}
                 <div class="row">
-                    {% bootstrap_field form.email show_label=False form_group_class="col-9" placeholder="Enter your professionnal email address" %}
-                    <div class="col-3">
+                    {% bootstrap_field form.email show_label=False form_group_class="col-11" placeholder="Enter your professionnal email address" %}
+                    <div class="col-1">
                         <button class="btn btn-primary" type="submit">{% trans "Go" %}</button>
                     </div>
                 </div>
