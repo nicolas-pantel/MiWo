@@ -17,6 +17,17 @@ class InfluencersAPIView(generics.ListAPIView):
         return models.MiwoUser.objects.filter(campaigns__isnull=False).distinct()
 
 
+class InfluencersSearchAPIView(generics.ListAPIView):
+    """Return list of influenceurs matching search_text"""
+    permission_classes = (IsAuthenticated,)
+    serializer_class = serializers.InfluencersSerializer
+
+    def get_queryset(self):
+        """Search for influencers containing search text"""
+        return models.MiwoUser.objects.filter(
+            campaigns__isnull=False, username__icontains=self.kwargs["search_text"]).distinct()
+
+
 class InfluencerSubscriptionAPIView(APIView):
     """Subscribe user to influencer publications"""
     permission_classes = (IsAuthenticated,)
@@ -37,16 +48,6 @@ class InfluencersFavoritesAPIView(generics.ListAPIView):
     def get_queryset(self):
         """Filter favorite influencers only"""
         return self.request.user.favorite_influencers.all()
-
-
-class InfluencersSearchAPIView(generics.ListAPIView):
-    """Return list of influenceurs matching search_text"""
-    permission_classes = (IsAuthenticated,)
-    serializer_class = serializers.InfluencersSerializer
-
-    def get_queryset(self):
-        """Search for favorite influencers containing search text"""
-        return self.request.user.favorite_influencers.filter(username__icontains=self.kwargs["search_text"])
 
 
 class PublicationsAPIView(generics.ListAPIView):
