@@ -14,7 +14,7 @@
         <div class="col-4">
             <form class="form" method="POST" action="">
                 {% csrf_token %}
-                {% bootstrap_form form layout='horizontal' %}
+                {% bootstrap_form form show_label=False %}
                 {% buttons %}
                     <button class="btn btn-primary" type="submit">{% trans "Add" %}</button>
                 {% endbuttons %}

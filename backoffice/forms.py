@@ -111,3 +111,4 @@ class TagVideoCreateForm(forms.ModelForm):
             'publication': forms.HiddenInput(),
         }
     timestamp = forms.TimeField(initial="00:00:00", widget=forms.TimeInput(attrs={'type': 'time', 'step': 1}))
+    product = forms.ModelChoiceField(queryset=models.Product.objects.all(), empty_label="Choose a product")
