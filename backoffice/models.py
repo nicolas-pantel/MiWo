@@ -124,8 +124,10 @@ class Publication(models.Model):
     def get_absolute_url(self):
         return reverse('publications', kwargs={"campaign_pk": self.campaign.pk})
 
-    def get_youtube_video_id(self, url):
+    def get_youtube_video_id(self, url=None):
         # Case http(s)://www.youtube.com/watch?v=videoID&feature=youtu.be
+        if url is None:
+            url = self.url
         parsed_url = urlparse(url)
         parameters = parse_qs(parsed_url.query)
         if parameters.get('v'):
