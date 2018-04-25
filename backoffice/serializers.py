@@ -122,6 +122,7 @@ class TagsSerializer(serializers.ModelSerializer):
         else:
             ret['pics_produit'] = ""
         ret['youtube_video_id'] = instance.publication.get_youtube_video_id()
+        ret['timestamp'] = instance.timestamp
         return ret
 
 
