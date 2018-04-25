@@ -180,7 +180,7 @@ function convert(seconds) {
       yt_timer = setInterval(getVideoTime, 100);
     }
     else {
-      clearTimeout(yt_timer);
+      clearInterval(yt_timer);
     }
   }
   function getVideoTime() {
