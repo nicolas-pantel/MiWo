@@ -79,8 +79,10 @@
                         {% bootstrap_form image_form show_labels=False %}
                     {% endfor %}
                     <!-- Waiting spinner -->
-                    <div class="mt-5 ml-5" id="loading">
-                        <i class="fas fa-spinner fa-5x fa-spin"></i>
+                    <div class="h-50 d-flex flex-column align-items-center justify-content-center">
+                        <span id="loading">
+                            <i class="fas fa-spinner fa-5x fa-spin"></i>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -97,7 +99,8 @@
 {% endblock %}
 
 {% block javascript %}
-// Ajax request wainting icon
+// Ajax request waiting icon
+
 $( document ).ready(function(){
     $( "#loading" ).hide();
 });
