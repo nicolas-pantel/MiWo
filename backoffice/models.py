@@ -122,7 +122,7 @@ class Publication(models.Model):
         return "{}".format(self.url)
 
     def get_absolute_url(self):
-        return reverse('publications', kwargs={"campaign_pk": self.campaign.pk})
+        return reverse('campaigns')
 
     def get_youtube_video_id(self, url=None):
         # Case http(s)://www.youtube.com/watch?v=videoID&feature=youtu.be

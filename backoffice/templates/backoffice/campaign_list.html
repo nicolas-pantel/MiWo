@@ -10,32 +10,38 @@
         </a>
     </h1>
     <div class="row pt-5">
-        <table class="table">
-          <thead>
-            <tr class="row">
-              <th class="col-9">{% trans 'Name' %}</th>
-              <th class="col-3"></th>
-            </tr>
-          </thead>
-          <tbody>
-                {% for object in object_list %}
-                    <tr class="row">
-                        <td class="col-9">{{ object.name }}</td>
-                        <td class="col-3">
-                            <a href="{% url 'publications' object.pk %}" class="btn btn-primary" title="{% trans 'Add publications' %}">
-                                <i class="fas fa-align-justify"></i>
-                            </a>
-                            <a href="{% url 'campaign_update' object.pk %}" class="btn btn-warning" title="{% trans 'Edit campaign' %}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="{% url 'campaign_delete' object.pk %}" class="btn btn-danger" title="{% trans 'Delete campaign' %}">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <!-- Campaigns list -->
+            <div class="d-flex flex-row mt-2">
+                <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
+                    {% for object in object_list %}
+                        <li class="nav-item">
+                            <a href="#{{ object.pk }}" class="nav-link {% if forloop.first %}active{% endif %}" data-toggle="tab" role="tab" aria-controls="{{ object.pk }}">{{ object.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="tab-content" style="width: 600px;">
+                    {% for object in object_list %}
+                        <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ object.pk }}" role="tabpanel">
+                            <div class="row">
+                                <div class="col-4 mb-1" style="text-align: center;">
+                                    <a href="{% url 'publication_create' object.pk %}" class="btn btn-primary" title="{% trans 'Add publication' %}" style="margin-top: 40px;">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                    <div class="mt-2">{% trans "NEW PUBLICATION" %}</div>
+                                </div>
+                                {% for publication in object.publications.all %}
+                                    <div class="col-4 mb-1">
+                                        <a href="{% url 'tagvideo_create' publication.pk %}">
+                                            <img src="{{ publication.get_youtube_thumbnail }}" style="width: 200px;"/>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
     </tbody>
 </div>
 
