@@ -74,13 +74,14 @@
                     {% bootstrap_form product_create_form show_label=False %}
                 </div>
                 <div class="col-6">
-                    {% bootstrap_form image_form show_label=False %}
-                    {% comment %}
                     {{ image_formset.management_form }}
                     {% for image_form in image_formset %}
                         {% bootstrap_form image_form show_labels=False %}
                     {% endfor %}
-                    {% endcomment %}
+                    <!-- Waiting spinner -->
+                    <div class="mt-5 ml-5" id="loading">
+                        <i class="fas fa-spinner fa-5x fa-spin"></i>
+                    </div>
                 </div>
             </div>
         </form>
@@ -96,45 +97,42 @@
 {% endblock %}
 
 {% block javascript %}
+// Ajax request wainting icon
+$( document ).ready(function(){
+    $( "#loading" ).hide();
+});
+
+$( document ).ajaxStart(function() {
+  $( "#loading" ).show();
+});
+
+$( document ).ajaxStop(function() {
+  $( "#loading" ).hide();
+});
+
 // Product creation form
 $("#product-create-form").on("submit", function( event ) {
     event.preventDefault();
 
-var formData = new FormData($("#product-create-form")[0]);
-$.ajax({
-    url: "{% url 'product_create_ajax' %}",
-    type: "POST",
-    data: formData,
-    processData: false,
-    contentType: false,
+    var formData = new FormData($("#product-create-form")[0]);
+    $.ajax({
+        url: "{% url 'product_create_ajax' %}",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
 
-    success: function (data) {
-        if (data.product_pk != "") {
-            // Add new product to products list
-            $('#id_product').append($('<option>', {
-                value: data.product_pk,
-                text: data.product_name
-            }));
-        }
-        $('#productCreationModal').modal('toggle');
-    }
-});
-
-    /*
-    var test = $( "#product-create-form" ).serialize();
-    $.post(
-        "{% url 'product_create_ajax' %}",
-        $( "#product-create-form" ).serialize()
-    ).done(function(data){
-        if (data.product_pk != "") {
-            // Add new product to products list
-            $('#id_product').append($('<option>', {
-                value: data.product_pk,
-                text: data.product_name
-            }));
+        success: function (data) {
+            if (data.product_pk != "") {
+                // Add new product to products list
+                $('#id_product').append($('<option>', {
+                    value: data.product_pk,
+                    text: data.product_name
+                }));
+            }
+            $('#productCreationModal').modal('toggle');
         }
     });
-    */
 
 });
 

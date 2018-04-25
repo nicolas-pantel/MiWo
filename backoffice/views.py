@@ -187,19 +187,16 @@ class JSONProductCreateView(ProductMixin, CreateView):
         """If the form is valid, save the associated model."""
         self.object = form.save()
         post = self.request.POST.copy()
-        post['product'] = self.object.pk
-        image_form = forms.ProductImageForm(post, self.request.FILES)
-        if image_form.is_valid():
-            image_form.save()
-        '''
+        post['form-0-product'] = self.object.pk
+        post['form-1-product'] = self.object.pk
+        post['form-2-product'] = self.object.pk
         ProductImageFormset = formset_factory(forms.ProductImageForm)
-        image_formset = ProductImageFormset(
-            self.request.POST, self.request.FILES, initial=[{'form-0-product': self.object}])
+        image_formset = ProductImageFormset(post, self.request.FILES)
         if image_formset.is_valid():
             for image_form in image_formset:
                 if image_form.is_valid():
                     image_form.save()
-        '''
+
         return self.render_to_response(self.get_context_data(form=form))
 
     def render_to_response(self, context, **response_kwargs):
@@ -405,8 +402,7 @@ class TagVideoCreateView(TagVideoMixin, CreateView):
         })
 
         # Add image product creation formset
-        context["image_form"] = forms.ProductImageForm()
-        #context["image_formset"] = formset_factory(forms.ProductImageForm)
+        context["image_formset"] = formset_factory(forms.ProductImageForm, extra=3)
         return context
 
 
