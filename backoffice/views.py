@@ -328,7 +328,7 @@ class PublicationUpdateView(PublicationMixin, UpdateView):
 @login_required
 def publish_publication(request, pk):
     """Send notifaction to followers"""
-    airship = ua.Airship(settings.URBANAIRSHIP_KEY, settings.URBANAIRSHIP_KEY)
+    airship = ua.Airship(settings.URBANAIRSHIP_KEY, settings.URBANAIRSHIP_MASTER_SECRET)
     push = airship.create_push()
     followers = request.user.followers.all()
     for follower in followers:
