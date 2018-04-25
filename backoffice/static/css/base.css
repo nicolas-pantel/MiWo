@@ -15,3 +15,7 @@
     width: 100px;
     height: 100px;
 }
+
+#productCreationModal .modal-content {
+    width: 750px;
+}

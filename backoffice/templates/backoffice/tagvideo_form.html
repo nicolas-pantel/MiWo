@@ -17,7 +17,7 @@
                 {% bootstrap_form form show_label=False %}
                 <!-- Button trigger modal -->
                 {% trans 'Or' %}
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productCreationModal">
+                <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#productCreationModal">
                   {% trans 'create one' %}
                 </button>
                 <div class="mt-5">
@@ -67,9 +67,22 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="product-create-form" class="form" method="POST" action="{% url 'product_create_ajax' %}">
+        <form id="product-create-form" class="form" method="POST" action="{% url 'product_create_ajax' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {% bootstrap_form product_create_form show_label=False %}
+            <div class="row">
+                <div class="col-6">
+                    {% bootstrap_form product_create_form show_label=False %}
+                </div>
+                <div class="col-6">
+                    {% bootstrap_form image_form show_label=False %}
+                    {% comment %}
+                    {{ image_formset.management_form }}
+                    {% for image_form in image_formset %}
+                        {% bootstrap_form image_form show_labels=False %}
+                    {% endfor %}
+                    {% endcomment %}
+                </div>
+            </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -86,6 +99,29 @@
 // Product creation form
 $("#product-create-form").on("submit", function( event ) {
     event.preventDefault();
+
+var formData = new FormData($("#product-create-form")[0]);
+$.ajax({
+    url: "{% url 'product_create_ajax' %}",
+    type: "POST",
+    data: formData,
+    processData: false,
+    contentType: false,
+
+    success: function (data) {
+        if (data.product_pk != "") {
+            // Add new product to products list
+            $('#id_product').append($('<option>', {
+                value: data.product_pk,
+                text: data.product_name
+            }));
+        }
+        $('#productCreationModal').modal('toggle');
+    }
+});
+
+    /*
+    var test = $( "#product-create-form" ).serialize();
     $.post(
         "{% url 'product_create_ajax' %}",
         $( "#product-create-form" ).serialize()
@@ -98,7 +134,8 @@ $("#product-create-form").on("submit", function( event ) {
             }));
         }
     });
-    $('#productCreationModal').modal('toggle');
+    */
+
 });
 
 // Link between Youtube video and Timestamp field

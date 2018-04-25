@@ -6,6 +6,7 @@ from allauth.account import views as allauth_views
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms.formsets import formset_factory
 from django.http import JsonResponse
 from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
@@ -185,6 +186,20 @@ class JSONProductCreateView(ProductMixin, CreateView):
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
         self.object = form.save()
+        post = self.request.POST.copy()
+        post['product'] = self.object.pk
+        image_form = forms.ProductImageForm(post, self.request.FILES)
+        if image_form.is_valid():
+            image_form.save()
+        '''
+        ProductImageFormset = formset_factory(forms.ProductImageForm)
+        image_formset = ProductImageFormset(
+            self.request.POST, self.request.FILES, initial=[{'form-0-product': self.object}])
+        if image_formset.is_valid():
+            for image_form in image_formset:
+                if image_form.is_valid():
+                    image_form.save()
+        '''
         return self.render_to_response(self.get_context_data(form=form))
 
     def render_to_response(self, context, **response_kwargs):
@@ -388,6 +403,10 @@ class TagVideoCreateView(TagVideoMixin, CreateView):
             'date_from': timezone.now().date(),
             'date_to': (timezone.now() + timezone.timedelta(days=7)).date(),
         })
+
+        # Add image product creation formset
+        context["image_form"] = forms.ProductImageForm()
+        #context["image_formset"] = formset_factory(forms.ProductImageForm)
         return context
 
 
