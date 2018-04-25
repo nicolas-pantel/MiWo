@@ -36,3 +36,8 @@ admin.site.register(models.Publication, PublicationAdmin)
 class TagVideoAdmin(admin.ModelAdmin):
     pass
 admin.site.register(models.TagVideo, TagVideoAdmin)
+
+
+class DeviceAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(models.Device, DeviceAdmin)
