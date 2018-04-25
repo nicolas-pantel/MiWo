@@ -32,7 +32,22 @@
                                 </div>
                                 {% for publication in object.publications.all %}
                                     <div class="col-4 mb-2">
-                                        <div class="" style="text-align: center;">{% if publication.name %}{{ publication.name }}{% else %}{{ publication.get_youtube_video_id }}{% endif %}</div>
+                                        <div class="" style="text-align: center;">
+                                            <!-- Publication name-->
+                                            {% if publication.name %}
+                                                {{ publication.name }}
+                                            {% else %}
+                                                {{ publication.get_youtube_video_id }}
+                                            {% endif %}
+                                            <!-- Publish button -->
+                                            {% if not publication.published %}
+                                                <a href="{% url 'publication_publish' publication.pk %}" class="badge badge-primary float-right" title="{% trans 'Publish' %}">{% trans 'Publish' %}</a>
+                                            {% else %}
+                                                <a href="" class="badge badge-secondary float-right disabled">
+                                                    {% trans 'Published' %}
+                                                </a>
+                                            {% endif %}
+                                        </div>
                                         <a href="{% url 'tagvideo_create' publication.pk %}">
                                             <img src="{{ publication.get_youtube_thumbnail }}" style="width: 200px;"/>
                                         </a>

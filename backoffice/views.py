@@ -341,7 +341,7 @@ def publish_publication(request, pk):
     publication = models.Publication.objects.get(pk=pk)
     publication.published = True
     publication.save()
-    return redirect("publications", campaign_pk=publication.campaign.pk)
+    return redirect("campaigns")
 
 
 class TagVideoMixin(LoginRequiredMixin):
