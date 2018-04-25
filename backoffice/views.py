@@ -4,6 +4,7 @@ import urbanairship as ua
 
 from allauth.account import views as allauth_views
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.formsets import formset_factory
@@ -327,7 +328,7 @@ class PublicationUpdateView(PublicationMixin, UpdateView):
 @login_required
 def publish_publication(request, pk):
     """Send notifaction to followers"""
-    airship = ua.Airship('application_key', 'master_secret')
+    airship = ua.Airship(settings.URBANAIRSHIP_KEY, settings.URBANAIRSHIP_KEY)
     push = airship.create_push()
     followers = request.user.followers.all()
     for follower in followers:

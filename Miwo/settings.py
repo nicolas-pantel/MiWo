@@ -214,3 +214,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 COUNTRIES_OVERRIDE = {
     None: _(' Select a country'),
 }
+
+# Urban airship push
+URBANAIRSHIP_KEY = os.environ.get("URBANAIRSHIP_KEY", None)
+URBANAIRSHIP_SECRET = os.environ.get("URBANAIRSHIP_SECRET", None)
