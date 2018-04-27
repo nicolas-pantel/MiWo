@@ -330,11 +330,18 @@ def publish_publication(request, pk):
     """Send notifaction to followers"""
     airship = ua.Airship(settings.URBANAIRSHIP_KEY, settings.URBANAIRSHIP_MASTER_SECRET)
     push = airship.create_push()
-    push.notification = ua.notification(alert=_("New publication from {}".format(request.user.username)))
+    push.notification = ua.notification(
+        ios=ua.ios(
+            alert="New publication from {}".format(request.user.username),
+            badge='+1',
+        )
+    )
     push.device_types = ua.device_types('ios')
     followers = request.user.followers.all()
     for follower in followers:
-        device = follower.profile.device
+        devices = models.Device.objects.filter(profile=follower.profile)
+        if devices.exists():
+            device = devices[0]
         push.audience = ua.ios_channel(device.chanid)
         push.send()
     # Record as published and redirect to publications list
