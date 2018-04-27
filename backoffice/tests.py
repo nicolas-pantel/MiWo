@@ -43,13 +43,23 @@ class PublicationModelTestCase(TestCase):
 
 
 class APITestCase(APITestCase):
-    def test_create_user(self):
-        """Must create a MiwoUser with email, password and a device"""
+    def setUp(self):
         # Test user
-        user = models.MiwoUser.objects.create(email="test@test.com")
-        user.set_password("test")
-        user.save()
-        # Login
+        self.user = models.MiwoUser.objects.create(email="test@test.com")
+        self.user.set_password("test")
+        self.user.save()
+
+    def test_create_user(self):
+        """Login API must create a device and store chanid"""
         self.client.post(
             reverse("rest_login"), {"email": "test@test.com", "password": "test", "chanid": "aaabbb"})
-        self.assertEqual(user.profile.devices.all()[0].chanid, "aaabbb")
+        self.assertEqual(self.user.profile.device.chanid, "aaabbb")
+
+    def test_create_user_unique_device(self):
+        """Login API create a unique device, not several"""
+        self.client.post(
+            reverse("rest_login"), {"email": "test@test.com", "password": "test", "chanid": "aaabbb"})
+        self.client.post(
+            reverse("rest_login"), {"email": "test@test.com", "password": "test", "chanid": "cccddd"})
+        self.assertEqual(models.Device.objects.filter(profile=self.user.profile).count(), 1)
+        self.assertEqual(self.user.profile.device.chanid, "cccddd")

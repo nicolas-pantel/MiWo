@@ -36,7 +36,7 @@ class Profile(models.Model):
 
 class Device(models.Model):
     """A user device"""
-    profile = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name="devices")
+    profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name="device")
     chanid = models.CharField(_("Chan id"), max_length=100)
 
 

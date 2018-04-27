@@ -27,8 +27,9 @@ class LoginSerializer(rest_auth_serializers.LoginSerializer):
         # If the user is logged in, register its device
         user = attrs["user"]
         chanid = attrs.get("chanid")
-        if user and chanid:
-            device, create = models.Device.objects.get_or_create(chanid=chanid, profile=user.profile)
+        device, create = models.Device.objects.get_or_create(profile=user.profile)
+        device.chanid = chanid
+        device.save()
         return attrs
 
 
