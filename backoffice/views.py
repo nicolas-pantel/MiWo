@@ -121,6 +121,15 @@ class CampaignsView(CampaignMixin, ListView):
         """Add campaign id"""
         context = super().get_context_data(**kwargs)
         context["youtube_videos"] = youtube.videos_list(self.request.user)
+        new_object_list = []
+        for campaign in context.get("object_list", []):
+            campaign.publications_list = []
+            for publication in campaign.publications.all():
+                (publication.video_thumbnail, publication.privacy) = youtube.video_details(
+                    self.request.user, publication.get_youtube_video_id())
+                campaign.publications_list.append(publication)
+            new_object_list.append(campaign)
+        context["object_list"] = new_object_list
         return context
 
 

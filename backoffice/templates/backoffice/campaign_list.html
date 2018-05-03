@@ -35,7 +35,7 @@
                                     </button>
                                     <div class="mt-2">{% trans "NEW PUBLICATION" %}</div>
                                 </div>
-                                {% for publication in object.publications.all %}
+                                {% for publication in object.publications_list %}
                                     <div class="col-4 mb-2">
                                         <div class="" style="text-align: center;">
                                             <!-- Publication name-->
@@ -45,7 +45,7 @@
                                                 {{ publication.get_youtube_video_id }}
                                             {% endif %}
                                             <!-- Publish button -->
-                                            {% if not publication.published %}
+                                            {% if publication.privacy == 'private' %}
                                                 <a href="{% url 'publication_publish' publication.pk %}" class="badge badge-primary float-right" title="{% trans 'Publish' %}">{% trans 'Publish' %}</a>
                                             {% else %}
                                                 <a href="" class="badge badge-secondary float-right disabled">
@@ -54,7 +54,7 @@
                                             {% endif %}
                                         </div>
                                         <a href="{% url 'tagvideo_create' publication.pk %}">
-                                            <img src="{{ publication.get_youtube_thumbnail }}" style="width: 200px;"/>
+                                            <img src="{{ publication.video_thumbnail }}" style="width: 200px;"/>
                                         </a>
                                     </div>
                                 {% endfor %}
