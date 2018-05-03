@@ -16,6 +16,7 @@ from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView, FormView
 
 from . import forms, models
+from .external_api_clients import youtube
 
 
 def index(request):
@@ -299,6 +300,7 @@ class PublicationCreateView(PublicationMixin, CreateView):
         """Add campaign id"""
         context = super().get_context_data(**kwargs)
         context["campaign_pk"] = self.kwargs["campaign_pk"]
+        context["youtube_videos"] = youtube.videos_list(self.request.user)
         return context
 
     def get_success_url(self):

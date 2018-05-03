@@ -12,9 +12,12 @@
         <div class="row justify-content-center pt-5 mt-5">
             {% csrf_token %}
             {% bootstrap_field form.campaign %}
-            <div class="col-4">
+            <div class="form-group col-4 mb-2">
                 <i class="fab fa-youtube fa-2x" style="color: red;"></i>
+                {% comment %}
                 {% bootstrap_field form.url show_label=False form_group_class="col-10 float-right" placeholder="Video url" %}
+                {% endcomment %}
+                <button type="button" class="form-control col-10 float-right btn btn-danger" data-toggle="modal" data-target="#YTvideoList">{% trans "Choose a video" %}</button>
             </div>
             <!-- Fake social networks -->
             <div class="form-group col-4">
@@ -25,9 +28,46 @@
                 <i class="fab fa-instagram fa-2x" style="color: orange;"></i>
                 <input type="text" class="form-control col-10 float-right" placeholder="Instagram post" disabled="true">
             </div>
+            {% comment %}
             <button class="btn btn-primary mt-5" type="submit">{% trans "Next" %}</button>
+            {% endcomment %}
         </div>
     </form>
 </div>
 
+<!-- Youtube videos list -->
+<div class="modal fade" id="YTvideoList" tabindex="-1" role="dialog" aria-labelledby="YTvideoListLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{% trans 'Choose a video' %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            {% for video in youtube_videos %}
+            <div class="col-4 mb-2">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{ form.campaign }}
+                    <input type="hidden" name="url" id="id_url" value="https://www.youtu.be/{{ video.id }}"></input>
+                    <button type="submit" class="border-0 p-0">
+                        <img src="{{ video.thumbnail_url }}" style="width: 200px;"/>
+                    </button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="modal-footer">
+        {% comment %}
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Cancel' %}</button>
+        <button type="submit" class="btn btn-primary" id="btn-product-create" form="product-create-form">{% trans 'Next' %}</button>
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

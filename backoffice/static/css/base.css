@@ -20,6 +20,10 @@
     width: 750px;
 }
 
+#YTvideoList .modal-dialog {
+    max-width: 700px;
+}
+
 /* Navbar in Campaigns page */
 .nav-tabs--vertical {
   border-bottom: none;

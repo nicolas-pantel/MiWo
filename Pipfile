@@ -21,6 +21,7 @@ django-cors-headers = "*"
 cloudinary = "*"
 urbanairship = "*"
 django-countries = "*"
+google-api-python-client = "*"
 
 
 [dev-packages]
