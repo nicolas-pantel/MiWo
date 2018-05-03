@@ -30,11 +30,12 @@ def videos_list(user):
     return videos
 
 
-def video_details(user, video_id):
-    """Return some details of a video"""
-    request = service(user).videos().list(part="snippet,status", id=video_id)
+def video_details(user, video_id_list):
+    """Return some details of a list of videos"""
+    request = service(user).videos().list(part="snippet,status", id=",".join(video_id_list))
     response = request.execute()
-    return (
-        response["items"][0]["snippet"]["thumbnails"]["default"]["url"],
-        response["items"][0]["status"]["privacyStatus"]
-    )
+    return [(
+        item["id"],
+        item["snippet"]["thumbnails"]["default"]["url"],
+        item["status"]["privacyStatus"]
+    ) for item in response["items"]]
