@@ -12,7 +12,6 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
 from django.utils import timezone
-from django.utils.translation import gettext as _
 from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView, FormView
 

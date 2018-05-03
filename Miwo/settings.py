@@ -197,6 +197,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': [
             'profile',
             'email',
+            'https://www.googleapis.com/auth/youtube.upload',
         ],
         'AUTH_PARAMS': {
             'access_type': 'online',
