@@ -3,6 +3,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from django.shortcuts import get_object_or_404
+
 from . import models
 from . import serializers
 
@@ -89,7 +91,8 @@ class TagVideoFavoriteAddView(APIView):
 
     def post(self, request, pk, *args, **kwargs):
         """Add tag to user's favorites"""
-        tag = models.TagVideo.objects.get(pk=pk)
+
+        tag = get_object_or_404(models.TagVideo, pk=pk)
         request.user.favorite_tags_video.add(tag)
         data = "Tag {} successfully favorited by user {}".format(tag, self.request.user.username)
         return Response(data)
@@ -101,7 +104,7 @@ class TagVideoFavoriteRemoveView(APIView):
 
     def post(self, request, pk, *args, **kwargs):
         """Remove tag from user's favorites"""
-        tag = models.TagVideo.objects.get(pk=pk)
+        tag = get_object_or_404(models.TagVideo, pk=pk)
         request.user.favorite_tags_video.remove(tag)
         data = "Tag {} successfully removed by user {}".format(tag, self.request.user.username)
         return Response(data)
