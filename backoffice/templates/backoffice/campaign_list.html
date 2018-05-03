@@ -25,9 +25,14 @@
                         <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ object.pk }}" role="tabpanel">
                             <div class="row">
                                 <div class="col-4 mb-1" style="text-align: center;">
+                                    {% comment %}
                                     <a href="{% url 'publication_create' object.pk %}" class="btn btn-primary" title="{% trans 'Add publication' %}" style="margin-top: 60px;">
                                         <i class="fas fa-plus"></i>
                                     </a>
+                                    {% endcomment %}
+                                    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#YTvideoList-{{ object.pk }}">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
                                     <div class="mt-2">{% trans "NEW PUBLICATION" %}</div>
                                 </div>
                                 {% for publication in object.publications.all %}
@@ -55,6 +60,10 @@
                                 {% endfor %}
                             </div>
                         </div>
+
+                        {% url "publication_create" object.pk as form_url %}
+                        {% include "backoffice/partials/youtube_videos_choice.html" with campaign=object.pk form_url=form_url %}
+
                     {% endfor %}
                 </div>
             </div>

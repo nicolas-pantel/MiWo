@@ -117,6 +117,12 @@ class CampaignsView(CampaignMixin, ListView):
         """Only user's campaigns"""
         return models.Campaign.objects.filter(user=self.request.user)
 
+    def get_context_data(self, **kwargs):
+        """Add campaign id"""
+        context = super().get_context_data(**kwargs)
+        context["youtube_videos"] = youtube.videos_list(self.request.user)
+        return context
+
 
 class CampaignCreateView(CampaignMixin, CreateView):
     form_class = forms.CampaignCreateForm
