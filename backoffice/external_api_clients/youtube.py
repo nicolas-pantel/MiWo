@@ -39,3 +39,10 @@ def video_details(user, video_id_list):
         item["snippet"]["thumbnails"]["default"]["url"],
         item["status"]["privacyStatus"]
     ) for item in response["items"]]
+
+
+def video_status(user, video_id):
+    """Limited credit cost for video status only"""
+    request = service(user).videos().list(part="status", id=video_id)
+    response = request.execute()
+    return response["items"][0]["status"]["privacyStatus"]

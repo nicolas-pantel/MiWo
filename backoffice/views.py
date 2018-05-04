@@ -427,6 +427,7 @@ class TagVideoCreateView(TagVideoMixin, CreateView):
         publication = models.Publication.objects.get(pk=self.kwargs["publication_pk"])
         context["publication"] = publication
         context["tags_list"] = publication.tags_video.all()
+        context["privacy"] = youtube.video_status(self.request.user, publication.get_youtube_video_id())
 
         # Add product creation form
         context["product_create_form"] = forms.ProductCreateForm(initial={

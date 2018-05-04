@@ -44,13 +44,11 @@
                                             {% else %}
                                                 {{ publication.get_youtube_video_id }}
                                             {% endif %}
-                                            <!-- Publish button -->
+                                            <!-- Privacy badge -->
                                             {% if publication.privacy == 'private' %}
-                                                <a href="{% url 'publication_publish' publication.pk %}" class="badge badge-primary float-right" title="{% trans 'Publish' %}">{% trans 'Publish' %}</a>
+                                                <span class="badge badge-secondary float-right">{% trans 'Private' %}</span>
                                             {% else %}
-                                                <a href="" class="badge badge-secondary float-right disabled">
-                                                    {% trans 'Published' %}
-                                                </a>
+                                                <span class="badge badge-primary float-right">{% trans 'Public' %}</span>
                                             {% endif %}
                                         </div>
                                         <a href="{% url 'tagvideo_create' publication.pk %}">
