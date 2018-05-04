@@ -5,7 +5,7 @@ import httplib2
 
 # Google api libs
 from apiclient.discovery import build
-from oauth2client.client import AccessTokenCredentials
+from oauth2client.client import AccessTokenCredentials, AccessTokenCredentialsError
 
 
 def service(user):
@@ -21,7 +21,11 @@ def videos_list(user):
     """Return videos list of the MiwoUser"""
     # Search user's videos
     request = service(user).search().list(part="snippet", forMine="true", type="video", order="date", maxResults=15)
-    response = request.execute()
+    try:
+        response = request.execute()
+    except AccessTokenCredentialsError:
+        refresh_token(user)
+        return videos_list(user)
     videos = []
     for video in response["items"]:
         videos.append(
