@@ -1,11 +1,13 @@
+from subprocess import call
 from apscheduler.schedulers.blocking import BlockingScheduler
+
 
 sched = BlockingScheduler()
 
 
-@sched.scheduled_job('interval', minutes=1)
+@sched.scheduled_job('interval', seconds=1)
 def timed_job():
-    print('This job is run every three minutes.')
+    call(["python", "manage.py", "youtube"])
 
 
 sched.start()
