@@ -23,6 +23,7 @@ urbanairship = "*"
 django-countries = "*"
 google-api-python-client = "*"
 apscheduler = "*"
+"psycopg2-binary" = "*"
 
 
 [dev-packages]
