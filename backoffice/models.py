@@ -111,6 +111,7 @@ class Publication(models.Model):
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="publications")
     name = models.CharField(_("Title"), max_length=150, null=True, blank=True)
     url = models.URLField("Url")
+    video_id = models.CharField(_("Video ID"), max_length=15, null=True, blank=True)
     pub_type = models.CharField(_("Type"), max_length=50, choices=TYPES, default=VIDEO)
     social_network = models.CharField(_("Social network"), max_length=150, choices=SOCIAL_NETWORKS, default=YOUTUBE)
     date = models.DateTimeField(_("Date"), default=timezone.now)
@@ -120,6 +121,10 @@ class Publication(models.Model):
 
     def __str__(self):
         return "{}".format(self.url)
+
+    def save(self, *args, **kwargs):
+        self.video_id = self.get_youtube_video_id()
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('campaigns')

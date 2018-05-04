@@ -41,6 +41,13 @@ class PublicationModelTestCase(TestCase):
         id = publication.get_youtube_video_id()
         self.assertEqual(id, 'videoID')
 
+    def test_video_id_autofill(self):
+        """On save, the video_id must be auto filled from url"""
+        user = models.MiwoUser.objects.create(email="test@test.com", password="test")
+        campaign = models.Campaign.objects.create(user=user)
+        publication = models.Publication.objects.create(campaign=campaign, url="https://www.youtu.be/videoID")
+        self.assertEqual(publication.video_id, 'videoID')
+
 
 class APITestCase(APITestCase):
     def setUp(self):

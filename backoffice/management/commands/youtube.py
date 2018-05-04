@@ -12,10 +12,14 @@ class Command(BaseCommand):
         # For each influencer
         influencers = models.MiwoUser.objects.filter(campaigns__isnull=False).distinct()
         for influencer in influencers:
-            print(influencer.username)
             # Query YT for influencer's private videos
             if influencer.socialaccount_set.filter(provider="google"):
                 publications = models.Publication.objects.filter(campaign__user=influencer, published=False)
                 videos_ids = [publication.get_youtube_video_id() for publication in publications]
                 status = youtube.videos_status(influencer, videos_ids)
-                print(status)
+                status = set(status)
+                # Change status from public to private
+                changed_videos = [statut for statut in status if statut[1] == "public"]
+                for changed_video in changed_videos:
+                    publications = models.Publication.objects.filter(video_id=changed_video[0])
+                    publications.update(published=True)

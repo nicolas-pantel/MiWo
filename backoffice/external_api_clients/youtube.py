@@ -56,6 +56,9 @@ def video_status(user, video_id):
 
 def videos_status(user, video_id_list):
     """Limited credit cost for a list of video status only"""
-    request = service(user).videos().list(part="status", id=",".join(video_id_list))
+    request = service(user).videos().list(part="id,status", id=",".join(video_id_list))
     response = request.execute()
-    return [item["status"]["privacyStatus"] for item in response["items"]]
+    return [(
+        item["id"],
+        item["status"]["privacyStatus"]
+    ) for item in response["items"]]
