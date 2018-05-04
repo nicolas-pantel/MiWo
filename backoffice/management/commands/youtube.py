@@ -20,15 +20,10 @@ class Command(BaseCommand):
                 status = set(status)
                 # Change status from public to private
                 changed_videos = [statut for statut in status if statut[1] == "public"]
-                print(changed_videos)
                 for changed_video in changed_videos:
                     publications = models.Publication.objects.filter(video_id=changed_video[0])
-                    print("UPDATE")
                     publications.update(published=True)
                     # Push notification to followers
                     # TODO: use async for scale
-                    print(publications)
                     for publication in publications:
-                        print("BEFORE PUSH")
                         urbanairship.publish(influencer, publication)
-                        print("PUSH")
