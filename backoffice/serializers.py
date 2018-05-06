@@ -125,7 +125,7 @@ class TagsSerializer(serializers.ModelSerializer):
             ret['pics_produit'] = ""
         ret['youtube_video_id'] = instance.publication.get_youtube_video_id()
         ret['timestamp'] = instance.timestamp
-        ret['influencer'] = instance.publication.campaign.user.username
+        ret['news_name'] = instance.publication.name
         return ret
 
 
