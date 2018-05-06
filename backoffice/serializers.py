@@ -72,6 +72,7 @@ class PublicationsSerializer(serializers.ModelSerializer):
         )
         ret['picture_news'] = instance.get_youtube_thumbnail()
         ret['youtube_video_id'] = instance.get_youtube_video_id(instance.url)
+        ret['influencer'] = instance.campaign.user.username
         return ret
 
 
@@ -124,6 +125,7 @@ class TagsSerializer(serializers.ModelSerializer):
             ret['pics_produit'] = ""
         ret['youtube_video_id'] = instance.publication.get_youtube_video_id()
         ret['timestamp'] = instance.timestamp
+        ret['influencer'] = instance.publication.campaign.user.username
         return ret
 
 
