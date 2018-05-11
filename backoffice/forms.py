@@ -22,9 +22,9 @@ class UserKindForm(forms.ModelForm):
 class UserNamesForm(forms.ModelForm):
     class Meta:
         model = models.MiwoUser
-        fields = ['first_name', 'last_name']
+        fields = ['username', 'first_name', 'last_name']
         widgets = {
-            'first_name': forms.TextInput(attrs={'autofocus': True})
+            'username': forms.TextInput(attrs={'autofocus': True})
         }
 
 

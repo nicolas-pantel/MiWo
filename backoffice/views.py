@@ -90,6 +90,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         """Add user names form"""
         context = super().get_context_data(**kwargs)
         context["user_names_form"] = forms.UserNamesForm(initial={
+            'username': self.request.user.username,
             'first_name': self.request.user.first_name,
             'last_name': self.request.user.last_name,
         })
@@ -100,6 +101,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         resp = super().post(request, *args, **kwargs)
         form = forms.UserNamesForm(request.POST)
         if form.is_valid():
+            request.user.username = form.cleaned_data["username"]
             request.user.first_name = form.cleaned_data["first_name"]
             request.user.last_name = form.cleaned_data["last_name"]
             request.user .save()
@@ -334,10 +336,7 @@ class PublicationCreateView(PublicationMixin, CreateView):
         return context
 
     def get_success_url(self):
-        if self.publication_funnel:
-            return reverse("tagvideo_create", kwargs={'publication_pk': self.object.pk})
-        else:
-            return super().get_success_url()
+        return reverse("tagvideo_create", kwargs={'publication_pk': self.object.pk})
 
 
 class PublicationDeleteView(PublicationMixin, DeleteView):
