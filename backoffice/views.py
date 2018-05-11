@@ -225,7 +225,7 @@ class JSONProductCreateView(ProductMixin, CreateView):
         image_formset = ProductImageFormset(post, self.request.FILES)
         if image_formset.is_valid():
             for image_form in image_formset:
-                if image_form.is_valid():
+                if image_form.is_valid() and image_form.cleaned_data["image"]:
                     image_form.save()
 
         return self.render_to_response(self.get_context_data(form=form))
