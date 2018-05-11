@@ -28,6 +28,10 @@
     cursor: pointer;
 }
 
+.signup-logo {
+    width: 250px;
+}
+
 /* Navbar in Campaigns page */
 .nav-tabs--vertical {
   border-bottom: none;
