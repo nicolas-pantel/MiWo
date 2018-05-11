@@ -26,8 +26,12 @@ def index(request):
         return redirect("publication_step1")
 
 
-class IndexView(FormView):
+class IndexSignupView(TemplateView):
     template_name = "backoffice/index.html"
+
+
+class IndexView(FormView):
+    template_name = "backoffice/index2.html"
     form_class = forms.EmailForm
     success_url = reverse_lazy("signup_step2")
 

@@ -1,42 +1,50 @@
 {% extends "backoffice/base.html" %}
 
-{% load i18n bootstrap4 %}
+{% load static i18n bootstrap4 %}
 {% load socialaccount %}
 
 {% block content %}
 <div class="container">
-    {% if not user.is_authenticated %}
-    <h1 class="text-center pt-5">{% trans "Welcome to Miwo!" %}</h1>
-    <h2 class="text-center pt-5">{% trans "Miwo is the smartest way to connect your clients to their influencer's audience" %}</h2>
-    <div class="row justify-content-center pt-5">
-        <a href="{% provider_login_url 'google' process='login' action='reauthenticate' %}" class="btn btn-outline-danger">
-            <i class="fab fa-google mr-3"></i>
-            {% trans "Sign in with Google" %}
-        </a>
+    <div class="text-center pt-5">
+        <img src="{% static 'images/Miwo_Brand.png' %}" height="80" class="d-inline-block align-top" alt="">
     </div>
-    {% endif %}
+    <h1 class="text-center pt-5"><b>Welcome to Miwo</b></h1>
+    <h4 class="text-center">Miwo is the smartest way to increase your follower’s engagement and generate sales</h4>
+    <h4 class="text-center">Our <b>SmartLink</b> technology allows you to embed a simple call to action inside your posts ... explain</h4>
+    <h2 class="text-center pt-5"><b>{% trans "Are you an influence marketing platform, an agency, an influencer?" %}</b></h2>
 
-    {% comment Google authentification %}
     {% if not user.is_authenticated %}
-    <h1 class="text-center pt-5">{% trans "Welcome to Miwo!" %}</h1>
-    <h2 class="text-center pt-5">{% trans "Miwo is the smartest way to connect your clients to their influencer's audience" %}</h2>
     <div class="row justify-content-center pt-5 mt-5">
         <div class="col-6">
-            <p>{% trans 'If you already have an account, then please' %}
-            <a href="{% url 'account_login' %}">{% trans 'login' %}</a></p>
-            <form method="post" action="">
-                {% csrf_token %}
-                <div class="row">
-                    {% bootstrap_field form.email show_label=False form_group_class="col-11" placeholder="Enter your professionnal email address" %}
-                    <div class="col-1">
-                        <button class="btn btn-primary" type="submit">{% trans "Go" %}</button>
+            <div class="row">
+                <div class="row col-4 justify-content-center">
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-kind disabled" title="{% trans 'Platform' %}">
+                        <i class="fas fa-address-book fa-5x"></i>
+                    </a>
+                    <div class="mt-2">
+                        <span>{% trans 'PLATFORM' %}</span>
                     </div>
                 </div>
-            </form>
+                <div class="row col-4 justify-content-center">
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-kind disabled" title="{% trans 'Agency' %}">
+                        <i class="fas fa-building fa-5x"></i>
+                    </a>
+                    <div class="mt-2">
+                        <span>{% trans 'AGENCY' %}</span>
+                    </div>
+                </div>
+                <div class="row col-4 justify-content-center">
+                    <a href="{% url 'index2' %}" class="btn btn-primary btn-kind pl-2" title="{% trans 'Influencer' %}">
+                        <i class="fas fa-user fa-5x"></i>
+                    </a>
+                    <div class="mt-2">
+                        <span>{% trans 'INFLUENCER' %}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     {% endif %}
-    {% endcomment %}
 </div>
 
 {% endblock %}

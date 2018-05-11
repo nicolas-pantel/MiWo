@@ -7,7 +7,8 @@ from . import views, api_views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('index/', views.IndexView.as_view(), name='index_signup'),
+    path('index/', views.IndexSignupView.as_view(), name='index_signup'),
+    path('index2/', views.IndexView.as_view(), name="index2"),
     path('demo/', views.DemoView.as_view(), name='demo'),
     path('demo/<channel>', views.DemoServerView.as_view(), name="demo_server"),
     path('campaigns/', views.CampaignsView.as_view(), name="campaigns"),
