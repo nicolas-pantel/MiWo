@@ -5,16 +5,16 @@
 
 {% block content %}
 <div class="container">
-    <div class="text-center pt-5">
+    <div class="text-center pt-3">
         <img src="{% static 'images/Miwo_Brand.png' %}" height="80" class="d-inline-block align-top" alt="">
     </div>
-    <h1 class="text-center pt-5"><b>Welcome to Miwo</b></h1>
-    <h4 class="text-center">Miwo is the smartest way to increase your follower’s engagement and generate sales</h4>
-    <h4 class="text-center">Our <b>SmartLink</b> technology allows you to embed a simple call to action inside your posts ... explain</h4>
-    <h2 class="text-center pt-5"><b>{% trans "Are you an influence marketing platform, an agency, an influencer?" %}</b></h2>
+    <h2 class="text-center pt-3"><b>Welcome to Miwo</b></h2>
+    <h5 class="text-center">Miwo is the smartest way to increase your follower’s engagement and generate sales</h5>
+    <h5 class="text-center">Our <b>SmartLink</b> technology allows you to embed a simple call to action inside your posts ... explain</h5>
+    <h3 class="text-center pt-3"><b>{% trans "Are you an influence marketing platform, an agency, an influencer?" %}</b></h3>
 
     {% if not user.is_authenticated %}
-    <div class="row justify-content-center pt-5 mt-5">
+    <div class="row justify-content-center pt-5">
         <div class="col-6">
             <div class="row">
                 <div class="row col-4 justify-content-center">

@@ -6,11 +6,11 @@
 {% block content %}
 <div class="container">
     {% if not user.is_authenticated %}
-    <h1 class="text-center pt-5"><b>{% trans "INFLUENCER" %}</b></h1>
-    <h2 class="text-center pt-5"><b>{% trans "Login to your social network(s)" %}</b></h2>
-    <h4 class="text-center">{% trans "In this version, SmartLinks are only available for Youtube videos" %}</h4>
+    <h2 class="text-center pt-5"><b>{% trans "INFLUENCER" %}</b></h2>
+    <h3 class="text-center pt-3"><b>{% trans "Login to your social network(s)" %}</b></h3>
+    <h5 class="text-center">{% trans "In this version, SmartLinks are only available for Youtube videos" %}</h5>
 
-    <div class="row justify-content-center pt-5 mt-5">
+    <div class="row justify-content-center pt-5">
         <table>
             <tr>
                 <td class="text-center signup-logo pb-5"><img src="{% static 'images/instagram-logo.png' %}" height="100" /></td>
