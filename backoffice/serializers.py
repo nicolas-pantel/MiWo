@@ -148,4 +148,5 @@ class TagSerializer(serializers.ModelSerializer):
         ret['desc_product'] = product['description']
         ret['prix_produit'] = product['price']
         ret['pics_produit'] = product["images"]
+        ret['referal_link'] = product["referal_link"]
         return ret
