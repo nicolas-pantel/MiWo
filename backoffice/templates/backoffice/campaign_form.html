@@ -15,8 +15,8 @@
                 {% csrf_token %}
                 {% bootstrap_form form layout='horizontal' %}
                 {% buttons %}
-                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
                     <a href="{% url 'campaigns' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
                 {% endbuttons %}
             </form>
         </div>

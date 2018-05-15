@@ -11,8 +11,8 @@
                 {% csrf_token %}
                 {% trans "Are you sure you want to delete campaign " %}{{ object.name }}?
                 {% buttons %}
-                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
                     <a href="{% url 'campaigns' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                    <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
                 {% endbuttons %}
             </form>
         </div>

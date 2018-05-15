@@ -80,6 +80,7 @@ class Product(models.Model):
     sub_category = models.CharField(_("Subcategory"), max_length=100, choices=SUB_CATEGORIES, default=FASHION)
     date_from = models.DateTimeField(_("From"), default=timezone.now)
     date_to = models.DateTimeField(_("To"), default=timezone.now() + timezone.timedelta(days=7))
+    referal_link = models.URLField(_("Referal link"), max_length=150, null=True, blank=True)
 
     class Meta:
         unique_together = ("user", "name")

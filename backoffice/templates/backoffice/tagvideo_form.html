@@ -67,7 +67,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{% trans 'Create smartlink' %}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{% trans 'Create a product SmartLink' %}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -77,7 +77,14 @@
             {% csrf_token %}
             <div class="row">
                 <div class="col-6">
-                    {% bootstrap_form product_create_form show_label=False %}
+                    {% bootstrap_form_errors product_create_form %}
+                    {% bootstrap_field product_create_form.user %}
+                    {% bootstrap_field product_create_form.name show_label=False %}
+                    {% bootstrap_field product_create_form.description show_label=False %}
+                    {% bootstrap_field product_create_form.price show_label=False %}
+                    {% bootstrap_field product_create_form.date_from show_label=True layout="horizontal" %}
+                    {% bootstrap_field product_create_form.date_to show_label=True layout="horizontal" %}
+                    {% bootstrap_field product_create_form.referal_link show_label=False %}
                 </div>
                 <div class="col-6">
                     {{ image_formset.management_form }}
@@ -96,7 +103,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Cancel' %}</button>
-        <button type="submit" class="btn btn-primary" id="btn-product-create" form="product-create-form">{% trans 'Next' %}</button>
+        <button type="submit" class="btn btn-primary" id="btn-product-create" form="product-create-form">{% trans 'Save' %}</button>
       </div>
     </div>
   </div>
