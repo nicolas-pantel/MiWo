@@ -144,7 +144,8 @@ $("#product-create-form").on("submit", function( event ) {
                 // Add new product to products list
                 $('#id_product').append($('<option>', {
                     value: data.product_pk,
-                    text: data.product_name
+                    text: data.product_name,
+                    selected: 'selected',
                 }));
             }
             $('#productCreationModal').modal('toggle');
