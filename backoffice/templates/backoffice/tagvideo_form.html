@@ -148,7 +148,13 @@ $("#product-create-form").on("submit", function( event ) {
                     selected: 'selected',
                 }));
             }
+            // Hide modal
             $('#productCreationModal').modal('toggle');
+            // Empty form fields
+            $('#id_name').val('');
+            $('#id_description').val('');
+            $('#id_price').val('');
+            $('#id_referal_link').val('');
         }
     });
 
