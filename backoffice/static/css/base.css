@@ -16,6 +16,10 @@
     height: 100px;
 }
 
+.lbl-index {
+  text-align: center;
+}
+
 #productCreationModal .modal-content {
     width: 750px;
 }
