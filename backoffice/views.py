@@ -147,6 +147,11 @@ class CampaignsView(CampaignMixin, ListView):
                 campaign.publications_list.append(publication)
             new_object_list.append(campaign)
         context["object_list"] = new_object_list
+        # A pk can be passed to the list view to focus on the right tab
+        context["campaign_pk"] = self.kwargs.get("pk", None)
+        if context["campaign_pk"] is None:
+            if self.object_list:
+                context["campaign_pk"] = self.object_list[0].pk
         return context
 
 
@@ -166,7 +171,7 @@ class CampaignCreateView(CampaignMixin, CreateView):
         if self.publication_funnel:
             return reverse("publication_step2", kwargs={'campaign_pk': self.object.pk})
         else:
-            return super().get_success_url()
+            return reverse("campaigns_with_pk", kwargs={'pk': self.object.pk})
 
 
 class CampaignDeleteView(CampaignMixin, DeleteView):
