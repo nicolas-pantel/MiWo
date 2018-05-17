@@ -5,6 +5,7 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center pt-5">{% trans "Add a new smartlink" %}</h1>
+    <a href="{% url 'campaigns_with_pk' publication.campaign.pk %}" class="btn btn-primary">&laquo; {% trans "Back to campaign" %}</a>
     <div class="row pt-5">
         <!-- Video -->
         <div class="col-4">
