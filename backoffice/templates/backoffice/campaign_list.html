@@ -64,3 +64,14 @@
 </div>
 
 {% endblock %}
+$('#myModal').modal('show');
+
+{% block javascript %}
+$( document ).ready(function(){
+    // Show video choice on campaign creation
+    var referrer =  document.referrer;
+    if (referrer.indexOf("campaigns/create/") >= 0) {
+        $( "#YTvideoList-{{ campaign_pk }}" ).modal('show');
+    }
+});
+{% endblock %}
