@@ -209,6 +209,9 @@ SOCIALACCOUNT_PROVIDERS = {
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': 'backoffice.serializers.LoginSerializer',
 }
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'backoffice.serializers.RegisterSerializer',
+}
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
