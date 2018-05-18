@@ -32,18 +32,18 @@
                                 </div>
                                 {% for publication in object.publications_list %}
                                     <div class="col-4 mb-2">
-                                        <div class="" style="text-align: center;">
-                                            <!-- Publication name-->
-                                            {% if publication.name %}
-                                                {{ publication.name }}
-                                            {% else %}
-                                                {{ publication.get_youtube_video_id }}
-                                            {% endif %}
+                                        <div>
                                             <!-- Privacy badge -->
                                             {% if publication.privacy == 'private' %}
-                                                <span class="badge badge-secondary float-right">{% trans 'Private' %}</span>
+                                                <span class="badge badge-secondary">{% trans 'Private' %}</span>
                                             {% else %}
-                                                <span class="badge badge-primary float-right">{% trans 'Public' %}</span>
+                                                <span class="badge badge-primary">{% trans 'Public' %}</span>
+                                                <!-- Publication badge -->
+                                                {% if publication.published %}
+                                                    <span class="badge badge-success">{% trans 'Notified' %}</span>
+                                                {% else %}
+                                                    <span class="badge badge-danger">{% trans 'Not notified' %}</span>
+                                                {% endif %}
                                             {% endif %}
                                         </div>
                                         <a href="{% url 'tagvideo_create' publication.pk %}">

@@ -11,11 +11,17 @@
         <div class="col-4">
             <!-- Privacy badge -->
             {% if privacy == 'private' %}
-                <span class="badge badge-secondary float-right">{% trans 'Private' %}</span>
+                <span class="badge badge-secondary">{% trans 'Private' %}</span>
             {% else %}
-                <span class="badge badge-primary float-right">{% trans 'Public' %}</span>
+                <span class="badge badge-primary">{% trans 'Public' %}</span>
+                <!-- Publication button -->
+                {% if publication.published %}
+                    <a class="btn btn-success btn-sm disabled" href="">{% trans 'Notified' %}</a>
+                {% else %}
+                    <a class="btn btn-danger btn-sm" href="{% url 'publication_publish' publication.pk %}">{% trans 'Notify' %} &raquo;</a>
+                {% endif %}
             {% endif %}
-            <div id="ytplayer"></div>
+            <div id="ytplayer" class="pt-1"></div>
         </div>
         <!-- Tag -->
         <div class="col-4">
