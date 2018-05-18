@@ -1,7 +1,7 @@
 from subprocess import call
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-
+"""
 sched = BlockingScheduler()
 
 
@@ -11,3 +11,4 @@ def timed_job():
 
 
 sched.start()
+"""
