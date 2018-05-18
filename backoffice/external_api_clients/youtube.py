@@ -31,7 +31,11 @@ def videos_list(user):
     videos = []
     for video in response["items"]:
         videos.append(
-            {"id": video["id"]["videoId"], "thumbnail_url": video["snippet"]["thumbnails"]["default"]["url"]}
+            {
+                "id": video["id"]["videoId"],
+                "thumbnail_url": video["snippet"]["thumbnails"]["default"]["url"],
+                "name": video["snippet"]["title"]
+            }
         )
     return videos
 

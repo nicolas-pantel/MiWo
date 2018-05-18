@@ -18,6 +18,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="campaign" id="id_campaign" value="{{ campaign }}"></input>
                     <input type="hidden" name="url" id="id_url" value="https://www.youtu.be/{{ video.id }}"></input>
+                    <input type="hidden" name="name" id="id_name" value="{{ video.name }}"></input>
                     <button type="submit" class="border-0 p-0">
                         <img src="{{ video.thumbnail_url }}" style="width: 200px;"/>
                     </button>
