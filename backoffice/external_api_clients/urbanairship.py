@@ -21,5 +21,6 @@ def publish(user):
         devices = models.Device.objects.filter(profile=follower.profile)
         if devices.exists():
             device = devices[0]
-            push.audience = ua.ios_channel(device.chanid)
-            push.send()
+            if device.chanid and device.chanid != "{}":
+                push.audience = ua.ios_channel(device.chanid)
+                push.send()
