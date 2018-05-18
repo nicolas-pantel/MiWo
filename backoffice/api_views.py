@@ -59,7 +59,7 @@ class PublicationsAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         """List of influencer's publications"""
-        return models.Publication.objects.filter(campaign__user__pk=self.kwargs["influencer_pk"])
+        return models.Publication.objects.filter(campaign__user__pk=self.kwargs["influencer_pk"], published=True)
 
 
 class TagsAPIView(generics.ListAPIView):
