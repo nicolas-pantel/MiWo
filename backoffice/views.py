@@ -1,6 +1,5 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-import urbanairship as ua
 
 from allauth.account import views as allauth_views
 
@@ -16,7 +15,7 @@ from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView, FormView
 
 from . import forms, models
-from .external_api_clients import youtube
+from .external_api_clients import youtube, urbanairship
 
 
 def index(request):
@@ -363,22 +362,7 @@ class PublicationUpdateView(PublicationMixin, UpdateView):
 @login_required
 def publish_publication(request, pk):
     """Send notifaction to followers"""
-    airship = ua.Airship(settings.URBANAIRSHIP_KEY, settings.URBANAIRSHIP_MASTER_SECRET)
-    push = airship.create_push()
-    push.notification = ua.notification(
-        ios=ua.ios(
-            alert="New publication from {}".format(request.user.username),
-            badge='+1',
-        )
-    )
-    push.device_types = ua.device_types('ios')
-    followers = request.user.followers.all()
-    for follower in followers:
-        devices = models.Device.objects.filter(profile=follower.profile)
-        if devices.exists():
-            device = devices[0]
-        push.audience = ua.ios_channel(device.chanid)
-        push.send()
+    urbanairship.publish(request.user)
     # Record as published and redirect to publications list
     publication = models.Publication.objects.get(pk=pk)
     publication.published = True

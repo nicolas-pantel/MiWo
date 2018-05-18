@@ -5,7 +5,7 @@ from django.conf import settings
 from backoffice import models
 
 
-def publish(user, publication):
+def publish(user):
     """Send notifaction to followers on publication"""
     followers = user.followers.all()
     for follower in followers:
@@ -21,5 +21,5 @@ def publish(user, publication):
         devices = models.Device.objects.filter(profile=follower.profile)
         if devices.exists():
             device = devices[0]
-        push.audience = ua.ios_channel(device.chanid)
-        push.send()
+            push.audience = ua.ios_channel(device.chanid)
+            push.send()

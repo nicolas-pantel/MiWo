@@ -25,5 +25,4 @@ class Command(BaseCommand):
                     publications.update(published=True)
                     # Push notification to followers
                     # TODO: use async for scale
-                    for publication in publications:
-                        urbanairship.publish(influencer, publication)
+                    urbanairship.publish(influencer)
