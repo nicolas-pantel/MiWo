@@ -3,6 +3,7 @@ from cloudinary.forms import CloudinaryFileField
 from allauth.account import forms as allauth_forms
 
 from django import forms
+from django.db.models.functions import Lower
 
 from . import models
 
@@ -123,4 +124,5 @@ class TagVideoCreateForm(forms.ModelForm):
             'publication': forms.HiddenInput(),
         }
     timestamp = forms.TimeField(initial="00:00:00", widget=forms.TimeInput(attrs={'type': 'time', 'step': 1}))
-    product = forms.ModelChoiceField(queryset=models.Product.objects.all(), empty_label="Choose a smartlink")
+    product = forms.ModelChoiceField(
+        queryset=models.Product.objects.all().order_by(Lower('name').asc()), empty_label="Choose a smartlink")

@@ -47,6 +47,7 @@ class Campaign(models.Model):
 
     class Meta:
         unique_together = ("user", "name")
+        ordering = ['-pk']
 
     def __str__(self):
         return "{}".format(self.name)
