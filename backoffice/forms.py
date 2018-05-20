@@ -7,6 +7,16 @@ from django import forms
 from . import models
 
 
+# Specific Fields
+class UTF8CloudinaryFileField(CloudinaryFileField):
+    """Manage UTF8 filenames"""
+    def to_python(self, value):
+        """Encode filenames with accents"""
+        if value:
+            value.name = value.name.encode('utf-8')
+        return super().to_python(value)
+
+
 class EmailForm(forms.ModelForm):
     class Meta:
         model = models.MiwoUser
@@ -37,7 +47,7 @@ class ProfileForm(forms.ModelForm):
         model = models.Profile
         fields = ['picture', 'company_name', 'country']
 
-    picture = CloudinaryFileField(
+    picture = UTF8CloudinaryFileField(
         required=False,
         options={
             'tags': "profile_picture",
@@ -87,7 +97,7 @@ class ProductImageForm(forms.ModelForm):
             'product': forms.HiddenInput(),
         }
 
-    image = CloudinaryFileField(
+    image = UTF8CloudinaryFileField(
         required=False,
         options={
             'tags': "product_image",
