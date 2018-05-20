@@ -5,7 +5,7 @@ from django.conf import settings
 from backoffice import models
 
 
-def publish(user):
+def publish(user, publication):
     """Send notifaction to followers on publication"""
     followers = user.followers.all()
     for follower in followers:
@@ -15,6 +15,7 @@ def publish(user):
             ios=ua.ios(
                 alert="New publication from {}".format(user.username),
                 badge='+1',
+                extra={'url': publication.pk},
             )
         )
         push.device_types = ua.device_types('ios')

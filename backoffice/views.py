@@ -362,9 +362,9 @@ class PublicationUpdateView(PublicationMixin, UpdateView):
 @login_required
 def publish_publication(request, pk):
     """Send notifaction to followers"""
-    urbanairship.publish(request.user)
-    # Record as published and redirect to publications list
     publication = models.Publication.objects.get(pk=pk)
+    urbanairship.publish(request.user, publication)
+    # Record as published and redirect to publications list
     publication.published = True
     publication.save()
     return redirect("tagvideo_create", publication_pk=pk)
