@@ -91,7 +91,10 @@ class PublicationsSerializer(serializers.ModelSerializer):
         ret['picture_news'] = instance.get_youtube_thumbnail()
         ret['youtube_video_id'] = instance.get_youtube_video_id(instance.url)
         ret['influencer'] = instance.campaign.user.username
-        ret['influencer_image_url'] = image_url_resize(instance.campaign.user.profile.picture.url, 50, 50)
+        if instance.campaign.user.profile.picture is not None:
+            ret['influencer_image_url'] = image_url_resize(instance.campaign.user.profile.picture.url, 50, 50)
+        else:
+            ret['influencer_image_url'] = ""
         return ret
 
 
@@ -169,5 +172,9 @@ class TagSerializer(serializers.ModelSerializer):
         ret['pics_produit'] = product["images"]
         ret['referal_link'] = product["referal_link"]
         ret['influencer'] = instance.publication.campaign.user.username
-        ret['influencer_image_url'] = image_url_resize(instance.publication.campaign.user.profile.picture.url, 50, 50)
+        if instance.publication.campaign.user.profile.picture is not None:
+            ret['influencer_image_url'] = image_url_resize(
+                instance.publication.campaign.user.profile.picture.url, 50, 50)
+        else:
+            ret['influencer_image_url'] = ""
         return ret
