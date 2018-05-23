@@ -148,6 +148,12 @@ class TagsSerializer(serializers.ModelSerializer):
         ret['youtube_video_id'] = instance.publication.get_youtube_video_id()
         ret['timestamp'] = instance.timestamp
         ret['news_name'] = instance.publication.name
+        ret['influencer'] = instance.publication.campaign.user.username
+        if instance.publication.campaign.user.profile.picture is not None:
+            ret['influencer_image_url'] = image_url_resize(
+                instance.publication.campaign.user.profile.picture.url, 50, 50)
+        else:
+            ret['influencer_image_url'] = ""
         return ret
 
 
