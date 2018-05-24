@@ -14,28 +14,29 @@
                 <span class="badge badge-secondary">{% trans 'Private' %}</span>
             {% else %}
                 <span class="badge badge-primary">{% trans 'Public' %}</span>
-                <!-- Publication button -->
-                {% if publication.published %}
-                    <a class="btn btn-success btn-sm disabled" href="">{% trans 'Notified' %}</a>
-                {% else %}
-                    <a class="btn btn-danger btn-sm" href="{% url 'publication_publish' publication.pk %}">{% trans 'Notify' %} &raquo;</a>
-                {% endif %}
             {% endif %}
             <div id="ytplayer" class="pt-1"></div>
         </div>
         <!-- Tag -->
         <div class="col-4">
-            <form class="form" method="POST" action="">
+            <form id="tag-form" class="form" method="POST" action="">
                 {% csrf_token %}
-                {% bootstrap_form form show_label=False %}
+                {% bootstrap_field form.publication %}
+                {% bootstrap_field form.timestamp show_label=False %}
                 <!-- Button trigger modal -->
-                {% trans 'Or' %}
-                <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#productCreationModal">
-                  {% trans 'create one' %}
-                </button>
-                <div class="mt-5">
-                    <button class="btn btn-primary float-right" type="submit">{% trans "Add smartlink" %} &raquo;</button>
-                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>{% trans 'Create a new Smartlink' %}
+                        <button type="button" class="btn btn-primary btn-sm ml-3" data-toggle="modal" data-target="#productCreationModal">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+                <span class="ml-2"><b>{% trans 'Or choose an existing one' %}</b></span>
+                {% bootstrap_field form.product show_label=False %}
             </form>
         </div>
         <!-- Tags list -->
@@ -72,6 +73,15 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="col-4 offset-8">
+          <!-- Publication button -->
+          {% if privacy == 'private' and not publication.published %}
+              <b>{% trans 'You are ready?' %}</b>
+              <a class="btn btn-primary btn-sm ml-3" href="{% url 'publication_publish' publication.pk %}">{% trans 'Publish' %}</a>
+          {% else %}
+              <a class="btn btn-secondary btn-sm ml-3 disabled" href="">{% trans 'Published' %}</a>
+          {% endif %}
         </div>
     </tbody>
 </div>
@@ -160,6 +170,8 @@ $("#product-create-form").on("submit", function( event ) {
                     text: data.product_name,
                     selected: 'selected',
                 }));
+                // Add new product to Smartlinks
+                $("#tag-form").submit();
             }
             // Hide modal
             $('#productCreationModal').modal('toggle');
@@ -171,6 +183,11 @@ $("#product-create-form").on("submit", function( event ) {
         }
     });
 
+});
+
+// Smartlink addition
+$("#id_product").on("change", function( event ) {
+  $("#tag-form").submit();
 });
 
 // Link between Youtube video and Timestamp field
