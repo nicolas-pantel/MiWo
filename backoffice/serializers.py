@@ -8,7 +8,7 @@ from . import models
 
 
 def image_url_resize(url, width, heigh):
-    file = url.split("/")[-1]
+    file = url.split("/")[-2]
     return url.split(file)[0] + "c_fill,h_{},w_{}/".format(width, heigh) + file
 
 
