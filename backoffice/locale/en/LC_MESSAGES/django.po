@@ -1,0 +1,464 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-25 13:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: backoffice/models.py:20 backoffice/templates/backoffice/index.html:37
+msgid "Influencer"
+msgstr ""
+
+#: backoffice/models.py:21 backoffice/templates/backoffice/index.html:29
+msgid "Agency"
+msgstr ""
+
+#: backoffice/models.py:22 backoffice/templates/backoffice/index.html:21
+msgid "Platform"
+msgstr ""
+
+#: backoffice/models.py:26
+msgid "Kind"
+msgstr ""
+
+#: backoffice/models.py:27
+msgid "Company name"
+msgstr ""
+
+#: backoffice/models.py:40
+msgid "Chan id"
+msgstr ""
+
+#: backoffice/models.py:46 backoffice/models.py:76
+#: backoffice/templates/backoffice/product_list.html:12
+msgid "Name"
+msgstr ""
+
+#: backoffice/models.py:65
+msgid "Entertainment"
+msgstr ""
+
+#: backoffice/models.py:66
+msgid "Sport"
+msgstr ""
+
+#: backoffice/models.py:67
+msgid "Culture"
+msgstr ""
+
+#: backoffice/models.py:72
+msgid "Fashion"
+msgstr ""
+
+#: backoffice/models.py:73
+msgid "Makeup"
+msgstr ""
+
+#: backoffice/models.py:77
+msgid "Legend"
+msgstr ""
+
+#: backoffice/models.py:78
+msgid "Description"
+msgstr ""
+
+#: backoffice/models.py:80
+msgid "Category"
+msgstr ""
+
+#: backoffice/models.py:81
+msgid "Subcategory"
+msgstr ""
+
+#: backoffice/models.py:82
+msgid "From"
+msgstr ""
+
+#: backoffice/models.py:83
+msgid "To"
+msgstr ""
+
+#: backoffice/models.py:84
+msgid "Referal link"
+msgstr ""
+
+#: backoffice/models.py:106
+msgid "Video"
+msgstr ""
+
+#: backoffice/models.py:111
+msgid "Youtube"
+msgstr ""
+
+#: backoffice/models.py:114
+#: backoffice/templates/backoffice/publication_list.html:16
+msgid "Title"
+msgstr ""
+
+#: backoffice/models.py:116
+msgid "Video ID"
+msgstr ""
+
+#: backoffice/models.py:117
+msgid "Type"
+msgstr ""
+
+#: backoffice/models.py:118
+msgid "Social network"
+msgstr ""
+
+#: backoffice/models.py:119
+msgid "Date"
+msgstr ""
+
+#: backoffice/models.py:120
+msgid "Expiration date"
+msgstr ""
+
+#: backoffice/models.py:122
+#: backoffice/templates/backoffice/publication_list.html:39
+msgid "Published"
+msgstr ""
+
+#: backoffice/templates/account/login.html:6
+#: backoffice/templates/account/login.html:10
+msgid "Login"
+msgstr ""
+
+#: backoffice/templates/account/login.html:41
+msgid "If you have not created an account yet, then please"
+msgstr ""
+
+#: backoffice/templates/account/login.html:42
+msgid "sign up"
+msgstr ""
+
+#: backoffice/templates/account/login.html:42
+msgid "first."
+msgstr ""
+
+#: backoffice/templates/account/login.html:57
+msgid "Log in"
+msgstr ""
+
+#: backoffice/templates/account/profile.html:9
+msgid "Ok, you're almost done …"
+msgstr ""
+
+#: backoffice/templates/account/profile.html:10
+msgid "The picture will be displayed to your followers"
+msgstr ""
+
+#: backoffice/templates/account/profile.html:12
+msgid "Edit profile"
+msgstr ""
+
+#: backoffice/templates/account/profile.html:35
+#: backoffice/templates/account/signup.html:25
+#: backoffice/templates/backoffice/publication_step1.html:20
+msgid "Next"
+msgstr ""
+
+#: backoffice/templates/account/signup.html:6
+msgid "Sign Up"
+msgstr ""
+
+#: backoffice/templates/account/signup.html:11
+msgid "Now enter your account informations"
+msgstr ""
+
+#: backoffice/templates/account/signup.html:12
+msgid "Your username will be displayed to your followers"
+msgstr ""
+
+#: backoffice/templates/backoffice/base.html:36
+msgid "PROFILE"
+msgstr ""
+
+#: backoffice/templates/backoffice/base.html:39
+msgid "CAMPAIGNS"
+msgstr ""
+
+#: backoffice/templates/backoffice/base.html:42
+msgid "SMARTLINKS"
+msgstr ""
+
+#: backoffice/templates/backoffice/base.html:51
+msgid "LOGOUT"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_confirm_delete.html:7
+msgid "Delete campaign"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_confirm_delete.html:12
+msgid "Are you sure you want to delete campaign "
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_confirm_delete.html:14
+#: backoffice/templates/backoffice/campaign_form.html:18
+#: backoffice/templates/backoffice/product_confirm_delete.html:14
+#: backoffice/templates/backoffice/product_form.html:26
+#: backoffice/templates/backoffice/publication_confirm_delete.html:14
+#: backoffice/templates/backoffice/publication_form.html:18
+#: backoffice/templates/backoffice/tagvideo_form.html:116
+msgid "Cancel"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_confirm_delete.html:15
+#: backoffice/templates/backoffice/campaign_form.html:19
+#: backoffice/templates/backoffice/product_confirm_delete.html:15
+#: backoffice/templates/backoffice/product_form.html:27
+#: backoffice/templates/backoffice/publication_confirm_delete.html:15
+#: backoffice/templates/backoffice/publication_form.html:19
+msgid "Submit"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_form.html:8
+msgid "Edit campaign"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_form.html:10
+msgid "Create campaign"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_list.html:7
+msgid "Campaigns"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_list.html:8
+msgid "Add campaign"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_list.html:31
+msgid "NEW PUBLICATION"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_list.html:38
+#: backoffice/templates/backoffice/tagvideo_form.html:14
+msgid "Private"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_list.html:40
+#: backoffice/templates/backoffice/tagvideo_form.html:16
+msgid "Public"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_list.html:43
+msgid "Notified"
+msgstr ""
+
+#: backoffice/templates/backoffice/campaign_list.html:45
+msgid "Not notified"
+msgstr ""
+
+#: backoffice/templates/backoffice/index.html:14
+msgid "Are you an influence marketing platform, an agency, an influencer?"
+msgstr ""
+
+#: backoffice/templates/backoffice/index.html:25
+msgid "PLATFORM"
+msgstr ""
+
+#: backoffice/templates/backoffice/index.html:33
+msgid "AGENCY"
+msgstr ""
+
+#: backoffice/templates/backoffice/index.html:41
+#: backoffice/templates/backoffice/index2.html:9
+msgid "INFLUENCER"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:10
+msgid "Login to your social network(s)"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:11
+msgid "In this version, SmartLinks are only available for Youtube videos"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:25
+msgid "Sign in with Instagram"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:31
+msgid "Sign in with Facebook"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:37
+msgid "Sign in with Google"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:42
+msgid "Register"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:51
+msgid "Welcome to Miwo!"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:52
+msgid ""
+"Miwo is the smartest way to connect your clients to their influencer's "
+"audience"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:55
+msgid "If you already have an account, then please"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:56
+msgid "login"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:62
+msgid "Go"
+msgstr ""
+
+#: backoffice/templates/backoffice/partials/youtube_videos_choice.html:8
+#: backoffice/templates/backoffice/publication_step2.html:21
+msgid "Choose a video"
+msgstr ""
+
+#: backoffice/templates/backoffice/product_confirm_delete.html:7
+msgid "Delete smartlink"
+msgstr ""
+
+#: backoffice/templates/backoffice/product_confirm_delete.html:12
+msgid "Are you sure you want to delete the smartlink "
+msgstr ""
+
+#: backoffice/templates/backoffice/product_form.html:9
+msgid "Edit smartlink"
+msgstr ""
+
+#: backoffice/templates/backoffice/product_form.html:11
+msgid "Create smartlink"
+msgstr ""
+
+#: backoffice/templates/backoffice/product_form.html:47
+msgid "Upload"
+msgstr ""
+
+#: backoffice/templates/backoffice/product_list.html:7
+msgid "Smartlinks"
+msgstr ""
+
+#: backoffice/templates/backoffice/product_list.html:21
+msgid "Edit product"
+msgstr ""
+
+#: backoffice/templates/backoffice/product_list.html:24
+msgid "Delete product"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_confirm_delete.html:7
+#: backoffice/templates/backoffice/publication_list.html:33
+msgid "Delete publication"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_confirm_delete.html:12
+msgid "Are you sure you want to delete publication "
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_form.html:8
+#: backoffice/templates/backoffice/publication_list.html:30
+msgid "Edit publication"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_form.html:10
+msgid "Create publication"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_list.html:7
+msgid "Publications"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_list.html:8
+msgid "Add publication"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_list.html:17
+msgid "Url"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_list.html:27
+msgid "Add tags"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_list.html:37
+#: backoffice/templates/backoffice/tagvideo_form.html:68
+msgid "Publish"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_step1.html:8
+msgid "Let's start!"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_step1.html:9
+msgid "Type in a name for your client's campaign"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_step2.html:8
+msgid "Create a publication"
+msgstr ""
+
+#: backoffice/templates/backoffice/publication_step2.html:9
+msgid "Enter your influencer content information"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_form.html:8
+msgid "Back to campaign"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_form.html:27
+msgid "Add a new Smartlink"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_form.html:37
+msgid "Verify your Smartlinks"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_form.html:43
+msgid "You do not have created any Smartlink for this post"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_form.html:67
+msgid "Publish this video"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_form.html:70
+msgid "Video already published"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_form.html:81
+msgid "Create a product SmartLink"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_form.html:117
+msgid "Save"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_list.html:7
+msgid "Tags"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_list.html:26
+msgid "Add"
+msgstr ""
+
+#: backoffice/templates/backoffice/tagvideo_list.html:35
+msgid "Timestamp"
+msgstr ""

@@ -9,6 +9,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import pgettext_lazy
 
 
 class Profile(models.Model):
@@ -73,10 +74,10 @@ class Product(models.Model):
         (MAKEUP, _("Makeup")),
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="products")
-    name = models.CharField(_("Name"), max_length=150)
+    name = models.CharField(pgettext_lazy("Name", "Product"), max_length=150)
     legend = models.CharField(_("Legend"), max_length=100, null=True, blank=True)
     description = models.TextField(_("Description"))
-    price = models.DecimalField(max_digits=7, decimal_places=2)
+    price = models.DecimalField(_("Price"), max_digits=7, decimal_places=2)
     category = models.CharField(_("Category"), max_length=100, choices=CATEGORIES, default=ENTERTAINMENT)
     sub_category = models.CharField(_("Subcategory"), max_length=100, choices=SUB_CATEGORIES, default=FASHION)
     date_from = models.DateTimeField(_("From"), default=timezone.now)

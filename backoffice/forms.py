@@ -4,6 +4,7 @@ from allauth.account import forms as allauth_forms
 
 from django import forms
 from django.db.models.functions import Lower
+from django.utils.translation import gettext_lazy as _
 
 from . import models
 
@@ -125,4 +126,4 @@ class TagVideoCreateForm(forms.ModelForm):
         }
     timestamp = forms.TimeField(initial="00:00:00", widget=forms.TimeInput(attrs={'type': 'time', 'step': 1}))
     product = forms.ModelChoiceField(
-        queryset=models.Product.objects.all().order_by(Lower('name').asc()), empty_label="Choose an existing smartlink")
+        queryset=models.Product.objects.all().order_by(Lower('name').asc()), empty_label=_("Choose an existing smartlink"))
