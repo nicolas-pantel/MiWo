@@ -414,7 +414,7 @@ msgstr ""
 #: backoffice/templates/backoffice/publication_list.html:37
 #: backoffice/templates/backoffice/tagvideo_form.html:68
 msgid "Publish"
-msgstr ""
+msgstr "Publier"
 
 #: backoffice/templates/backoffice/publication_step1.html:8
 msgid "Let's start!"
