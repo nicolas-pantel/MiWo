@@ -363,6 +363,9 @@ class PublicationUpdateView(PublicationMixin, UpdateView):
 def publish_publication(request, pk):
     """Send notifaction to followers"""
     publication = models.Publication.objects.get(pk=pk)
+    # Publish video on YT
+    youtube.set_video_privacy(request.user, publication.video_id, 'public')
+    # Notify followers
     urbanairship.publish(request.user, publication)
     # Record as published and redirect to publications list
     publication.published = True

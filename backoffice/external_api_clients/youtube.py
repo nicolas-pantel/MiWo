@@ -66,3 +66,15 @@ def videos_status(user, video_id_list):
         item["id"],
         item["status"]["privacyStatus"]
     ) for item in response["items"]]
+
+
+def set_video_privacy(user, video_id, privacy):
+    """
+    Set video privacy status
+    :param user: MiWo user
+    :param video_id: YT video id
+    :param privacy: 'private' or 'public'
+    :return: None
+    """
+    request = service(user).videos().update(body={'id': video_id, 'status': {'privacyStatus': privacy}}, part='status')
+    response = request.execute()
