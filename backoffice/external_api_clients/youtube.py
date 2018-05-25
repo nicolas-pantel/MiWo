@@ -76,5 +76,7 @@ def set_video_privacy(user, video_id, privacy):
     :param privacy: 'private' or 'public'
     :return: None
     """
-    request = service(user).videos().update(body={'id': video_id, 'status': {'privacyStatus': privacy}}, part='status')
-    response = request.execute()
+    request = service(user).videos().update(
+        body={'id': video_id, 'status': {'privacyStatus': privacy, 'embeddable': True}},
+        part='status')
+    request.execute()
