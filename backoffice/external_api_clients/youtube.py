@@ -34,7 +34,7 @@ def videos_list(user):
             {
                 "id": video["id"]["videoId"],
                 "thumbnail_url": video["snippet"]["thumbnails"]["default"]["url"],
-                "name": video["snippet"]["title"]
+                "name": video["snippet"]["title"],
             }
         )
     return videos
