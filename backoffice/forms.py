@@ -74,8 +74,8 @@ class ProductCreateForm(forms.ModelForm):
         fields = ['user', 'name', 'description', 'price', 'date_from', 'date_to', 'referal_link']
         widgets = {
             'user': forms.HiddenInput(),
-            'date_from': forms.DateInput(),
-            'date_to': forms.DateInput(),
+            'date_from': forms.HiddenInput(),
+            'date_to': forms.HiddenInput(),
         }
 
 
@@ -125,4 +125,4 @@ class TagVideoCreateForm(forms.ModelForm):
         }
     timestamp = forms.TimeField(initial="00:00:00", widget=forms.TimeInput(attrs={'type': 'time', 'step': 1}))
     product = forms.ModelChoiceField(
-        queryset=models.Product.objects.all().order_by(Lower('name').asc()), empty_label="Choose a smartlink")
+        queryset=models.Product.objects.all().order_by(Lower('name').asc()), empty_label="Choose an existing smartlink")

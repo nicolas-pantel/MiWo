@@ -16,44 +16,31 @@
                 <span class="badge badge-primary">{% trans 'Public' %}</span>
             {% endif %}
             <div id="ytplayer" class="pt-1"></div>
-        </div>
-        <!-- Tag -->
-        <div class="col-4">
             <form id="tag-form" class="form" method="POST" action="">
                 {% csrf_token %}
                 {% bootstrap_field form.publication %}
                 {% bootstrap_field form.timestamp show_label=False %}
-                <!-- Button trigger modal -->
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>{% trans 'Create a new Smartlink' %}
-                        <button type="button" class="btn btn-primary btn-sm ml-3" data-toggle="modal" data-target="#productCreationModal">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </th>
-                    </tr>
-                  </thead>
-                </table>
-                <span class="ml-2"><b>{% trans 'Or choose an existing one' %}</b></span>
-                {% bootstrap_field form.product show_label=False %}
+        </div>
+        <!-- Tag -->
+        <div class="col-4">
+            <!-- Button trigger modal -->
+            <div class="pb-5"><b>1 <span class="pl-2">{% trans 'Add a new Smartlink' %}</span></b>
+                <button type="button" class="btn btn-primary btn-sm ml-3" data-toggle="modal" data-target="#productCreationModal">
+                  <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            {% bootstrap_field form.product show_label=False %}
             </form>
         </div>
         <!-- Tags list -->
         <div class="col-4">
+            <div class="pb-4"><b>2 <span class="pl-2">{% trans 'Verify your Smartlinks' %}</span></b></div>
             <table class="table">
-              <thead>
-                <tr class="row">
-                  <th class="col-5">{% trans 'Smartlinks list' %}</th>
-                  <th class="col-5"></th>
-                  <th class="col-2"></th>
-                </tr>
-              </thead>
               <tbody>
                     {% if not tags_list %}
                     <tr>
                       <td>
-                        {% trans 'You have no Smartlinks attached to this post yet' %}
+                        {% trans 'You do not have created any Smartlink for this post' %}
                       </td>
                     </tr>
                     {% endif %}
@@ -62,7 +49,7 @@
                             <td class="col-5">{{ tag.timestamp|time:'H:i:s' }}</td>
                             <td class="col-5">{{ tag.product.name }}</td>
                             <td class="col-2">
-                                <form method="POST" action="{% url 'tagvideo_delete' tag.pk %}" %}">
+                                <form method="POST" action="{% url 'tagvideo_delete' tag.pk %}">
                                    {% csrf_token %}
                                    <button type="submit" class="btn btn-danger">
                                     <i class="fas fa-trash-alt"></i>
@@ -77,10 +64,10 @@
         <div class="col-4 offset-8">
           <!-- Publication button -->
           {% if privacy == 'private' and not publication.published %}
-              <b>{% trans 'You are ready?' %}</b>
-              <a class="btn btn-primary btn-sm ml-3" href="{% url 'publication_publish' publication.pk %}">{% trans 'Publish' %}</a>
+              <b>3 <span class="pl-2">{% trans 'Publish this video' %}</span></b>
+              <a class="btn btn-primary ml-3" href="{% url 'publication_publish' publication.pk %}">{% trans 'Publish' %}</a>
           {% else %}
-              <a class="btn btn-secondary btn-sm ml-3 disabled" href="">{% trans 'Published' %}</a>
+              <b>3 <span class="pl-2">{% trans 'Video already published' %}</span></b>
           {% endif %}
         </div>
     </tbody>
