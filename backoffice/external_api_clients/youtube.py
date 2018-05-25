@@ -47,7 +47,8 @@ def video_details(user, video_id_list):
     return [(
         item["id"],
         item["snippet"]["thumbnails"]["default"]["url"],
-        item["status"]["privacyStatus"]
+        item["status"]["privacyStatus"],
+        item["snippet"]["title"],
     ) for item in response["items"]]
 
 

@@ -49,6 +49,7 @@
                                         <a href="{% url 'tagvideo_create' publication.pk %}">
                                             <img src="{{ publication.thumbnail }}" style="width: 200px;"/>
                                         </a>
+                                        {{ publication.video_name }}
                                     </div>
                                 {% endfor %}
                             </div>
