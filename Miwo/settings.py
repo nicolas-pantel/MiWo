@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'cloudinary',
     'django_countries',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

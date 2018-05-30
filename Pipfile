@@ -24,6 +24,7 @@ django-countries = "*"
 google-api-python-client = "*"
 apscheduler = "*"
 "psycopg2-binary" = "*"
+django-extensions = "*"
 
 
 [dev-packages]
