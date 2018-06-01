@@ -1,3 +1,21 @@
+h1 {
+	font-family: Helvetica Neue;
+	font-size: 34px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 37.4px;
+}
+
+h2 {
+	font-family: Helvetica Neue;
+	font-size: 28px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30.8px;
+}
+
 .img-btn {
   position: relative;
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-25 14:04+0000\n"
+"POT-Creation-Date: 2018-06-01 15:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,15 @@ msgstr ""
 msgid "Choose an existing smartlink"
 msgstr "Sélectionnez un Smartlink existant"
 
-#: backoffice/models.py:21 backoffice/templates/backoffice/index.html:37
+#: backoffice/models.py:21
 msgid "Influencer"
 msgstr ""
 
-#: backoffice/models.py:22 backoffice/templates/backoffice/index.html:29
+#: backoffice/models.py:22
 msgid "Agency"
 msgstr ""
 
-#: backoffice/models.py:23 backoffice/templates/backoffice/index.html:21
+#: backoffice/models.py:23
 msgid "Platform"
 msgstr ""
 
@@ -278,18 +278,29 @@ msgid "Not notified"
 msgstr ""
 
 #: backoffice/templates/backoffice/index.html:14
-msgid "Are you an influence marketing platform, an agency, an influencer?"
-msgstr ""
+msgid "Welcome to the Miwo test platform"
+msgstr "Bienvenue sur la plateforme de test de Miwo"
 
-#: backoffice/templates/backoffice/index.html:25
-msgid "PLATFORM"
-msgstr ""
+#: backoffice/templates/backoffice/index.html:15
+msgid ""
+"Miwo allow you to tag all the products you are talking about on all your "
+"social networks"
+msgstr "Miwo vous permet de tagger l'ensemble des produits dont vous parlez sur l'ensemble de vos réseaux sociaux."
 
-#: backoffice/templates/backoffice/index.html:33
-msgid "AGENCY"
-msgstr ""
+#: backoffice/templates/backoffice/index.html:16
+msgid ""
+"Your community will be able to retrieve them in the Miwo application, "
+"memorize, share and buy."
+msgstr "Votre communauté pourra ensuite les retrouver automatiquement dans l'application Miwo, les mémoriser, les partager et les acheter."
 
-#: backoffice/templates/backoffice/index.html:41
+#: backoffice/templates/backoffice/index.html:17
+msgid "For testing, only Youtube is available"
+msgstr "Pour les tests, seul Youtube est disponible"
+
+#: backoffice/templates/backoffice/index.html:22
+msgid "Start"
+msgstr "Démarrer"
+
 #: backoffice/templates/backoffice/index2.html:9
 msgid "INFLUENCER"
 msgstr ""
