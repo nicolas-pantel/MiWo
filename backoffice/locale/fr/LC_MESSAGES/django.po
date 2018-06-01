@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-01 15:51+0000\n"
+"POT-Creation-Date: 2018-06-01 19:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -285,13 +285,17 @@ msgstr "Bienvenue sur la plateforme de test de Miwo"
 msgid ""
 "Miwo allow you to tag all the products you are talking about on all your "
 "social networks"
-msgstr "Miwo vous permet de tagger l'ensemble des produits dont vous parlez sur l'ensemble de vos réseaux sociaux."
+msgstr ""
+"Miwo vous permet de tagger l'ensemble des produits dont vous parlez sur "
+"l'ensemble de vos réseaux sociaux."
 
 #: backoffice/templates/backoffice/index.html:16
 msgid ""
 "Your community will be able to retrieve them in the Miwo application, "
 "memorize, share and buy."
-msgstr "Votre communauté pourra ensuite les retrouver automatiquement dans l'application Miwo, les mémoriser, les partager et les acheter."
+msgstr ""
+"Votre communauté pourra ensuite les retrouver automatiquement dans "
+"l'application Miwo, les mémoriser, les partager et les acheter."
 
 #: backoffice/templates/backoffice/index.html:17
 msgid "For testing, only Youtube is available"
@@ -301,53 +305,45 @@ msgstr "Pour le test, seul Youtube est disponible"
 msgid "Start"
 msgstr "Démarrer"
 
-#: backoffice/templates/backoffice/index2.html:9
-msgid "INFLUENCER"
-msgstr ""
+#: backoffice/templates/backoffice/index2.html:15
+msgid "Connect to your Youtube account"
+msgstr "Connectez-vous à votre compte Youtube"
 
-#: backoffice/templates/backoffice/index2.html:10
-msgid "Login to your social network(s)"
-msgstr ""
-
-#: backoffice/templates/backoffice/index2.html:11
-msgid "In this version, SmartLinks are only available for Youtube videos"
-msgstr ""
-
-#: backoffice/templates/backoffice/index2.html:25
-msgid "Sign in with Instagram"
-msgstr ""
-
-#: backoffice/templates/backoffice/index2.html:31
-msgid "Sign in with Facebook"
-msgstr ""
-
-#: backoffice/templates/backoffice/index2.html:37
+#: backoffice/templates/backoffice/index2.html:29
 msgid "Sign in with Google"
 msgstr ""
 
-#: backoffice/templates/backoffice/index2.html:42
+#: backoffice/templates/backoffice/index2.html:35
+msgid "Sign in with Instagram"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:41
+msgid "Sign in with Facebook"
+msgstr ""
+
+#: backoffice/templates/backoffice/index2.html:46
 msgid "Register"
 msgstr ""
 
-#: backoffice/templates/backoffice/index2.html:51
+#: backoffice/templates/backoffice/index2.html:55
 msgid "Welcome to Miwo!"
 msgstr ""
 
-#: backoffice/templates/backoffice/index2.html:52
+#: backoffice/templates/backoffice/index2.html:56
 msgid ""
 "Miwo is the smartest way to connect your clients to their influencer's "
 "audience"
 msgstr ""
 
-#: backoffice/templates/backoffice/index2.html:55
+#: backoffice/templates/backoffice/index2.html:59
 msgid "If you already have an account, then please"
 msgstr ""
 
-#: backoffice/templates/backoffice/index2.html:56
+#: backoffice/templates/backoffice/index2.html:60
 msgid "login"
 msgstr ""
 
-#: backoffice/templates/backoffice/index2.html:62
+#: backoffice/templates/backoffice/index2.html:66
 msgid "Go"
 msgstr ""
 

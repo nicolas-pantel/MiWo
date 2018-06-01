@@ -6,35 +6,39 @@
 {% block content %}
 <div class="container">
     {% if not user.is_authenticated %}
-    <h2 class="text-center pt-5"><b>{% trans "INFLUENCER" %}</b></h2>
-    <h3 class="text-center pt-3"><b>{% trans "Login to your social network(s)" %}</b></h3>
-    <h5 class="text-center">{% trans "In this version, SmartLinks are only available for Youtube videos" %}</h5>
+    <div class="text-center pt-3">
+        <img src="{% static 'images/Miwo_Logo.png' %}" height="213" alt="Miwo Logo">
+    </div>
+    <div class="text-center pt-2">
+        <img src="{% static 'images/Miwo_Name.png' %}" height="50" alt="Miwo">
+    </div>
+    <h1 class="text-center pt-5">{% trans "Connect to your Youtube account" %}</h1>
 
     <div class="row justify-content-center pt-5">
         <table>
             <tr>
-                <td class="text-center signup-logo pb-5"><img src="{% static 'images/instagram-logo.png' %}" height="100" /></td>
-                <td class="text-center signup-logo pb-5"><img src="{% static 'images/facebook-logo.png' %}" height="100" /></td>
                 <td class="text-center signup-logo pb-5"><img src="{% static 'images/youtube-logo.png' %}" height="50" /></td>
+                <td class="text-center signup-logo pb-5"><img src="{% static 'images/instagram-logo-gray.png' %}" height="100" /></td>
+                <td class="text-center signup-logo pb-5"><img src="{% static 'images/facebook-logo-gray.png' %}" height="100" /></td>
                 <td class="text-center signup-logo pb-5"><img src="{% static 'images/blog-logo.png' %}" height="100" /></td>
             </tr>
             <tr>
                 <td class="text-center">
-                    <a href="" class="btn btn-outline-warning disabled">
+                    <a href="{% provider_login_url 'google' process='login' action='reauthenticate' %}" class="btn btn-outline-danger">
+                        <i class="fab fa-google mr-3"></i>
+                        {% trans "Sign in with Google" %}
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a href="" class="btn btn-outline-secondary disabled">
                         <i class="fab fa-instagram mr-3"></i>
                         {% trans "Sign in with Instagram" %}
                     </a>
                 </td>
                 <td class="text-center">
-                    <a href="" class="btn btn-outline-primary disabled">
+                    <a href="" class="btn btn-outline-secondary disabled">
                         <i class="fab fa-facebook mr-3"></i>
                         {% trans "Sign in with Facebook" %}
-                    </a>
-                </td>
-                <td class="text-center">
-                    <a href="{% provider_login_url 'google' process='login' action='reauthenticate' %}" class="btn btn-outline-danger">
-                        <i class="fab fa-google mr-3"></i>
-                        {% trans "Sign in with Google" %}
                     </a>
                 </td>
                 <td class="text-center">
