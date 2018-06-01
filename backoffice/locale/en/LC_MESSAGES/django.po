@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-01 20:20+0000\n"
+"POT-Creation-Date: 2018-06-01 20:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -344,7 +344,7 @@ msgid "Go"
 msgstr ""
 
 #: backoffice/templates/backoffice/partials/youtube_videos_choice.html:8
-#: backoffice/templates/backoffice/publication_step2.html:21
+#: backoffice/templates/backoffice/publication_step2.html:23
 msgid "Choose a video"
 msgstr ""
 
@@ -430,12 +430,12 @@ msgid ""
 "Make up tutorial, etc.)"
 msgstr ""
 
-#: backoffice/templates/backoffice/publication_step2.html:8
-msgid "Create a publication"
+#: backoffice/templates/backoffice/publication_step2.html:14
+msgid "Choose the video to tag"
 msgstr ""
 
-#: backoffice/templates/backoffice/publication_step2.html:9
-msgid "Enter your influencer content information"
+#: backoffice/templates/backoffice/publication_step2.html:15
+msgid "Miwo uses \"smartlinks\" to tag your products"
 msgstr ""
 
 #: backoffice/templates/backoffice/tagvideo_form.html:8

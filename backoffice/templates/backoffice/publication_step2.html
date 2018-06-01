@@ -1,36 +1,27 @@
 {% extends "backoffice/base.html" %}
 
-{% load i18n bootstrap4 %}
+{% load static i18n bootstrap4 %}
 {% load socialaccount %}
 
 {% block content %}
 <div class="container">
-    <h1 class="text-center pt-5">{% trans "Create a publication" %}</h1>
-    <h2 class="text-center pt-5">{% trans "Enter your influencer content information" %}</h2>
+    <div class="text-center pt-3">
+        <img src="{% static 'images/Miwo_Logo.png' %}" height="213" alt="Miwo Logo">
+    </div>
+    <div class="text-center pt-2">
+        <img src="{% static 'images/Miwo_Name.png' %}" height="50" alt="Miwo">
+    </div>
+    <h1 class="text-center pt-5">{% trans "Choose the video to tag" %}</h1>
+    <h2 class="text-center pt-3">{% trans 'Miwo uses "smartlinks" to tag your products' %}</h2>
 
     <form class="form" method="POST" action="">
         <div class="row justify-content-center pt-5 mt-5">
             {% csrf_token %}
             {% bootstrap_field form.campaign %}
-            <div class="form-group col-4 mb-2">
+            <div class="form-group col-4">
                 <i class="fab fa-youtube fa-2x" style="color: red;"></i>
-                {% comment %}
-                {% bootstrap_field form.url show_label=False form_group_class="col-10 float-right" placeholder="Video url" %}
-                {% endcomment %}
                 <button type="button" class="form-control col-10 float-right btn btn-danger" data-toggle="modal" data-target="#YTvideoList-{{ form.campaign.value }}">{% trans "Choose a video" %}</button>
             </div>
-            <!-- Fake social networks -->
-            <div class="form-group col-4">
-                <i class="fab fa-facebook fa-2x" style="color: blue;"></i>
-                <input type="text" class="form-control col-10 float-right" placeholder="Facebook post" disabled="true">
-            </div>
-            <div class="form-group col-4">
-                <i class="fab fa-instagram fa-2x" style="color: orange;"></i>
-                <input type="text" class="form-control col-10 float-right" placeholder="Instagram post" disabled="true">
-            </div>
-            {% comment %}
-            <button class="btn btn-primary mt-5" type="submit">{% trans "Next" %}</button>
-            {% endcomment %}
         </div>
     </form>
 </div>
