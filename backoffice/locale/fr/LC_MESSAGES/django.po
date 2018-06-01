@@ -295,7 +295,7 @@ msgstr "Votre communauté pourra ensuite les retrouver automatiquement dans l'ap
 
 #: backoffice/templates/backoffice/index.html:17
 msgid "For testing, only Youtube is available"
-msgstr "Pour les tests, seul Youtube est disponible"
+msgstr "Pour le test, seul Youtube est disponible"
 
 #: backoffice/templates/backoffice/index.html:22
 msgid "Start"
