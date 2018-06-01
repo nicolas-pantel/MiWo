@@ -16,6 +16,7 @@
                 <span class="badge badge-primary">{% trans 'Public' %}</span>
             {% endif %}
             <div id="ytplayer" class="pt-1"></div>
+            <div><b>1 <span class="pl-2">{% trans 'Place cursor where you talk about the product' %}</span></b></div>
             <form id="tag-form" class="form" method="POST" action="">
                 {% csrf_token %}
                 {% bootstrap_field form.publication %}
@@ -24,7 +25,7 @@
         <!-- Tag -->
         <div class="col-4">
             <!-- Button trigger modal -->
-            <div class="pb-5"><b>1 <span class="pl-2">{% trans 'Add a new Smartlink' %}</span></b>
+            <div class="pb-5"><b>2 <span class="pl-2">{% trans 'Add a new smartlink' %}</span></b>
                 <button type="button" class="btn btn-primary btn-sm ml-3" data-toggle="modal" data-target="#productCreationModal">
                   <i class="fas fa-plus"></i>
                 </button>
@@ -34,20 +35,20 @@
         </div>
         <!-- Tags list -->
         <div class="col-4">
-            <div class="pb-4"><b>2 <span class="pl-2">{% trans 'Verify your Smartlinks' %}</span></b></div>
+            <div class="pb-4"><b><span class="pl-2">{% trans 'List your smartlinks' %}</span></b></div>
             <table class="table">
               <tbody>
                     {% if not tags_list %}
                     <tr>
                       <td>
-                        {% trans 'You do not have created any Smartlink for this post' %}
+                        {% trans 'You do not have created any smartlink for this post' %}
                       </td>
                     </tr>
                     {% endif %}
                     {% for tag in tags_list %}
                         <tr class="row">
-                            <td class="col-5">{{ tag.timestamp|time:'H:i:s' }}</td>
-                            <td class="col-5">{{ tag.product.name }}</td>
+                            <td class="col-3">{{ tag.timestamp|time:'H:i:s' }}</td>
+                            <td class="col-7">{{ tag.product.name }}</td>
                             <td class="col-2">
                                 <form method="POST" action="{% url 'tagvideo_delete' tag.pk %}">
                                    {% csrf_token %}
@@ -64,8 +65,8 @@
         <div class="col-4 offset-8">
           <!-- Publication button -->
           {% if privacy == 'private' and not publication.published %}
-              <b>3 <span class="pl-2">{% trans 'Publish this video' %}</span></b>
-              <a class="btn btn-primary ml-3" href="{% url 'publication_publish' publication.pk %}">{% trans 'Publish' %}</a>
+              <b>3 <span class="pl-2"></span></b>
+              <a class="btn btn-primary ml-3" href="{% url 'publication_publish' publication.pk %}">{% trans 'Publish this video' %}</a>
           {% else %}
               <b>3 <span class="pl-2">{% trans 'Video already published' %}</span></b>
           {% endif %}
@@ -157,7 +158,7 @@ $("#product-create-form").on("submit", function( event ) {
                     text: data.product_name,
                     selected: 'selected',
                 }));
-                // Add new product to Smartlinks
+                // Add new product to smartlinks
                 $("#tag-form").submit();
             }
             // Hide modal
@@ -172,7 +173,7 @@ $("#product-create-form").on("submit", function( event ) {
 
 });
 
-// Smartlink addition
+// smartlink addition
 $("#id_product").on("change", function( event ) {
   $("#tag-form").submit();
 });

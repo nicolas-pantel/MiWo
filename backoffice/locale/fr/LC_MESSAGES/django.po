@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-01 20:29+0000\n"
+"POT-Creation-Date: 2018-06-01 20:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -419,7 +418,6 @@ msgid "Add tags"
 msgstr ""
 
 #: backoffice/templates/backoffice/publication_list.html:37
-#: backoffice/templates/backoffice/tagvideo_form.html:68
 msgid "Publish"
 msgstr "Publier"
 
@@ -443,27 +441,33 @@ msgstr "Choisissez la vidéo que vous souhaitez tagger"
 
 #: backoffice/templates/backoffice/publication_step2.html:15
 msgid "Miwo uses \"smartlinks\" to tag your products"
-msgstr "Miwo utilise des tags intelligents, que l'on appelle \"smartlinks\" pour tagger vos produits"
+msgstr ""
+"Miwo utilise des tags intelligents, que l'on appelle \"smartlinks\" pour "
+"tagger vos produits"
 
 #: backoffice/templates/backoffice/tagvideo_form.html:8
 msgid "Back to campaign"
 msgstr ""
 
-#: backoffice/templates/backoffice/tagvideo_form.html:27
-msgid "Add a new Smartlink"
-msgstr "Ajoutez un nouveau Smartlink"
+#: backoffice/templates/backoffice/tagvideo_form.html:19
+msgid "Place cursor where you talk about the product"
+msgstr "Positionner le curseur à l'endroit où vous parlez du produit"
 
-#: backoffice/templates/backoffice/tagvideo_form.html:37
-msgid "Verify your Smartlinks"
-msgstr "Vérifiez vos Smartlinks"
+#: backoffice/templates/backoffice/tagvideo_form.html:28
+msgid "Add a new smartlink"
+msgstr "Ajouter un nouveau smartlink"
 
-#: backoffice/templates/backoffice/tagvideo_form.html:43
-msgid "You do not have created any Smartlink for this post"
+#: backoffice/templates/backoffice/tagvideo_form.html:38
+msgid "List your smartlinks"
+msgstr "Liste de vos smartlinks"
+
+#: backoffice/templates/backoffice/tagvideo_form.html:44
+msgid "You do not have created any smartlink for this post"
 msgstr "Vous n'avez pas encore créé de Smartlink pour ce post"
 
-#: backoffice/templates/backoffice/tagvideo_form.html:67
+#: backoffice/templates/backoffice/tagvideo_form.html:68
 msgid "Publish this video"
-msgstr "Publiez cette vidéo"
+msgstr "Publier cette vidéo"
 
 #: backoffice/templates/backoffice/tagvideo_form.html:70
 msgid "Video already published"
