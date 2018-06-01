@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-01 19:27+0000\n"
+"POT-Creation-Date: 2018-06-01 20:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,7 +180,7 @@ msgstr ""
 
 #: backoffice/templates/account/profile.html:35
 #: backoffice/templates/account/signup.html:25
-#: backoffice/templates/backoffice/publication_step1.html:20
+#: backoffice/templates/backoffice/publication_step1.html:26
 msgid "Next"
 msgstr ""
 
@@ -419,12 +419,15 @@ msgstr ""
 msgid "Publish"
 msgstr ""
 
-#: backoffice/templates/backoffice/publication_step1.html:8
-msgid "Let's start!"
+#: backoffice/templates/backoffice/publication_step1.html:14
+msgid "Perfect, now name your campaign"
 msgstr ""
 
-#: backoffice/templates/backoffice/publication_step1.html:9
-msgid "Type in a name for your client's campaign"
+#: backoffice/templates/backoffice/publication_step1.html:15
+msgid ""
+"The name of the campaign can be the name of the opération of the brand you "
+"work for or a title for your post (ex: Lookbook 2018, My favorite hotel, "
+"Make up tutorial, etc.)"
 msgstr ""
 
 #: backoffice/templates/backoffice/publication_step2.html:8
