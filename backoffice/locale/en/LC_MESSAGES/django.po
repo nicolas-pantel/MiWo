@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-01 20:46+0000\n"
+"POT-Creation-Date: 2018-06-04 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -226,7 +226,7 @@ msgstr ""
 #: backoffice/templates/backoffice/product_form.html:26
 #: backoffice/templates/backoffice/publication_confirm_delete.html:14
 #: backoffice/templates/backoffice/publication_form.html:18
-#: backoffice/templates/backoffice/tagvideo_form.html:116
+#: backoffice/templates/backoffice/tagvideo_form.html:117
 msgid "Cancel"
 msgstr ""
 
@@ -270,11 +270,11 @@ msgid "Public"
 msgstr ""
 
 #: backoffice/templates/backoffice/campaign_list.html:43
-msgid "Notified"
+msgid "Synchronized"
 msgstr ""
 
 #: backoffice/templates/backoffice/campaign_list.html:45
-msgid "Not notified"
+msgid "Not synchronized"
 msgstr ""
 
 #: backoffice/templates/backoffice/index.html:14
@@ -424,8 +424,8 @@ msgstr ""
 
 #: backoffice/templates/backoffice/publication_step1.html:15
 msgid ""
-"The name of the campaign can be the name of the opération of the brand you "
-"work for or a title for your post (ex: Lookbook 2018, My favorite hotel, "
+"For the campaign name, you can use the name of the opération of the brand "
+"you work for or a title for your post (ex: Lookbook 2018, My favorite hotel, "
 "Make up tutorial, etc.)"
 msgstr ""
 
@@ -457,19 +457,19 @@ msgstr ""
 msgid "You do not have created any smartlink for this post"
 msgstr ""
 
-#: backoffice/templates/backoffice/tagvideo_form.html:68
+#: backoffice/templates/backoffice/tagvideo_form.html:69
 msgid "Publish this video"
 msgstr ""
 
-#: backoffice/templates/backoffice/tagvideo_form.html:70
+#: backoffice/templates/backoffice/tagvideo_form.html:71
 msgid "Video already published"
 msgstr ""
 
-#: backoffice/templates/backoffice/tagvideo_form.html:81
+#: backoffice/templates/backoffice/tagvideo_form.html:82
 msgid "Create a product SmartLink"
 msgstr ""
 
-#: backoffice/templates/backoffice/tagvideo_form.html:117
+#: backoffice/templates/backoffice/tagvideo_form.html:118
 msgid "Save"
 msgstr ""
 
