@@ -14,27 +14,27 @@ admin.site.register(models.Profile, ProfileAdmin)
 
 
 class CampaignAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'user')
 admin.site.register(models.Campaign, CampaignAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'user')
 admin.site.register(models.Product, ProductAdmin)
 
 
 class ProductImageAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('product', 'image')
 admin.site.register(models.ProductImage, ProductImageAdmin)
 
 
 class PublicationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'campaign')
 admin.site.register(models.Publication, PublicationAdmin)
 
 
 class TagVideoAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('publication', 'timestamp', 'product')
 admin.site.register(models.TagVideo, TagVideoAdmin)
 
 

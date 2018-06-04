@@ -123,7 +123,7 @@ class Publication(models.Model):
     published = models.BooleanField(_("Published"), default=False)
 
     def __str__(self):
-        return "{}".format(self.url)
+        return "{}".format(self.name)
 
     def save(self, *args, **kwargs):
         self.video_id = self.get_youtube_video_id()
