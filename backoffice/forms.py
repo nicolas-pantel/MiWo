@@ -72,7 +72,7 @@ class CampaignCreateForm(forms.ModelForm):
 class ProductCreateForm(forms.ModelForm):
     class Meta:
         model = models.Product
-        fields = ['user', 'name', 'description', 'price', 'date_from', 'date_to', 'referal_link']
+        fields = ['user', 'name', 'description', 'price', 'date_from', 'date_to', 'referal_action', 'referal_link']
         widgets = {
             'user': forms.HiddenInput(),
             'date_from': forms.HiddenInput(),
@@ -83,7 +83,7 @@ class ProductCreateForm(forms.ModelForm):
 class ProductUpdateForm(forms.ModelForm):
     class Meta:
         model = models.Product
-        fields = ['user', 'name', 'description', 'price', 'date_from', 'date_to', 'referal_link']
+        fields = ['user', 'name', 'description', 'price', 'date_from', 'date_to', 'referal_action', 'referal_link']
         widgets = {
             'user': forms.HiddenInput(),
             'date_from': forms.DateInput(),

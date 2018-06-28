@@ -73,6 +73,14 @@ class Product(models.Model):
         (FASHION, _("Fashion")),
         (MAKEUP, _("Makeup")),
     )
+    BUY = "buy"
+    BOOK = "book"
+    DOWNLOAD = "down"
+    REFERAL_ACTIONS = (
+        (BUY, _("I buy")),
+        (BOOK, _("I book")),
+        (DOWNLOAD, _("I download")),
+    )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="products")
     name = models.CharField(pgettext_lazy("Name", "Product"), max_length=150)
     legend = models.CharField(_("Legend"), max_length=100, null=True, blank=True)
@@ -82,6 +90,7 @@ class Product(models.Model):
     sub_category = models.CharField(_("Subcategory"), max_length=100, choices=SUB_CATEGORIES, default=FASHION)
     date_from = models.DateTimeField(_("From"), default=timezone.now)
     date_to = models.DateTimeField(_("To"), default=timezone.now() + timezone.timedelta(days=7))
+    referal_action = models.CharField(_("Referal action"), max_length=4, choices=REFERAL_ACTIONS, default=BUY)
     referal_link = models.URLField(_("Referal link"), max_length=150, null=True, blank=True)
 
     class Meta:

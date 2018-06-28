@@ -21,6 +21,7 @@
                 {% bootstrap_field form.price show_label=False %}
                 {% bootstrap_field form.date_from show_label=True layout="horizontal" %}
                 {% bootstrap_field form.date_to show_label=True layout="horizontal" %}
+                {% bootstrap_field form.referal_action show_label=False %}
                 {% bootstrap_field form.referal_link show_label=False %}
                 {% buttons %}
                     <a href="{% url 'products' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
