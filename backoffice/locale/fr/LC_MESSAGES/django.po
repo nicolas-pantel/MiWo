@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 15:36+0000\n"
+"POT-Creation-Date: 2018-06-28 16:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: backoffice/admin.py:9
+msgid "User status"
+msgstr ""
+
+#: backoffice/admin.py:15
+msgid "Influencers"
+msgstr ""
+
+#: backoffice/admin.py:16
+msgid "Followers"
+msgstr ""
 
 #: backoffice/forms.py:129
 msgid "Choose an existing smartlink"
@@ -69,77 +81,95 @@ msgstr ""
 msgid "Makeup"
 msgstr ""
 
-#: backoffice/models.py:77
+#: backoffice/models.py:80
+msgid "I buy"
+msgstr "J'achète"
+
+#: backoffice/models.py:81
+msgid "I book"
+msgstr "Je réserve"
+
+#: backoffice/models.py:82
+msgid "I download"
+msgstr "Je télécharge"
+
+#: backoffice/models.py:85
 msgctxt "Name"
 msgid "Product"
 msgstr "Nom du produit"
 
-#: backoffice/models.py:78
+#: backoffice/models.py:86
 msgid "Legend"
 msgstr ""
 
-#: backoffice/models.py:79
+#: backoffice/models.py:87
 msgid "Description"
 msgstr "Description du produit"
 
-#: backoffice/models.py:80
+#: backoffice/models.py:88
 msgid "Price"
 msgstr "Prix"
 
-#: backoffice/models.py:81
+#: backoffice/models.py:89
 msgid "Category"
 msgstr ""
 
-#: backoffice/models.py:82
+#: backoffice/models.py:90
 msgid "Subcategory"
 msgstr ""
 
-#: backoffice/models.py:83
+#: backoffice/models.py:91
 msgid "From"
 msgstr ""
 
-#: backoffice/models.py:84
+#: backoffice/models.py:92
 msgid "To"
 msgstr ""
 
-#: backoffice/models.py:85
+#: backoffice/models.py:93
+#, fuzzy
+#| msgid "Referal link"
+msgid "Referal action"
+msgstr "Lien d'achat"
+
+#: backoffice/models.py:94
 msgid "Referal link"
 msgstr "Lien d'achat"
 
-#: backoffice/models.py:107
+#: backoffice/models.py:116
 msgid "Video"
 msgstr ""
 
-#: backoffice/models.py:112
+#: backoffice/models.py:121
 msgid "Youtube"
 msgstr ""
 
-#: backoffice/models.py:115
+#: backoffice/models.py:124
 #: backoffice/templates/backoffice/publication_list.html:16
 msgid "Title"
 msgstr ""
 
-#: backoffice/models.py:117
+#: backoffice/models.py:126
 msgid "Video ID"
 msgstr ""
 
-#: backoffice/models.py:118
+#: backoffice/models.py:127
 msgid "Type"
 msgstr ""
 
-#: backoffice/models.py:119
+#: backoffice/models.py:128
 msgid "Social network"
 msgstr ""
 
-#: backoffice/models.py:120
+#: backoffice/models.py:129
 msgid "Date"
 msgstr ""
 
-#: backoffice/models.py:121
+#: backoffice/models.py:130
 msgid "Expiration date"
 msgstr ""
 
-#: backoffice/models.py:123
+#: backoffice/models.py:132
 #: backoffice/templates/backoffice/publication_list.html:39
 msgid "Published"
 msgstr ""
@@ -222,17 +252,17 @@ msgstr ""
 #: backoffice/templates/backoffice/campaign_confirm_delete.html:14
 #: backoffice/templates/backoffice/campaign_form.html:18
 #: backoffice/templates/backoffice/product_confirm_delete.html:14
-#: backoffice/templates/backoffice/product_form.html:26
+#: backoffice/templates/backoffice/product_form.html:27
 #: backoffice/templates/backoffice/publication_confirm_delete.html:14
 #: backoffice/templates/backoffice/publication_form.html:18
-#: backoffice/templates/backoffice/tagvideo_form.html:117
+#: backoffice/templates/backoffice/tagvideo_form.html:118
 msgid "Cancel"
 msgstr ""
 
 #: backoffice/templates/backoffice/campaign_confirm_delete.html:15
 #: backoffice/templates/backoffice/campaign_form.html:19
 #: backoffice/templates/backoffice/product_confirm_delete.html:15
-#: backoffice/templates/backoffice/product_form.html:27
+#: backoffice/templates/backoffice/product_form.html:28
 #: backoffice/templates/backoffice/publication_confirm_delete.html:15
 #: backoffice/templates/backoffice/publication_form.html:19
 msgid "Submit"
@@ -367,7 +397,7 @@ msgstr ""
 msgid "Create smartlink"
 msgstr ""
 
-#: backoffice/templates/backoffice/product_form.html:47
+#: backoffice/templates/backoffice/product_form.html:48
 msgid "Upload"
 msgstr ""
 
@@ -431,9 +461,9 @@ msgid ""
 "you work for or a title for your post (ex: Lookbook 2018, My favorite hotel, "
 "Make up tutorial, etc.)"
 msgstr ""
-"Pour le nom de la campagne, vous pouvez utiliser le nom de l'opération de la marque avec qui "
-"vous travaillez ou bien un titre pour votre post (ex: Lookbook 2018, Mon "
-"hôtel favori, Tuto maquillage, etc.)"
+"Pour le nom de la campagne, vous pouvez utiliser le nom de l'opération de la "
+"marque avec qui vous travaillez ou bien un titre pour votre post (ex: "
+"Lookbook 2018, Mon hôtel favori, Tuto maquillage, etc.)"
 
 #: backoffice/templates/backoffice/publication_step2.html:14
 msgid "Choose the video to tag"
@@ -477,7 +507,7 @@ msgstr "Vidéo déjà publiée"
 msgid "Create a product SmartLink"
 msgstr "Création du Smartlink"
 
-#: backoffice/templates/backoffice/tagvideo_form.html:118
+#: backoffice/templates/backoffice/tagvideo_form.html:119
 msgid "Save"
 msgstr ""
 
