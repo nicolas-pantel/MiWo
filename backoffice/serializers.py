@@ -176,6 +176,7 @@ class TagSerializer(serializers.ModelSerializer):
         ret['desc_product'] = product['description']
         ret['prix_produit'] = product['price']
         ret['pics_produit'] = product["images"]
+        ret['referal_action'] = product["referal_action"]
         ret['referal_link'] = product["referal_link"]
         ret['influencer'] = instance.publication.campaign.user.username
         if instance.publication.campaign.user.profile.picture is not None:
