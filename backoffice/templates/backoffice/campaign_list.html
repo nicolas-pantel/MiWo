@@ -38,12 +38,12 @@
                                                 <span class="badge badge-secondary">{% trans 'Private' %}</span>
                                             {% else %}
                                                 <span class="badge badge-primary">{% trans 'Public' %}</span>
-                                                <!-- Publication badge -->
-                                                {% if publication.published %}
-                                                    <span class="badge badge-success">{% trans 'Synchronized' %}</span>
-                                                {% else %}
-                                                    <span class="badge badge-danger">{% trans 'Not synchronized' %}</span>
-                                                {% endif %}
+                                            {% endif %}
+                                            <!-- Synchro badge -->
+                                            {% if publication.published %}
+                                                <span class="badge badge-success">{% trans 'Synchronized' %}</span>
+                                            {% else %}
+                                                <span class="badge badge-danger">{% trans 'Not synchronized' %}</span>
                                             {% endif %}
                                         </div>
                                         <a href="{% url 'tagvideo_create' publication.pk %}">
