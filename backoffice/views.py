@@ -138,6 +138,8 @@ class CampaignsView(CampaignMixin, ListView):
             video_details[video_snippet[0]] = {
                 "url": video_snippet[1], "privacy": video_snippet[2], "name": video_snippet[3]
             }
+        for video in context["youtube_videos"]:
+            video["privacy"] = video_details.get(video["id"]).get("privacy")
         context["video_details"] = video_details
         new_object_list = []
         for campaign in context.get("object_list", []):

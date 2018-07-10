@@ -9,6 +9,6 @@
 <!-- synchro badge -->
 {% if publication.published %}
     <span class="badge badge-success">{% trans 'Synchronized' %}</span>
-{% elif publication.published is not None %}
+{% elif not hide_publication %}
     <span class="badge badge-danger">{% trans 'Not synchronized' %}</span>
 {% endif %}

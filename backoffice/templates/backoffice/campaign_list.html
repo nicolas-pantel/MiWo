@@ -33,7 +33,7 @@
                                 {% for publication in object.publications_list %}
                                     <div class="col-4 mb-2">
                                         <div>
-                                            {% include "backoffice/partials/privacy_labels.html" %}
+                                            {% include "backoffice/partials/privacy_labels.html" with privacy=publication.privacy publication=publication %}
                                         </div>
                                         <a href="{% url 'tagvideo_create' publication.pk %}">
                                             <img src="{{ publication.thumbnail }}" style="width: 200px;"/>
