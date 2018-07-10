@@ -14,6 +14,7 @@
         <div class="row">
             {% for video in youtube_videos %}
             <div class="col-4 mb-2">
+                {% include "backoffice/partials/privacy_labels.html" with publication=None %}
                 <form method="POST" action="{{ form_url }}">
                     {% csrf_token %}
                     <input type="hidden" name="campaign" id="id_campaign" value="{{ campaign }}">

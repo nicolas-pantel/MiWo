@@ -33,18 +33,7 @@
                                 {% for publication in object.publications_list %}
                                     <div class="col-4 mb-2">
                                         <div>
-                                            <!-- Privacy badge -->
-                                            {% if publication.privacy == 'private' %}
-                                                <span class="badge badge-secondary">{% trans 'Private' %}</span>
-                                            {% else %}
-                                                <span class="badge badge-primary">{% trans 'Public' %}</span>
-                                            {% endif %}
-                                            <!-- Synchro badge -->
-                                            {% if publication.published %}
-                                                <span class="badge badge-success">{% trans 'Synchronized' %}</span>
-                                            {% else %}
-                                                <span class="badge badge-danger">{% trans 'Not synchronized' %}</span>
-                                            {% endif %}
+                                            {% include "backoffice/partials/privacy_labels.html" %}
                                         </div>
                                         <a href="{% url 'tagvideo_create' publication.pk %}">
                                             <img src="{{ publication.thumbnail }}" style="width: 200px;"/>

@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<!-- Privacy badge -->
+{% if privacy == 'private' %}
+    <span class="badge badge-secondary">{% trans 'Private' %}</span>
+{% else %}
+    <span class="badge badge-primary">{% trans 'Public' %}</span>
+{% endif %}
+<!-- synchro badge -->
+{% if publication.published %}
+    <span class="badge badge-success">{% trans 'Synchronized' %}</span>
+{% elif publication.published is not None %}
+    <span class="badge badge-danger">{% trans 'Not synchronized' %}</span>
+{% endif %}

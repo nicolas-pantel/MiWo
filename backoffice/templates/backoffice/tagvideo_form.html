@@ -9,18 +9,7 @@
     <div class="row pt-5">
         <!-- Video -->
         <div class="col-4">
-            <!-- Privacy badge -->
-            {% if privacy == 'private' %}
-                <span class="badge badge-secondary">{% trans 'Private' %}</span>
-            {% else %}
-                <span class="badge badge-primary">{% trans 'Public' %}</span>
-            {% endif %}
-            <!-- synchro badge -->
-            {% if publication.published %}
-                <span class="badge badge-success">{% trans 'Synchronized' %}</span>
-            {% else %}
-                <span class="badge badge-danger">{% trans 'Not synchronized' %}</span>
-            {% endif %}
+            {% include "backoffice/partials/privacy_labels.html" %}
             <div id="ytplayer" class="pt-1"></div>
             <div><b>1 <span class="pl-2">{% trans 'Place cursor where you talk about the product' %}</span></b></div>
             <form id="tag-form" class="form" method="POST" action="">
